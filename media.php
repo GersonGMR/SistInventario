@@ -71,7 +71,7 @@
                 </td>
                 <td class="text-center">
                   <a href="delete_media.php?id=<?php echo (int) $media_file['id'];?>" class="btn btn-danger btn-xs"  title="Eliminar">
-                    <span class="glyphicon glyphicon-trash"></span>
+                    <span style="font-size: 25px" class="glyphicon glyphicon-trash"></span>
                   </a>
                 </td>
                </tr>

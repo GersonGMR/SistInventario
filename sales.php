@@ -48,10 +48,10 @@ $sales = find_all_sale();
                <td class="text-center">
                   <div class="btn-group">
                      <a href="edit_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-warning btn-xs"  title="Edit" data-toggle="tooltip">
-                       <span class="glyphicon glyphicon-edit"></span>
+                       <span style="font-size: 25px" class="glyphicon glyphicon-edit"></span>
                      </a>
                      <a href="delete_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
-                       <span class="glyphicon glyphicon-trash"></span>
+                       <span style="font-size: 25px" class="glyphicon glyphicon-trash"></span>
                      </a>
                   </div>
                </td>

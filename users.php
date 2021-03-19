@@ -55,10 +55,10 @@
            <td class="text-center">
              <div class="btn-group">
                 <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
-                  <i class="glyphicon glyphicon-pencil"></i>
+                  <i style="font-size: 25px" class="glyphicon glyphicon-pencil"></i>
                </a>
                 <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Eliminar">
-                  <i class="glyphicon glyphicon-remove"></i>
+                  <i style="font-size: 25px" class="glyphicon glyphicon-remove"></i>
                 </a>
                 </div>
            </td>

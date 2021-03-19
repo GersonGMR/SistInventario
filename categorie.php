@@ -3,7 +3,7 @@
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
   page_require_level(1);
-  
+
   $all_categories = find_all('categories')
 ?>
 <?php
@@ -78,10 +78,10 @@
                     <td class="text-center">
                       <div class="btn-group">
                         <a href="edit_categorie.php?id=<?php echo (int)$cat['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Editar">
-                          <span class="glyphicon glyphicon-edit"></span>
+                          <span style="font-size: 25px" class="glyphicon glyphicon-edit"></span>
                         </a>
                         <a href="delete_categorie.php?id=<?php echo (int)$cat['id'];?>"  class="btn btn-xs btn-danger" data-toggle="tooltip" title="Eliminar">
-                          <span class="glyphicon glyphicon-trash"></span>
+                          <span style="font-size: 25px" class="glyphicon glyphicon-trash"></span>
                         </a>
                       </div>
                     </td>

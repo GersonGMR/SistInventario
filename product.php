@@ -53,14 +53,14 @@
                 <td class="text-center">
                   <div class="btn-group">
                     <a href="edit_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-info btn-xs"  title="Editar" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-edit"></span>
+                      <span style="font-size: 25px" class="glyphicon glyphicon-edit"></span>
                     </a>
                      <a href="delete_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-danger btn-xs"  title="Eliminar" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-trash"></span>
+                      <span style="font-size: 25px" class="glyphicon glyphicon-trash"></span>
                     </a>
                   </div>
                 </td>
-                <?php if ( remove_junk($product['quantity']) < 10 ): echo 
+                <?php if ( remove_junk($product['quantity']) < 10 ): echo
                 	"<td class=\"text-center\" style=\"background-color: yellow; color: red;\">Nivel Bajo</td>"; else: echo "<td></td>"; endif; ?>
               </tr>
              <?php endforeach; ?>
