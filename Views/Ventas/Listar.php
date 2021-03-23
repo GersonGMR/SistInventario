@@ -11,9 +11,9 @@
             <form action="" method="post" id="frmCompras" class="row" autocomplete="off">
                 <div class="col-lg-3">
                     <div class="form-group">
-                        <label for="buscar_codigo">Cógigo de barras</label>
+                        <label for="buscar_codigo">Cógigo producto</label>
                         <input type="hidden" id="id" name="id">
-                        <input id="buscar_codigo" onkeyup="BuscarCodigo(event);" class="form-control" type="text" name="codigo" placeholder="Código de barras">
+                        <input id="buscar_codigo" onkeyup="BuscarCodigo(event);" class="form-control" type="text" name="codigo" placeholder="Código producto">
                         <span class="text-danger d-none" id="error">No hay producto</span>
                     </div>
                 </div>
@@ -34,10 +34,10 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="form-group">
-                        <label for="precio">Precio</label>
+                        <label for="precio" hidden>Precio</label>
                         <input id="precio" class="form-control" type="hidden" name="precio">
                         <br />
-                        <strong id="precioP"></strong>
+                        <strong hidden id="precioP"></strong>
                     </div>
                 </div>
             </form>
@@ -50,8 +50,6 @@
                                     <th>Id</th>
                                     <th>Producto</th>
                                     <th>Cantidad</th>
-                                    <th>Precio</th>
-                                    <th>Total</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -67,7 +65,7 @@
                     <div class="form-group">
                         <strong class="text-primary">Datos del Cliente</strong>
                         <input type="hidden" id="id_cliente" name="id_cliente">
-                        <input type="text" id="ruc_cliente" onkeyup="BuscarCliente(event);" name="ruc_cliente" class="form-control" placeholder="Ruc/Dni del cliente">
+                        <input type="text" id="ruc_cliente" onkeyup="BuscarCliente(event);" name="ruc_cliente" class="form-control" placeholder="Codigo del cliente">
                         <strong id="nom_cli" class="form-control border-0 text-success"></strong>
                         <strong id="dir_cli" class="form-control border-0 text-success"></strong>
                         <strong id="tel_cli" class="form-control border-0 text-success"></strong>
@@ -78,8 +76,8 @@
                         <strong class="text-primary">Total unidades: </strong>
                         <input type="hidden" id="total" name="total" class="form-control  mb-2">
                         <strong id="tVenta" class="form-control border-0 text-success"></strong>
-                        <button class="btn btn-danger" type="button" id="AnularCompra">Anular Venta</button>
-                        <button class="btn btn-success" type="button" id="procesarVenta"><i class="fas fa-money-check-alt"></i> Procesar Venta</button>
+                        <button class="btn btn-danger" type="button" id="AnularCompra">Anular salida</button>
+                        <button class="btn btn-success" type="button" id="procesarVenta"><i class="fas fa-money-check-alt"></i> Procesar salida</button>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ $pdf = new FPDF('P', 'mm', array(105 , 148));
 $pdf->AddPage();
 $pdf->setFont('Arial', 'B', 14);
 $pdf->setTitle("Reporte de Venta");
-$pdf->image(base_url().'Assets/img/logo.jpg', 70, 5, 30, 30, 'JPG');
+$pdf->image(base_url().'Assets/img/logo.jpg', 70, 5, 30, 20, 'JPG');
 $pdf->setFont('Arial', 'B', 10);
 $pdf->Cell(50, 5, utf8_decode($config['nombre']), 0, 1, 'L');
 $pdf->Cell(20, 5, utf8_decode("Ruc"), 0, 0, 'L');
@@ -21,10 +21,10 @@ $pdf->setFont('Arial', '', 10);
 $pdf->Cell(50, 5, utf8_decode($config['direccion']), 0, 1, 'L');
 $pdf->Ln();
 $pdf->setFont('Arial', 'B', 10);
-$pdf->Cell(80, 8, utf8_decode("Datos del cliente"), 0, 1, 'C');
+$pdf->Cell(80, 8, utf8_decode("Datos del beneficiario"), 0, 1, 'C');
 $pdf->setFont('Arial', 'B', 10);
 $pdf->SetTextColor(255, 0, 0);
-$pdf->Cell(20, 5, 'Ruc/Dni', 0, 0, 'L');
+$pdf->Cell(20, 5, 'Codigo', 0, 0, 'L');
 $pdf->Cell(50, 5, 'Nombre', 0, 0, 'L');
 $pdf->Cell(30, 5, utf8_decode('Teléfono'), 0, 0, 'L');
 $pdf->Ln();
@@ -36,22 +36,22 @@ $pdf->Cell(30, 5, utf8_decode($cliente['telefono']), 0, 0, 'L');
 $pdf->Ln(10);
 $pdf->setFont('Arial', '', 9);
 $pdf->SetTextColor(255, 255, 255);
-$pdf->Cell(45, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
-$pdf->Cell(10, 5, 'Cant.', 1, 0, 'L', 1);
-$pdf->Cell(15, 5, 'Precio', 1, 0, 'L', 1);
-$pdf->Cell(20, 5, 'Sub Total', 1, 1, 'L', 1);
+$pdf->Cell(12, 5, 'Codigo', 1, 0, 'C', 1);
+$pdf->Cell(25, 5, utf8_decode('Descripción'), 1, 0, 'C', 1);
+$pdf->Cell(10, 5, 'Cant.', 1, 0, 'C', 1);
+$pdf->Cell(40, 5, 'Fecha', 1, 1, 'C', 1);
 
 foreach ($data as $compras) {
-    $subtotal = $compras['cantidad'] * $compras['precio'];
+    $subtotal = $compras['cantidad'];
     $total = $total + $subtotal;
     $pdf->SetTextColor(0, 0, 0);
-    $pdf->Cell(45, 5, utf8_decode($compras['producto']), 0, 0, 'L');
-    $pdf->Cell(10, 5, $compras['cantidad'], 0, 0, 'L');
-    $pdf->Cell(15, 5, $compras['precio'], 0, 0, 'L');
-    $pdf->Cell(20, 5, number_format($subtotal, 2, '.', ','), 0, 1, 'L');
+    $pdf->Cell(12, 5, $compras['id_producto'], 0, 0, 'C');
+    $pdf->Cell(25, 5, utf8_decode($compras['producto']), 0, 0, 'C');
+    $pdf->Cell(10, 5, $compras['cantidad'], 0, 0, 'C');
+    $pdf->Cell(40, 5, $compras['fecha'], 0, 1, 'C');
 }
 $pdf->Ln();
-$pdf->Cell(90, 5, 'Total S/.'. number_format( $total, 2, '.', ','), 0, 1, 'R');
+$pdf->Cell(90, 5, 'Total unidades: '. number_format( $total), 0, 1, 'R');
 
 $pdf->Output();
 ?>
