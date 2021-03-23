@@ -37,7 +37,7 @@
                     <button class="sidebar-toggle"><i class="fas fa-arrow-alt-circle-left"></i></button>
                 </div>
                 <div class="right-menu list-inline no-margin-bottom">
-                    <h4>Sistema de inventario <strong class="text-primary">El Salvador, <?php echo date("d-M-Y") ?></strong></h4>
+                    <h4>Sistema de inventario <strong class="text-primary">El Salvador, <?php date_default_timezone_set("America/El_Salvador"); echo date("d/m/Y  g:i ", time());?></strong></h4>
                 </div>
                 <!-- Log out               -->
                 <div class="list-inline-item logout">

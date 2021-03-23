@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>Assets/css/bootstrap.min.css">
 </head>
 
-<body class="bg-warning">
+<body class="bg-secondary">
     <div class="container">
         <div class="row mt-3">
             <div class="col-lg-4 m-auto">
