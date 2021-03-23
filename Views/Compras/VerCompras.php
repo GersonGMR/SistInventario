@@ -8,7 +8,7 @@ $pdf->setTitle("Reporte de entrada");
 $pdf->image(base_url().'Assets/img/logo.jpg', 70, 5, 30, 20, 'JPG');
 $pdf->setFont('Arial', 'B', 10);
 $pdf->Cell(50, 5, utf8_decode($alert['nombre']), 0, 1, 'L');
-$pdf->Cell(20, 5, utf8_decode("Ruc"), 0, 0, 'L');
+$pdf->Cell(20, 5, utf8_decode("Codigo"), 0, 0, 'L');
 $pdf->setFont('Arial', '', 10);
 $pdf->Cell(50, 5, utf8_decode($alert['ruc']), 0, 1, 'L');
 $pdf->setFont('Arial', 'B', 10);
