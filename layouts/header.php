@@ -18,7 +18,7 @@
   <?php  if ($session->isUserLoggedIn(true)): ?>
     <header id="header">
 
-      <div class="logo pull-left"> SISTEMA INVENTARIO</div>
+      <div class="logo pull-left">Convoy Of Hope</div>
       <div class="header-content">
       <div class="header-date pull-left">
         <strong><?php date_default_timezone_set("America/El_Salvador"); echo date("d/m/Y  g:i ", time());?></strong>
