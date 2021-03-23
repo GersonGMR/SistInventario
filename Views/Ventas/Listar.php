@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-lg-4 mt-1">
                     <div class="form-group">
-                        <strong class="text-primary">Total a pagar</strong>
+                        <strong class="text-primary">Total unidades: </strong>
                         <input type="hidden" id="total" name="total" class="form-control  mb-2">
                         <strong id="tVenta" class="form-control border-0 text-success"></strong>
                         <button class="btn btn-danger" type="button" id="AnularCompra">Anular Venta</button>

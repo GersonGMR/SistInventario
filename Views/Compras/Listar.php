@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-lg-4 ml-auto">
                     <div class="form-group mt-2">
-                        <strong class="text-primary"><i class="fas fa-ad"></i> Total a pagar: </strong>
+                        <strong class="text-primary"><i class="fas fa-ad"></i> Total unidades: </strong>
                         <input type="hidden" id="total" value="0.00" name="total" class="form-control mb-2">
                         <strong id="totalV"></strong><br>
                         <button class="btn btn-danger" type="button" id="AnularCompra"><i class="fas fa-ad"></i> Anular</button>

@@ -58,12 +58,18 @@
                 </div>
             </div>
             <ul class="list-unstyled">
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fas fa-shopping-cart"></i> <strong class="text-white"> Ventas </strong></a>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fas fa-shopping-cart"></i> <strong class="text-white"> Salidas </strong></a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="<?php echo base_url(); ?>Ventas/Listar"><i class="fas fa-cart-plus"></i> Nueva Venta</a></li>
-                        <li><a href="<?php echo base_url(); ?>Ventas/lista"><i class="fas fa-list-ul"></i> Ventas</a></li>
+                        <li><a href="<?php echo base_url(); ?>Ventas/Listar"><i class="fas fa-cart-plus"></i> Nueva salida</a></li>
+                        <li><a href="<?php echo base_url(); ?>Ventas/lista"><i class="fas fa-list-ul"></i> Salidas</a></li>
                     </ul>
                 </li>
+                <li><a href="#dropdownCompras" aria-expanded="false" data-toggle="collapse"> <i class="fas fa-truck"></i> <strong class="text-white"> Entradas</strong></a>
+                            <ul id="dropdownCompras" class="collapse list-unstyled ">
+                                <li><a href="<?php echo base_url(); ?>Compras/Listar"><i class="fas fa-cart-plus"></i> Nueva entrada</a></li>
+                                <li><a href="<?php echo base_url(); ?>Compras/lista"><i class="fas fa-list-ol"></i> Entradas</a></li>
+                            </ul>
+                        </li>
                 <li><a href="<?php echo base_url(); ?>Productos/Listar"> <i class="fab fa-product-hunt"></i> <strong class="text-white"> Productos </strong></a></li>
                 <li><a href="<?php echo base_url(); ?>Clientes/Listar"> <i class="fas fa-users"></i> <strong class="text-white"> Clientes </strong></a></li>
                 <?php if($_SESSION['rol'] == "Administrador"){ ?>
@@ -71,10 +77,4 @@
 
 				<li><a href="<?php echo base_url(); ?>Configuracion/Listar"> <i class="fas fa-cogs"></i> <strong class="text-white"> Configuración </strong></a></li>
                 <?php } ?>
-				<li><a href="#dropdownCompras" aria-expanded="false" data-toggle="collapse"> <i class="fas fa-truck"></i> <strong class="text-white"> Compras</strong></a>
-                    <ul id="dropdownCompras" class="collapse list-unstyled ">
-                        <li><a href="<?php echo base_url(); ?>Compras/Listar"><i class="fas fa-cart-plus"></i> Nueva Compra</a></li>
-                        <li><a href="<?php echo base_url(); ?>Compras/lista"><i class="fas fa-list-ol"></i> Compras</a></li>
-                    </ul>
-                </li>
         </nav>
