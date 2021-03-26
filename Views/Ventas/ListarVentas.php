@@ -3,7 +3,7 @@
 <div class="page-content bg-light">
     <div class="page-header bg-light">
         <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Ventas Generadas</h2>
+            <h2 class="h5 no-margin-bottom">Salidas Generadas</h2>
         </div>
     </div>
     <section>
@@ -29,7 +29,7 @@
                                         <td><?php echo $lista['total']; ?></td>
                                         <td><?php echo $lista['fecha']; ?></td>
                                         <td>
-                                            <a href="<?php echo base_url(); ?>Ventas/ver?id=<?php echo $lista['id']; ?>&cliente=<?php echo $lista['id_cliente']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ver</a>
+                                            <a href="<?php echo base_url(); ?>Ventas/ver?id=<?php echo $lista['id']; ?>&cliente=<?php echo $lista['id_cliente']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-file-pdf"></i></i> PDF</a>
                                         </td>
                                     </tr>
                                 <?php } ?>

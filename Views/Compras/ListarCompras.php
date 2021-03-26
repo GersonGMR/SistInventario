@@ -3,7 +3,7 @@
 <div class="page-content bg-light">
     <div class="page-header bg-light">
         <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Compras Generadas</h2>
+            <h2 class="h5 no-margin-bottom">Entradas Generadas</h2>
         </div>
     </div>
     <section>
@@ -27,7 +27,7 @@
                                         <td><?php echo $lista['total']; ?></td> <!-- cambiar a total de cantidad de productos y no precio. -->
                                         <td><?php echo $lista['fecha']; ?></td>
                                         <td>
-                                            <a href="<?php echo base_url(); ?>Compras/ver?id=<?php echo $lista['id']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ver</a>
+                                            <a href="<?php echo base_url(); ?>Compras/ver?id=<?php echo $lista['id']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-file-pdf"></i> PDF</a>
                                         </td>
                                     </tr>
                                 <?php } ?>

@@ -11,7 +11,7 @@ $(document).ready(function () {
         if (fila < 2) {
             Swal.fire({
                 icon: 'warning',
-                title: 'No hay productos en la venta',
+                title: 'No hay productos en la entrada',
                 showConfirmButton: false,
                 timer: 2500
             })
@@ -27,7 +27,7 @@ $(document).ready(function () {
                 success: function (response) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Compra Generado',
+                        title: 'Entrada Generada',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -42,7 +42,7 @@ $(document).ready(function () {
         if (fila < 2) {
             Swal.fire({
                 icon: 'warning',
-                title: 'No hay productos en la venta',
+                title: 'No hay productos en la salida',
                 showConfirmButton: false,
                 timer: 2500
             })
@@ -58,7 +58,7 @@ $(document).ready(function () {
                 success: function (response) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Venta Generado',
+                        title: 'Salida Generada',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -193,7 +193,7 @@ function BuscarCodigo(e) {
                     document.getElementById("id").value = info.id;
                     document.getElementById("nombre").value = info.nombre;
                     $("#stockD").val(info.cantidad);
-                    document.getElementById("cantidad").value = 1;
+                    document.getElementById("cantidad").value = 0;
                     document.getElementById("nombreP").innerHTML = info.nombre;
                     document.getElementById("cantidad").focus();
                 } else {

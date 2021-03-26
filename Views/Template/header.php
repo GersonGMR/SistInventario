@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sistema de venta</title>
+    <title>Control inventario</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -31,10 +31,10 @@
                     <input type="hidden" id="url" value="<?php echo base_url(); ?>">
                     <!-- Navbar Header--><a href="<?php echo base_url(); ?>Admin/Listar" class="navbar-brand">
                         <div class="brand-text brand-big visible"><strong class="text-white">Convoy of Hope</strong></div>
-                        <div class="brand-text brand-sm"><strong class="text-primary">V</strong><strong>I</strong></div>
+                        <div class="brand-text brand-sm"><strong>CoH</strong></div>
                     </a>
                     <!-- Sidebar Toggle Btn-->
-                    <button class="sidebar-toggle"><i class="fas fa-arrow-alt-circle-left"></i></button>
+                    <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
                 </div>
                 <div class="right-menu list-inline no-margin-bottom">
                     <h4>Sistema de inventario <strong class="text-primary">El Salvador, <?php date_default_timezone_set("America/El_Salvador"); echo date("d/m/Y  g:i ", time());?></strong></h4>
@@ -47,7 +47,7 @@
             </div>
         </nav>
     </header>
-    <div class="d-flex align-items-stretch">
+    <div class="d-flex align-items-self">
         <!-- Sidebar Navigation-->
         <nav id="sidebar">
             <!-- Sidebar Header-->
@@ -75,6 +75,6 @@
                 <?php if($_SESSION['rol'] == "Administrador"){ ?>
 				<li><a href="<?php echo base_url(); ?>Usuarios/Listar"> <i class="fas fa-user"></i> <strong class="text-white"> Usuarios </strong></a></li>
 
-				<li><a href="<?php echo base_url(); ?>Configuracion/Listar"> <i class="fas fa-cogs"></i> <strong class="text-white"> Configuración </strong></a></li>
+				<li><a href="<?php echo base_url(); ?>Configuracion/Listar"> <i class="fas fa-cogs"></i> <strong class="text-white"> En desarrollo </strong></a></li>
                 <?php } ?>
         </nav>

@@ -3,7 +3,7 @@
 <div class="page-content bg-light">
     <div class="page-header bg-light">
         <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Nueva Compra</h2>
+            <h2 class="h5 no-margin-bottom">Nueva Entrada</h2>
         </div>
     </div>
     <section>

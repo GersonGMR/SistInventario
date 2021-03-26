@@ -52,9 +52,9 @@ $pdf->Ln(20);
 $pdf->setFont('Arial', '', 9);
 $pdf->SetTextColor(255, 255, 255);
 $pdf->Cell(10, 5, 'Cod.', 1, 0, 'L', 1);
-$pdf->Cell(30, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
-$pdf->Cell(20, 5, 'Cantidad', 1, 0, 'L', 1);
-$pdf->Cell(30, 5, 'Medida', 1, 1, 'L', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(6, 5, 'Cant.', 1, 0, 'C', 1);
+$pdf->Cell(25, 5, 'Medida', 1, 1, 'L', 1);
 
 /*foreach ($data as $compras) {
     $subtotal = $compras['cantidad'];
@@ -69,13 +69,14 @@ while ($row = mysqli_fetch_assoc($productos)) {
 	  $subtotal = $row['cantidad'];
 		$total = $total + $subtotal;
 		$pdf->SetTextColor(0, 0, 0);
+		$pdf->setFont('Arial', '', 6);
 		$pdf->Cell(10, 5, $row['id_producto'], 0, 0, 'L');
-		$pdf->Cell(30, 5, utf8_decode($row['nombre']), 0, 0, 'L');
-		$pdf->Cell(20, 5, $row['cantidad'], 0, 0, 'L');
-		$pdf->Cell(30, 5, utf8_decode($row['medida']), 0, 1, 'L');
+		$pdf->Cell(50, 5, utf8_decode($row['nombre']), 0, 0, 'L');
+		$pdf->Cell(5.5, 5, $row['cantidad'], 0, 0, 'L');
+		$pdf->Cell(25, 5, utf8_decode($row['medida']), 0, 1, 'L');
 	}
-$pdf->Ln();
-$pdf->Cell(90, 5, 'Total unidades: '. number_format( $total), 0, 1, 'R');
+$pdf->Ln(3);
+$pdf->Cell(90, 5, 'Total productos: '. number_format( $total), 0, 1, 'R');
 
 $pdf->Output();
 ?>
