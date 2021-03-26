@@ -33,8 +33,8 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="form-group">
-                        <label for="medida" hidden><i class="fas fa-ad"></i> Medida</label>
-                        <input id="medida" class="form-control" type="hidden" name="medida">
+                        <label for="precio" hidden><i class="fas fa-ad"></i> Precio</label>
+                        <input id="precio" class="form-control" type="hidden" name="precio">
                         <br />
                         <strong id="precioP" hidden></strong>
                     </div>
@@ -49,7 +49,6 @@
                                     <th>Id</th>
                                     <th>Producto</th>
                                     <th>Cantidad</th>
-                                    <th>Medida</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
