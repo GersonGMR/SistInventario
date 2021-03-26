@@ -71,7 +71,7 @@
                             </ul>
                         </li>
                 <li><a href="<?php echo base_url(); ?>Productos/Listar"> <i class="fab fa-product-hunt"></i> <strong class="text-white"> Productos </strong></a></li>
-                <li><a href="<?php echo base_url(); ?>Clientes/Listar"> <i class="fas fa-users"></i> <strong class="text-white"> Clientes </strong></a></li>
+                <li><a href="<?php echo base_url(); ?>Clientes/Listar"> <i class="fas fa-users"></i> <strong class="text-white"> Beneficiarios </strong></a></li>
                 <?php if($_SESSION['rol'] == "Administrador"){ ?>
 				<li><a href="<?php echo base_url(); ?>Usuarios/Listar"> <i class="fas fa-user"></i> <strong class="text-white"> Usuarios </strong></a></li>
 

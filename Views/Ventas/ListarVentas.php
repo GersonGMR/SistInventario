@@ -28,7 +28,7 @@
                                         <td><?php echo $lista['id_cliente']; ?></td>
                                         <td><?php echo $lista['total']; ?></td>
                                         <td><?php echo $lista['fecha']; ?></td>
-                                        <td>
+                                        <td> 
                                             <a href="<?php echo base_url(); ?>Ventas/ver?id=<?php echo $lista['id']; ?>&cliente=<?php echo $lista['id_cliente']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ver</a>
                                         </td>
                                     </tr>

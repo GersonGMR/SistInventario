@@ -11,7 +11,7 @@
 
         }
         public function Listar()
-        {        
+        {
             $this->views->getView($this, "Listar");
         }
         public function lista()
@@ -48,7 +48,7 @@
         {
             $data = $this->model->selectDetalle();
             foreach ($data as $ventas) {
-            $this->totalPagar = $this->totalPagar + $ventas['total']; 
+            $this->totalPagar = $this->totalPagar + $ventas['total'];
             echo "<tr>
                 <td>".$ventas['id']."</td>
                 <td>".$ventas['nombre']."</td>
@@ -59,16 +59,16 @@
                 <button typu='button' class='btn btn-danger' onclick='EliminarDetalle(" . $ventas['id'] . ");'>Eliminar</button>
                 </td>
             </tr>";
-            
+
             }
             $tot = number_format($this->totalPagar, 2, ".", ",");
 
             echo "<input type='hidden' id='totalPagar' value='" . $tot. "'/>";
         }
-    
+
     public function eliminar()
     {
-        
+
         $id = $_POST['id'];
         $this->model->eliminarVentas($id);
     }
@@ -87,7 +87,7 @@
         }else{
             $id_venta = $result;
         }
-        
+
     }
     public function registrar()
     {

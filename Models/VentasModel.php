@@ -135,7 +135,7 @@ class VentasModel extends Mysql{
     public function PdfCliente(int $id_cliente)
     {
         $sql = "SELECT * FROM clientes WHERE id = $id_cliente";
-        $res = $this->select($sql);
+        $res = $this->select_all($sql);
         return $res;
     }
     public function registrarStock(int $cantidad, int $id)
