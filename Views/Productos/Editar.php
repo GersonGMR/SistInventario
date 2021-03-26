@@ -28,8 +28,8 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="precio">Precio</label>
-                                        <input id="precio" class="form-control" type="text" name="precio" value="<?php echo $data['precio']; ?>">
+                                        <label for="medida">Medida</label>
+                                        <input id="medida" class="form-control" type="text" name="medida" value="<?php echo $data['medida']; ?>">
                                     </div>
                                 </div>
                             </div>

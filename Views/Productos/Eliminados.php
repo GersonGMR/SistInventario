@@ -18,7 +18,7 @@
                                     <th>Código</th>
                                     <th>Nombre</th>
                                     <th>Stock</th>
-                                    <th>Precio</th>
+                                    <th>Medida</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -29,7 +29,7 @@
                                         <td><?php echo $pro['codigo']; ?></td>
                                         <td><?php echo $pro['nombre']; ?></td>
                                         <td><?php echo $pro['cantidad']; ?></td>
-                                        <td><?php echo $pro['precio']; ?></td>
+                                        <td><?php echo $pro['medida']; ?></td>
                                         <td>
                                             <form action="<?php echo base_url() ?>Productos/reingresar?id=<?php echo $pro['id']; ?>" method="post" class="d-inline confirmar">
                                                 <button type="submit" class="btn btn-success"><i class="fas fa-ad"></i></button>
