@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <strong class="text-primary">Datos del beneficiado</strong>
                         <input type="hidden" id="id_cliente" name="id_cliente">
-                        <input type="text" id="ruc_cliente" onkeyup="BuscarCliente(event);" name="ruc_cliente" class="form-control" placeholder="Codigo del cliente">
+                        <input type="text" id="ruc_cliente" onkeyup="BuscarCliente(event);" name="ruc_cliente" class="form-control" placeholder="Codigo del beneficiado">
                         <strong id="nom_cli" class="form-control border-0 text-success"></strong>
                         <strong id="dir_cli" class="form-control border-0 text-success"></strong>
                         <strong id="tel_cli" class="form-control border-0 text-success"></strong>
