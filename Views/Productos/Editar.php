@@ -32,6 +32,12 @@
                                         <input id="medida" class="form-control" type="text" name="medida" value="<?php echo $data['medida']; ?>">
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="vencimiento">Fecha vencimiento</label>
+                                        <input id="vencimiento" class="form-control" type="date" name="vencimiento" value="<?php echo $data['vencimiento']; ?>">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer">

@@ -42,6 +42,7 @@
                                     <th>Nombre</th>
                                     <th>Stock</th>
                                     <th>Medida</th>
+                                    <th>Fecha vencimiento</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -53,6 +54,7 @@
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td><?php echo $cl['cantidad']; ?></td>
                                         <td><?php echo $cl['medida']; ?></td>
+                                        <td><?php echo $cl['vencimiento']; ?></td>
                                         <td>
                                             <a href="<?php echo base_url() ?>Productos/editar?id=<?php echo $cl['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <form action="<?php echo base_url() ?>Productos/eliminar?id=<?php echo $cl['id']; ?>" method="post" class="d-inline elim">
@@ -88,11 +90,17 @@
                         <label for="nombre">Nombre</label>
                         <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Descripción">
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">
+
                             <div class="form-group">
                                 <label for="medida">Medida</label>
                                 <input id="medida" class="form-control" type="text" name="medida" placeholder="Medida">
+                            </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="vencimiento">Fecha vencimiento</label>
+                                <input id="vencimiento" class="form-control" type="date" name="vencimiento" placeholder="Fecha vencimiento">
                             </div>
                         </div>
                     </div>

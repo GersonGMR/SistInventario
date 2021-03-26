@@ -24,7 +24,8 @@ class Productos extends Controllers
         $codigo = $_POST['codigo'];
         $nombre = $_POST['nombre'];
         $medida = $_POST['medida'];
-        $insert = $this->model->insertarProductos($codigo, $nombre, $medida);
+        $vencimiento = $_POST['vencimiento'];
+        $insert = $this->model->insertarProductos($codigo, $nombre, $medida, $vencimiento);
         if ($insert > 0) {
             $alert = 'registrado';
         } else if ($insert == 'existe') {
@@ -53,7 +54,8 @@ class Productos extends Controllers
         $nombre = $_POST['nombre'];
         $cantidad = $_POST['cantidad'];
         $medida = $_POST['medida'];
-        $actualizar = $this->model->actualizarProductos($codigo, $nombre, $cantidad, $medida, $id);
+        $vencimiento = $_POST['vencimiento'];
+        $actualizar = $this->model->actualizarProductos($codigo, $nombre, $cantidad, $medida,$vencimiento, $id);
         if ($actualizar == 1) {
             $alert =  'modificado';
         } else {
