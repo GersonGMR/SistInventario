@@ -15,7 +15,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Id</th>
-                                    <th>Cliente</th>
+                                    <th>Beneficiado</th>
                                     <th>Total</th>
                                     <th>Fecha</th>
                                     <th>Accion</th>

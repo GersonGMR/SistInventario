@@ -51,7 +51,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Clientes</div>
+                                    <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Beneficiados</div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
                                             <div class="h5 mb-0 mr-3 font-weight-bold text-white"><?php echo $cliente; ?></div>
@@ -72,7 +72,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Ventas</div>
+                                    <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Salidas</div>
                                     <div class="h5 mb-0 font-weight-bold text-white"><?php echo $config; ?></div>
                                 </div>
                                 <div class="col-auto">
@@ -85,7 +85,7 @@
             </div>
 
             <!-- Content Row -->
-          
+
         </div>
     </section>
 
