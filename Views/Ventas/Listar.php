@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="col-lg-4 mt-1">
                     <div class="form-group">
-                        <strong class="text-primary">Datos del Cliente</strong>
+                        <strong class="text-primary">Datos del beneficiado</strong>
                         <input type="hidden" id="id_cliente" name="id_cliente">
                         <input type="text" id="ruc_cliente" onkeyup="BuscarCliente(event);" name="ruc_cliente" class="form-control" placeholder="Codigo del cliente">
                         <strong id="nom_cli" class="form-control border-0 text-success"></strong>
