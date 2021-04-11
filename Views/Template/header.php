@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>Assets/css/custom.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>Assets/css/dataTables.bootstrap4.min.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shorcut icon" href="img/favicon.ico" type="image/x-icon">
     <!-- Tweaks for older IEs-->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -70,6 +70,8 @@
                                 <li><a href="<?php echo base_url(); ?>Compras/lista"><i class="fas fa-list-ol"></i> Entradas</a></li>
                             </ul>
                         </li>
+                        <li><a href="<?php echo base_url(); ?>Familias/Listar"> <i class="fas fa-box-open"></i> <strong class="text-white"> Familias </strong></a></li>
+                        <li><a href="<?php echo base_url(); ?>Contenedor/Listar"> <i class="fas fa-truck-loading"></i> <strong class="text-white"> Contenedores </strong></a></li>
                 <li><a href="<?php echo base_url(); ?>Productos/Listar"> <i class="fab fa-product-hunt"></i> <strong class="text-white"> Productos </strong></a></li>
                 <li><a href="<?php echo base_url(); ?>Clientes/Listar"> <i class="fas fa-users"></i> <strong class="text-white"> Beneficiados </strong></a></li>
                 <?php if($_SESSION['rol'] == "Administrador"){ ?>
