@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-03-2021 a las 04:16:25
+-- Tiempo de generación: 16-04-2021 a las 05:36:04
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -66,10 +66,10 @@ CREATE TABLE `compras` (
 --
 
 INSERT INTO `compras` (`id`, `total`, `estado`, `fecha`) VALUES
-(1, 710, 1, '2020-11-01'),
-(2, 88, 1, '2020-11-01'),
-(3, 939, 1, '2020-11-01'),
-(4, 500, 1, '2021-03-25');
+(7, 100, 1, '2021-01-13'),
+(8, 20, 1, '2021-03-26'),
+(9, 5, 1, '2021-03-26'),
+(10, 60, 1, '2021-03-26');
 
 -- --------------------------------------------------------
 
@@ -96,6 +96,27 @@ INSERT INTO `configuracion` (`id`, `ruc`, `nombre`, `telefono`, `direccion`, `ra
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `contenedor`
+--
+
+CREATE TABLE `contenedor` (
+  `id_contenedor` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `estado` int(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `contenedor`
+--
+
+INSERT INTO `contenedor` (`id_contenedor`, `nombre`, `estado`) VALUES
+(1, '0900-A11', 1),
+(2, '0800-A2111', 1),
+(3, '0700-A2', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `detalle_compra`
 --
 
@@ -115,7 +136,16 @@ CREATE TABLE `detalle_compra` (
 --
 
 INSERT INTO `detalle_compra` (`id`, `id_compra`, `producto`, `id_producto`, `cantidad`, `precio`, `id_usuario`, `fecha`) VALUES
-(1, 4, 'Gaseosa', 1, 500, '0.00', 1, '2021-03-25');
+(1, 4, 'Gaseosa', 1, 500, '0.00', 1, '2021-03-25'),
+(2, 5, 'Leche', 2, 1, '0.00', 1, '2021-03-25'),
+(3, 6, 'Leche', 2, 50, '0.00', 1, '2021-03-26'),
+(4, 7, 'Leche', 2, 20, '0.00', 1, '2021-03-26'),
+(5, 7, 'Arroz', 1, 40, '0.00', 1, '2021-03-26'),
+(6, 7, 'Maiz', 3, 40, '0.00', 1, '2021-03-26'),
+(7, 8, 'Arroz', 1, 20, '0.00', 1, '2021-03-26'),
+(8, 9, 'Leche', 7, 5, '0.00', 1, '2021-03-26'),
+(9, 10, 'Maiz', 3, 20, '0.00', 1, '2021-03-26'),
+(10, 10, 'Leche', 7, 40, '0.00', 1, '2021-03-26');
 
 -- --------------------------------------------------------
 
@@ -166,7 +196,31 @@ INSERT INTO `detalle_venta` (`id`, `id_venta`, `producto`, `id_producto`, `canti
 (7, 4, 'Maiz', 3, 50, '0.00', 1, '2021-03-25'),
 (8, 5, 'Leche', 2, 20, '0.00', 1, '2021-03-25'),
 (9, 5, 'Maiz', 3, 40, '0.00', 1, '2021-03-25'),
-(10, 5, 'Prueba', 4, 20, '0.00', 1, '2021-03-25');
+(10, 5, 'Prueba', 4, 20, '0.00', 1, '2021-03-25'),
+(11, 6, 'Prueba dos de producto', 6, 30, '0.00', 1, '2021-03-26'),
+(12, 6, 'Cereal Kellogs Frosted Mini Wheats caja', 2, 2, '0.00', 1, '2021-03-26'),
+(13, 6, 'Maiz', 3, 30, '0.00', 1, '2021-03-26');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `familia`
+--
+
+CREATE TABLE `familia` (
+  `id_familia` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `estado` int(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `familia`
+--
+
+INSERT INTO `familia` (`id_familia`, `nombre`, `estado`) VALUES
+(1, 'Granos', 1),
+(2, 'Cereales', 1),
+(3, 'Familia 1', 1);
 
 -- --------------------------------------------------------
 
@@ -180,6 +234,7 @@ CREATE TABLE `productos` (
   `nombre` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `cantidad` int(11) NOT NULL DEFAULT 0,
   `medida` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `vencimiento` date NOT NULL,
   `precio` decimal(10,2) NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -188,11 +243,14 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `codigo`, `nombre`, `cantidad`, `medida`, `precio`, `estado`) VALUES
-(1, '2580', 'Arroz', 1179, 'caja de 36 bolsas', '550.00', 1),
-(2, '12345', 'Leche', 1509, 'caja de 40 unidades', '810.00', 1),
-(3, '5555', 'Maiz', 60, 'saco de 10 unidades', '0.00', 1),
-(4, '1223', 'Prueba', 30, 'Caja con 15 bolsas', '0.00', 1);
+INSERT INTO `productos` (`id`, `codigo`, `nombre`, `cantidad`, `medida`, `vencimiento`, `precio`, `estado`) VALUES
+(1, '100', 'Arroz', 1239, 'caja de 36 bolsas', '2021-07-16', '550.00', 1),
+(2, '202020', 'Cereal Kellogs Frosted Mini Wheats caja', 1578, 'caja de 40 unidades', '2021-04-21', '810.00', 1),
+(3, '111111', 'Maiz', 90, 'saco de 10 unidades', '2021-03-30', '0.00', 1),
+(4, '232323', 'Prueba', 30, 'Caja con 15 bolsas', '2021-11-27', '0.00', 0),
+(5, '1010', 'Prueba de producto', 0, 'Caja de 16 bolsas', '2021-07-09', '0.00', 0),
+(6, '505050', 'Prueba dos de producto', 470, 'Caja de x bolsas', '2021-09-03', '0.00', 1),
+(7, '303030', 'Leche', 45, 'Caja de 35 botellas', '2021-07-22', '0.00', 1);
 
 -- --------------------------------------------------------
 
@@ -216,7 +274,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `correo`, `clave`, `rol`, `estado`) VALUES
 (1, 'admin', 'admin', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Administrador', 1),
-(2, 'Gerson Salazar', 'Gersongm', 'gerson@gmail.com', '3b4bb6dc4b5cd4785cede954ed18246fee7429e8cb77e2179e632a2651b52f52', 'Vendedor', 1);
+(2, 'Gerson Salazar', 'Gersongm', 'gerson@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Vendedor', 1),
+(3, 'Gerson Salazar', 'gersongmr', 'ggerson@live.com.ar', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Administrador', 1);
 
 -- --------------------------------------------------------
 
@@ -237,11 +296,8 @@ CREATE TABLE `ventas` (
 --
 
 INSERT INTO `ventas` (`id`, `id_cliente`, `total`, `estado`, `fecha`) VALUES
-(1, 5, 90, 1, '2021-03-25'),
-(2, 6, 20, 1, '2021-03-25'),
-(3, 5, 60, 1, '2021-03-25'),
-(4, 5, 101, 1, '2021-03-25'),
-(5, 6, 80, 1, '2021-03-25');
+(5, 6, 80, 1, '2021-03-10'),
+(6, 5, 62, 1, '2021-03-26');
 
 --
 -- Índices para tablas volcadas
@@ -266,6 +322,12 @@ ALTER TABLE `configuracion`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `contenedor`
+--
+ALTER TABLE `contenedor`
+  ADD PRIMARY KEY (`id_contenedor`);
+
+--
 -- Indices de la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
@@ -282,6 +344,12 @@ ALTER TABLE `detalle_temp`
 --
 ALTER TABLE `detalle_venta`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `familia`
+--
+ALTER TABLE `familia`
+  ADD PRIMARY KEY (`id_familia`);
 
 --
 -- Indices de la tabla `productos`
@@ -315,7 +383,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracion`
@@ -324,40 +392,52 @@ ALTER TABLE `configuracion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `contenedor`
+--
+ALTER TABLE `contenedor`
+  MODIFY `id_contenedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_temp`
 --
 ALTER TABLE `detalle_temp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `familia`
+--
+ALTER TABLE `familia`
+  MODIFY `id_familia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
