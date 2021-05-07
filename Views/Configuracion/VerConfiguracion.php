@@ -2,9 +2,9 @@
 include "./conexion.php";
         $desde = $_REQUEST['desde'];
         $hasta = $_REQUEST['hasta'];
-        $entradas = mysqli_query($conexion, " SELECT * FROM detalle_compra d
-					INNER JOIN productos p ON d.id_producto = p.id
-					WHERE d.Fecha between '$desde' and '$hasta'");
+        $entradas = mysqli_query($conexion, "SELECT p.nombre, d.cantidad,p.medida FROM detalle_compra d
+          INNER JOIN productos p ON d.id_producto = p.id
+          WHERE d.Fecha between '$desde' and '$hasta'");
 require_once "Assets/pdf/fpdf.php";
 $total = 0.00;
 $pdf = new FPDF('P', 'mm', array(105, 148));
@@ -42,7 +42,6 @@ $pdf->setFont('Arial', 'B', 8);
 $pdf->Cell(30, 5, utf8_decode("No. Entrada"), 0, 0, 'L');
 $pdf->setFont('Arial', '', 8);
 $pdf->Cell(50, 5, utf8_decode($noFactura), 0, 1, 'L');*/
-$pdf->Ln();
 $pdf->setFont('Arial', 'B', 10);
 $pdf->Cell(80, 8, utf8_decode("Detalle de los productos entrantes"), 0, 1, 'C');
 $pdf->setFont('Arial', 'B', 10);
