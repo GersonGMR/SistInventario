@@ -74,9 +74,10 @@
                         <li><a href="<?php echo base_url(); ?>Contenedor/Listar"> <i class="fas fa-truck-loading"></i> <strong class="text-white"> Contenedores </strong></a></li>
                 <li><a href="<?php echo base_url(); ?>Productos/Listar"> <i class="fab fa-product-hunt"></i> <strong class="text-white"> Productos </strong></a></li>
                 <li><a href="<?php echo base_url(); ?>Clientes/Listar"> <i class="fas fa-users"></i> <strong class="text-white"> Beneficiados </strong></a></li>
-                <?php if($_SESSION['rol'] == "Administrador"){ ?>
+                <?php if ($_SESSION['rol'] == "Administrador") { ?>
 				<li><a href="<?php echo base_url(); ?>Usuarios/Listar"> <i class="fas fa-user"></i> <strong class="text-white"> Usuarios </strong></a></li>
 
-				<li><a href="<?php echo base_url(); ?>Configuracion/Listar"> <i class="fas fa-cogs"></i> <strong class="text-white"> En desarrollo </strong></a></li>
+				<li><a href="<?php echo base_url(); ?>Configuracion/Listar"> <i class="fas fa-file-alt"></i></i> <strong class="text-white"> Reportes </strong></a></li>
+        <li><a href="<?php echo base_url(); ?>Configuracion1/Listar"> <i class="fas fa-cog"></i></i> <strong class="text-white"> Configuracion </strong></a></li>
                 <?php } ?>
         </nav>
