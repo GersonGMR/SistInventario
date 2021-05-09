@@ -1,5 +1,5 @@
 <?php
-    class Configuracion extends Controllers
+    class Reportes extends Controllers
     {
         public function __construct()
         {
@@ -18,6 +18,12 @@
         {
             $alert = $this->model->selectConfiguracion();
             $data = $this->model->ListaCompras();
-            $this->views->getView($this, "VerConfiguracion", $data, $alert);
+            $this->views->getView($this, "VerEntrada", $data, $alert);
+        }
+        public function verSalida()
+        {
+            $alert = $this->model->selectConfiguracion();
+            $data = $this->model->ListaSalidas();
+            $this->views->getView($this, "VerSalida", $data, $alert);
         }
     }

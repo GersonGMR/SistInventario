@@ -37,7 +37,7 @@
                     <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
                 </div>
                 <div class="right-menu list-inline no-margin-bottom">
-                    <h4>Sistema de inventario <strong class="text-primary">El Salvador, <?php date_default_timezone_set("America/El_Salvador"); echo date("d/m/Y  g:i ", time());?></strong></h4>
+                    <h4>Sistema de inventario <strong class="text-primary">El Salvador, <?php date_default_timezone_set("America/El_Salvador"); echo date("Y/m/d", time());?></strong></h4>
                 </div>
                 <!-- Log out               -->
                 <div class="list-inline-item logout">
@@ -77,7 +77,7 @@
                 <?php if ($_SESSION['rol'] == "Administrador") { ?>
 				<li><a href="<?php echo base_url(); ?>Usuarios/Listar"> <i class="fas fa-user"></i> <strong class="text-white"> Usuarios </strong></a></li>
 
-				<li><a href="<?php echo base_url(); ?>Configuracion/Listar"> <i class="fas fa-file-alt"></i></i> <strong class="text-white"> Reportes </strong></a></li>
+				<li><a href="<?php echo base_url(); ?>Reportes/Listar"> <i class="fas fa-file-alt"></i></i> <strong class="text-white"> Reportes </strong></a></li>
         <li><a href="<?php echo base_url(); ?>Configuracion1/Listar"> <i class="fas fa-cog"></i></i> <strong class="text-white"> Configuracion </strong></a></li>
                 <?php } ?>
         </nav>

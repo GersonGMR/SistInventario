@@ -61,13 +61,14 @@ foreach ($data as $compras) {
 while ($row = mysqli_fetch_assoc($entradas)) {
     $subtotal = $row['cantidad'];
     $total = $total + $subtotal;
-    $pdf->setFont('Arial', 'B', 6);
+    $pdf->setFont('Arial', '', 6);
     $pdf->SetTextColor(0, 0, 0);
     $pdf->Cell(50, 5, utf8_decode($row['nombre']), 0, 0, 'L');
     $pdf->Cell(10, 5, $row['cantidad'], 0, 0, 'L');
     $pdf->Cell(35, 5, utf8_decode($row['medida']), 0, 1, 'L');
 }
-$pdf->Ln(3);
-$pdf->Cell(90, 5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
 
 $pdf->Output();

@@ -1,5 +1,5 @@
 <?php
-class ConfiguracionModel extends Mysql
+class ReportesModel extends Mysql
 {
     public $id;
     public $ruc;
@@ -35,6 +35,12 @@ class ConfiguracionModel extends Mysql
     public function ListaCompras()
     {
         $sql = "SELECT * FROM detalle_compra";
+        $res = $this->select_all($sql);
+        return $res;
+    }
+    public function ListaSalidas()
+    {
+        $sql = "SELECT * FROM detalle_venta";
         $res = $this->select_all($sql);
         return $res;
     }
