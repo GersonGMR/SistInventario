@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-04-2021 a las 05:36:04
+-- Tiempo de generación: 11-05-2021 a las 04:48:54
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -69,7 +69,8 @@ INSERT INTO `compras` (`id`, `total`, `estado`, `fecha`) VALUES
 (7, 100, 1, '2021-01-13'),
 (8, 20, 1, '2021-03-26'),
 (9, 5, 1, '2021-03-26'),
-(10, 60, 1, '2021-03-26');
+(10, 60, 1, '2021-03-26'),
+(11, 60, 1, '2021-05-07');
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,7 @@ CREATE TABLE `configuracion` (
 --
 
 INSERT INTO `configuracion` (`id`, `ruc`, `nombre`, `telefono`, `direccion`, `razon`) VALUES
-(1, '71347267', 'Convoy of Hope', '925491523', 'San Salvador', '');
+(1, '71347267', 'Convoy of Hope', '925491523', 'La Libertad', '');
 
 -- --------------------------------------------------------
 
@@ -136,16 +137,18 @@ CREATE TABLE `detalle_compra` (
 --
 
 INSERT INTO `detalle_compra` (`id`, `id_compra`, `producto`, `id_producto`, `cantidad`, `precio`, `id_usuario`, `fecha`) VALUES
-(1, 4, 'Gaseosa', 1, 500, '0.00', 1, '2021-03-25'),
-(2, 5, 'Leche', 2, 1, '0.00', 1, '2021-03-25'),
-(3, 6, 'Leche', 2, 50, '0.00', 1, '2021-03-26'),
-(4, 7, 'Leche', 2, 20, '0.00', 1, '2021-03-26'),
+(1, 4, 'Arroz', 1, 500, '0.00', 1, '2021-03-25'),
+(2, 5, 'Cereal Kellogs Frosted Mini Wheats caja\r\n', 2, 1, '0.00', 1, '2021-03-25'),
+(3, 6, 'Leche', 7, 50, '0.00', 1, '2021-03-26'),
+(4, 7, 'Leche', 7, 20, '0.00', 1, '2021-03-26'),
 (5, 7, 'Arroz', 1, 40, '0.00', 1, '2021-03-26'),
 (6, 7, 'Maiz', 3, 40, '0.00', 1, '2021-03-26'),
 (7, 8, 'Arroz', 1, 20, '0.00', 1, '2021-03-26'),
 (8, 9, 'Leche', 7, 5, '0.00', 1, '2021-03-26'),
 (9, 10, 'Maiz', 3, 20, '0.00', 1, '2021-03-26'),
-(10, 10, 'Leche', 7, 40, '0.00', 1, '2021-03-26');
+(10, 10, 'Leche', 7, 40, '0.00', 1, '2021-03-26'),
+(11, 11, 'Cereal Kellogs Frosted Mini Wheats caja', 2, 10, '0.00', 1, '2021-05-07'),
+(12, 11, 'Leche', 7, 50, '0.00', 1, '2021-05-07');
 
 -- --------------------------------------------------------
 
@@ -187,14 +190,14 @@ CREATE TABLE `detalle_venta` (
 --
 
 INSERT INTO `detalle_venta` (`id`, `id_venta`, `producto`, `id_producto`, `cantidad`, `precio`, `id_usuario`, `fecha`) VALUES
-(1, 1, 'Gaseosa', 1, 50, '0.00', 1, '2021-03-25'),
-(2, 1, 'frutas', 2, 40, '0.00', 1, '2021-03-25'),
-(3, 2, 'Gaseosa', 1, 20, '0.00', 1, '2021-03-25'),
-(4, 3, 'Leche', 2, 60, '0.00', 1, '2021-03-25'),
-(5, 4, 'Leche', 2, 1, '0.00', 1, '2021-03-25'),
+(1, 1, 'Arroz', 1, 50, '0.00', 1, '2021-03-25'),
+(2, 1, 'Cereal Kellogs Frosted Mini Wheats caja', 2, 40, '0.00', 1, '2021-03-25'),
+(3, 2, 'Arroz', 1, 20, '0.00', 1, '2021-03-25'),
+(4, 3, 'Cereal Kellogs Frosted Mini Wheats caja', 2, 60, '0.00', 1, '2021-03-25'),
+(5, 4, 'Cereal Kellogs Frosted Mini Wheats caja', 2, 1, '0.00', 1, '2021-03-25'),
 (6, 4, 'Arroz', 1, 50, '0.00', 1, '2021-03-25'),
 (7, 4, 'Maiz', 3, 50, '0.00', 1, '2021-03-25'),
-(8, 5, 'Leche', 2, 20, '0.00', 1, '2021-03-25'),
+(8, 5, 'Cereal Kellogs Frosted Mini Wheats caja', 2, 20, '0.00', 1, '2021-03-25'),
 (9, 5, 'Maiz', 3, 40, '0.00', 1, '2021-03-25'),
 (10, 5, 'Prueba', 4, 20, '0.00', 1, '2021-03-25'),
 (11, 6, 'Prueba dos de producto', 6, 30, '0.00', 1, '2021-03-26'),
@@ -245,12 +248,12 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`id`, `codigo`, `nombre`, `cantidad`, `medida`, `vencimiento`, `precio`, `estado`) VALUES
 (1, '100', 'Arroz', 1239, 'caja de 36 bolsas', '2021-07-16', '550.00', 1),
-(2, '202020', 'Cereal Kellogs Frosted Mini Wheats caja', 1578, 'caja de 40 unidades', '2021-04-21', '810.00', 1),
+(2, '202020', 'Cereal Kellogs Frosted Mini Wheats caja', 1588, 'caja de 40 unidades', '2021-04-21', '810.00', 1),
 (3, '111111', 'Maiz', 90, 'saco de 10 unidades', '2021-03-30', '0.00', 1),
 (4, '232323', 'Prueba', 30, 'Caja con 15 bolsas', '2021-11-27', '0.00', 0),
 (5, '1010', 'Prueba de producto', 0, 'Caja de 16 bolsas', '2021-07-09', '0.00', 0),
 (6, '505050', 'Prueba dos de producto', 470, 'Caja de x bolsas', '2021-09-03', '0.00', 1),
-(7, '303030', 'Leche', 45, 'Caja de 35 botellas', '2021-07-22', '0.00', 1);
+(7, '303030', 'Leche', 95, 'Caja de 35 botellas', '2021-07-22', '0.00', 1);
 
 -- --------------------------------------------------------
 
@@ -383,7 +386,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracion`
@@ -401,13 +404,13 @@ ALTER TABLE `contenedor`
 -- AUTO_INCREMENT de la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_temp`
 --
 ALTER TABLE `detalle_temp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
