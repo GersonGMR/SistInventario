@@ -1,6 +1,9 @@
 <?php
-class ContenedorModel extends Mysql{
-    public $id_contenedor, $nombre;
+class ContenedorModel extends Mysql
+{
+    public $id_contenedor;
+    public $nombre;
+    public $id_familia;
     public function __construct()
     {
         parent::__construct();
@@ -17,18 +20,19 @@ class ContenedorModel extends Mysql{
         $res = $this->select_all($sql);
         return $res;
     }
-    public function insertarContenedor(string $nombre)
+    public function insertarContenedor(string $nombre, int $id_familia)
     {
         $return = "";
         $this->nombre = $nombre;
+        $this->id_familia = $id_familia;
         $sql = "SELECT * FROM contenedor WHERE nombre = '{$this->nombre}'";
         $result = $this->select_all($sql);
         if (empty($result)) {
-            $query = "INSERT INTO contenedor(nombre) VALUES (?)";
-            $data = array($this->nombre);
+            $query = "INSERT INTO contenedor(nombre,id_familia) VALUES (?,?)";
+            $data = array($this->nombre,$this->id_familia);
             $resul = $this->insert($query, $data);
             $return = $resul;
-        }else {
+        } else {
             $return = "existe";
         }
         return $return;
@@ -43,13 +47,14 @@ class ContenedorModel extends Mysql{
         }
         return $res;
     }
-    public function actualizarContenedor(string $nombre, int $id_contenedor)
+    public function actualizarContenedor(string $nombre, int $id_familia, int $id_contenedor)
     {
         $return = "";
         $this->nombre = $nombre;
+        $this->id_familia = $id_familia;
         $this->id_contenedor = $id_contenedor;
-        $query = "UPDATE contenedor SET nombre=? WHERE id_contenedor=?";
-        $data = array($this->nombre, $this->id_contenedor);
+        $query = "UPDATE contenedor SET nombre=?,id_familia=? WHERE id_contenedor=?";
+        $data = array($this->nombre,$this->id_familia, $this->id_contenedor);
         $resul = $this->update($query, $data);
         $return = $resul;
         return $return;
@@ -75,4 +80,3 @@ class ContenedorModel extends Mysql{
         return $return;
     }
 }
-?>

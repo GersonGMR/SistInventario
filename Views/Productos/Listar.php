@@ -12,36 +12,37 @@
                         </div>
                         <div class="col-lg-6">
                             <?php if (isset($_GET['msg'])) {
-                                $alert = $_GET['msg'];
-                                if ($alert == "existe") { ?>
+    $alert = $_GET['msg'];
+    if ($alert == "existe") { ?>
                                     <div class="alert alert-warning" role="alert">
                                         <strong>El producto ya existe</strong>
                                     </div>
-                                <?php } else if ($alert == "error") { ?>
+                                <?php } elseif ($alert == "error") { ?>
                                     <div class="alert alert-danger" role="alert">
                                         <strong>Error al registrar</strong>
                                     </div>
-                                <?php } else if ($alert == "registrado") { ?>
+                                <?php } elseif ($alert == "registrado") { ?>
                                     <div class="alert alert-success" role="alert">
                                         <strong>Producto registrado</strong>
                                     </div>
-                                <?php } else if ($alert == "modificado") { ?>
+                                <?php } elseif ($alert == "modificado") { ?>
                                     <div class="alert alert-success" role="alert">
                                         <strong>Producto Modificado</strong>
                                     </div>
                             <?php }
-                            } ?>
+} ?>
                         </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered" id="Table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Id</th>
                                     <th>Código</th>
                                     <th>Nombre</th>
                                     <th>Stock</th>
                                     <th>Medida</th>
+                                    <th>Familia</th>
+                                    <th>Contenedor</th>
                                     <th>Fecha vencimiento</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -49,11 +50,12 @@
                             <tbody>
                                 <?php foreach ($data as $cl) { ?>
                                     <tr>
-                                        <td><?php echo $cl['id']; ?></td>
                                         <td><?php echo $cl['codigo']; ?></td>
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td><?php echo $cl['cantidad']; ?></td>
                                         <td><?php echo $cl['medida']; ?></td>
+                                        <td><?php echo $cl['id_familia']; ?></td>
+                                        <td><?php echo $cl['id_contenedor']; ?></td>
                                         <td><?php echo $cl['vencimiento']; ?></td>
                                         <td>
                                             <a href="<?php echo base_url() ?>Productos/editar?id=<?php echo $cl['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
@@ -94,6 +96,10 @@
                             <div class="form-group">
                                 <label for="medida">Medida</label>
                                 <input id="medida" class="form-control" type="text" name="medida" placeholder="Medida">
+                            </div>
+                            <div class="form-group">
+                                <label for="medida">Contenedor</label>
+                                <input id="medida" class="form-control" type="text" name="contenedor" placeholder="Contenedor">
                             </div>
 
                     <div class="row">

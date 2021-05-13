@@ -12,41 +12,41 @@
                         </div>
                         <div class="col-lg-6">
                             <?php if (isset($_GET['msg'])) {
-                                $alert = $_GET['msg'];
-                                if ($alert == "existe") { ?>
+    $alert = $_GET['msg'];
+    if ($alert == "existe") { ?>
                                     <div class="alert alert-warning" role="alert">
                                         <strong>Contenedor ya existe</strong>
                                     </div>
-                                <?php } else if ($alert == "error") { ?>
+                                <?php } elseif ($alert == "error") { ?>
                                     <div class="alert alert-danger" role="alert">
                                         <strong>Error al registrar</strong>
                                     </div>
-                                <?php } else if ($alert == "registrado") { ?>
+                                <?php } elseif ($alert == "registrado") { ?>
                                     <div class="alert alert-success" role="alert">
                                         <strong>Contenedor registrado</strong>
                                     </div>
-                                <?php } else if ($alert == "modificado") { ?>
+                                <?php } elseif ($alert == "modificado") { ?>
                                     <div class="alert alert-success" role="alert">
                                         <strong>Contenedor Modificado</strong>
                                     </div>
                             <?php }
-                            } ?>
+} ?>
                         </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered" id="Table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Id</th>
                                     <th>Codigo contenedor</th>
+                                    <th>Familia</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($data as $cl) { ?>
                                     <tr>
-                                        <td><?php echo $cl['id_contenedor']; ?></td>
                                         <td><?php echo $cl['nombre']; ?></td>
+                                        <td><?php echo $cl['id_familia']; ?></td>
                                         <td>
                                             <a href="<?php echo base_url() ?>Contenedor/editar?id_contenedor=<?php echo $cl['id_contenedor']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <form action="<?php echo base_url() ?>Contenedor/eliminar?id_contenedor=<?php echo $cl['id_contenedor']; ?>" method="post" class="d-inline elim">
@@ -77,6 +77,10 @@
                     <div class="form-group">
                         <label for="nombre">Codigo contenedor</label>
                         <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Codigo contenedor">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Familia</label>
+                        <input id="id_familia" class="form-control" type="text" name="id_familia" placeholder="Codigo familia">
                     </div>
                 </div>
                 <div class="card-footer">

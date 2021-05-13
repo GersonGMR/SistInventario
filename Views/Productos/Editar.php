@@ -34,6 +34,18 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
+                                        <label for="medida">Familia</label>
+                                        <input id="medida" class="form-control" type="text" name="familia" value="<?php echo $data['id_familia']; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="medida">Contenedor</label>
+                                        <input id="medida" class="form-control" type="text" name="contenedor" value="<?php echo $data['id_contenedor']; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
                                         <label for="vencimiento">Fecha vencimiento</label>
                                         <input id="vencimiento" class="form-control" type="date" name="vencimiento" value="<?php echo $data['vencimiento']; ?>">
                                     </div>

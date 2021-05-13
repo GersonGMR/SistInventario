@@ -1,6 +1,14 @@
 <?php
-class ProductosModel extends Mysql{
-    public $id, $codigo, $nombre, $cantidad, $medida,$vencimiento;
+class ProductosModel extends Mysql
+{
+    public $id;
+    public $codigo;
+    public $nombre;
+    public $cantidad;
+    public $medida;
+    public $id_familia;
+    public $id_contenedor;
+    public $vencimiento;
     public function __construct()
     {
         parent::__construct();
@@ -17,21 +25,23 @@ class ProductosModel extends Mysql{
         $res = $this->select_all($sql);
         return $res;
     }
-    public function insertarProductos(String $codigo, string $nombre, string $medida, string $vencimiento)
+    public function insertarProductos(String $codigo, string $nombre, string $medida, int $id_familia, int $id_contenedor, string $vencimiento)
     {
         $return = "";
         $this->codigo = $codigo;
         $this->nombre = $nombre;
         $this->medida = $medida;
+        $this->id_familia = $id_familia;
+        $this->id_contenedor = $id_contenedor;
         $this->vencimiento = $vencimiento;
         $sql = "SELECT * FROM productos WHERE codigo = '{$this->codigo}'";
         $result = $this->select_all($sql);
         if (empty($result)) {
-            $query = "INSERT INTO productos(codigo, nombre, medida, vencimiento) VALUES (?,?,?,?)";
-            $data = array($this->codigo, $this->nombre, $this->medida, $this->vencimiento);
+            $query = "INSERT INTO productos(codigo, nombre, medida, id_familia,id_contenedor, vencimiento) VALUES (?,?,?,?,?,?)";
+            $data = array($this->codigo, $this->nombre, $this->medida,$this->id_familia,$this->id_contenedor, $this->vencimiento);
             $resul = $this->insert($query, $data);
             $return = $resul;
-        }else {
+        } else {
             $return = "existe";
         }
         return $return;
@@ -46,17 +56,19 @@ class ProductosModel extends Mysql{
         }
         return $res;
     }
-    public function actualizarProductos(String $codigo, string $nombre, string $cantidad, string $medida, string $vencimiento, int $id)
+    public function actualizarProductos(String $codigo, string $nombre, string $cantidad, string $medida, string $vencimiento, int $id_familia, int $id_contenedor, int $id)
     {
         $return = "";
         $this->codigo = $codigo;
         $this->nombre = $nombre;
         $this->cantidad = $cantidad;
         $this->medida = $medida;
+        $this->id_familia = $id_familia;
+        $this->id_contenedor = $id_contenedor;
         $this->vencimiento = $vencimiento;
         $this->id = $id;
-        $query = "UPDATE productos SET codigo=?, nombre=?, cantidad=?, medida=?, vencimiento=? WHERE id=?";
-        $data = array($this->codigo, $this->nombre, $this->cantidad, $this->medida, $this->vencimiento, $this->id);
+        $query = "UPDATE productos SET codigo=?, nombre=?, cantidad=?, medida=?,id_familia=?,id_contenedor=?, vencimiento=? WHERE id=?";
+        $data = array($this->codigo, $this->nombre, $this->cantidad, $this->medida,$this->id_familia,$this->id_contenedor, $this->vencimiento, $this->id);
         $resul = $this->update($query, $data);
         $return = $resul;
         return $return;
@@ -82,4 +94,3 @@ class ProductosModel extends Mysql{
         return $return;
     }
 }
-?>

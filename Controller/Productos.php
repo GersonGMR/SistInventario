@@ -24,11 +24,13 @@ class Productos extends Controllers
         $codigo = $_POST['codigo'];
         $nombre = $_POST['nombre'];
         $medida = $_POST['medida'];
+        $id_familia = $_POST['id_familia'];
+        $id_contenedor = $_POST['id_contenedor'];
         $vencimiento = $_POST['vencimiento'];
-        $insert = $this->model->insertarProductos($codigo, $nombre, $medida, $vencimiento);
+        $insert = $this->model->insertarProductos($codigo, $nombre, $medida, $id_familia, $id_contenedor, $vencimiento);
         if ($insert > 0) {
             $alert = 'registrado';
-        } else if ($insert == 'existe') {
+        } elseif ($insert == 'existe') {
             $alert = 'existe';
         } else {
             $alert = 'error';
@@ -54,8 +56,10 @@ class Productos extends Controllers
         $nombre = $_POST['nombre'];
         $cantidad = $_POST['cantidad'];
         $medida = $_POST['medida'];
+        $id_familia = $_POST['id_familia'];
+        $id_contenedor = $_POST['id_contenedor'];
         $vencimiento = $_POST['vencimiento'];
-        $actualizar = $this->model->actualizarProductos($codigo, $nombre, $cantidad, $medida,$vencimiento, $id);
+        $actualizar = $this->model->actualizarProductos($codigo, $nombre, $cantidad, $medida, $id_familia, $id_contenedor, $vencimiento, $id);
         if ($actualizar == 1) {
             $alert =  'modificado';
         } else {
@@ -83,4 +87,3 @@ class Productos extends Controllers
         die();
     }
 }
-?>

@@ -14,16 +14,16 @@
                         <table class="table table-hover table-bordered" id="Table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Id</th>
                                     <th>Codigo contenedor</th>
+                                    <th>Familia</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($data as $pro) { ?>
                                     <tr>
-                                        <td><?php echo $pro['id_contenedor']; ?></td>
                                         <td><?php echo $pro['nombre']; ?></td>
+                                        <td><?php echo $pro['id_familia']; ?></td>
                                         <td>
                                             <form action="<?php echo base_url() ?>Contenedor/reingresar?id_contenedor=<?php echo $pro['id_contenedor']; ?>" method="post" class="d-inline confirmar">
                                                 <button type="submit" class="btn btn-success"><i class="fas fa-ad"></i></button>

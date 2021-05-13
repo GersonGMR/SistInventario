@@ -14,11 +14,12 @@
                         <table class="table table-hover table-bordered" id="Table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Id</th>
                                     <th>Código</th>
                                     <th>Nombre</th>
                                     <th>Stock</th>
                                     <th>Medida</th>
+                                    <th>Familia</th>
+                                    <th>Contenedor</th>
                                     <th>Fecha vencimiento</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -26,11 +27,12 @@
                             <tbody>
                                 <?php foreach ($data as $pro) { ?>
                                     <tr>
-                                        <td><?php echo $pro['id']; ?></td>
                                         <td><?php echo $pro['codigo']; ?></td>
                                         <td><?php echo $pro['nombre']; ?></td>
                                         <td><?php echo $pro['cantidad']; ?></td>
                                         <td><?php echo $pro['medida']; ?></td>
+                                        <td><?php echo $pro['id_familia']; ?></td>
+                                        <td><?php echo $pro['id_contenedor']; ?></td>
                                         <td><?php echo $pro['vencimiento']; ?></td>
                                         <td>
                                             <form action="<?php echo base_url() ?>Productos/reingresar?id=<?php echo $pro['id']; ?>" method="post" class="d-inline confirmar">
