@@ -1,4 +1,10 @@
-<?php encabezado() ?>
+<?php encabezado() ;
+
+    include "./conexion.php";
+
+    //Aqui ira la consulta para traer cantidad de los productos.
+    
+?>
 <!-- Begin Page Content -->
 <div class="page-content bg-light">
     <div class="page-header bg-light">
@@ -84,4 +90,8 @@
         </div>
     </section>
 </div>
+<script>
+    //Aqui ira el codigo para hacer la validacion
+
+</script>
 <?php pie() ?>

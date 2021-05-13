@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2021 a las 07:27:07
+-- Tiempo de generación: 13-05-2021 a las 21:22:21
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.6
 
@@ -73,7 +73,6 @@ CREATE TABLE `configuracion` (
 CREATE TABLE `contenedor` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
-  `id_familia` int(11) NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -209,8 +208,7 @@ ALTER TABLE `compras`
 -- Indices de la tabla `contenedor`
 --
 ALTER TABLE `contenedor`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_familia` (`id_familia`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `detalle_compra`
@@ -326,12 +324,6 @@ ALTER TABLE `ventas`
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `contenedor`
---
-ALTER TABLE `contenedor`
-  ADD CONSTRAINT `contenedor_ibfk_1` FOREIGN KEY (`id_familia`) REFERENCES `familia` (`id_familia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalle_compra`
