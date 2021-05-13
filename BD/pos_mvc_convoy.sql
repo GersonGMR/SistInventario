@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 18-04-2021 a las 02:15:13
--- Versión del servidor: 10.4.18-MariaDB
--- Versión de PHP: 7.4.16
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 13-05-2021 a las 07:27:07
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,12 +30,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `clientes` (
   `id` int(11) NOT NULL,
   `ruc` varchar(20) NOT NULL,
-  `nombre_solicitante` text NOT NULL,
-  `DUI` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
+  `direccion` text NOT NULL,
   `telefono` varchar(15) NOT NULL,
-  `fecha_solicitud` date NOT NULL,
-  `estado` tinyint(1) NOT NULL
+  `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -47,8 +45,8 @@ CREATE TABLE `clientes` (
 CREATE TABLE `compras` (
   `id` int(11) NOT NULL,
   `total` int(20) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `estado` tinyint(1) NOT NULL
+  `estado` tinyint(4) NOT NULL DEFAULT 1,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -74,11 +72,9 @@ CREATE TABLE `configuracion` (
 
 CREATE TABLE `contenedor` (
   `id` int(11) NOT NULL,
-  `numero_contenedor` text NOT NULL,
-  `fecha_ingreso` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `comentario` text NOT NULL,
-  `id_presentacion` int(11) NOT NULL,
-  `estado` tinyint(1) NOT NULL
+  `nombre` varchar(255) NOT NULL,
+  `id_familia` int(11) NOT NULL,
+  `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -93,8 +89,9 @@ CREATE TABLE `detalle_compra` (
   `producto` varchar(200) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `fecha` date NOT NULL
+  `fecha` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -107,11 +104,13 @@ CREATE TABLE `detalle_temp` (
   `id` int(11) NOT NULL,
   `nombre` varchar(200) NOT NULL,
   `cantidad` int(11) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
+  `medida` varchar(250) NOT NULL,
   `total` decimal(10,2) NOT NULL,
-  `id_presentacion` int(11) NOT NULL,
+  `id_familia` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `estado` tinyint(1) NOT NULL
+  `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -122,24 +121,25 @@ CREATE TABLE `detalle_temp` (
 
 CREATE TABLE `detalle_venta` (
   `id` int(11) NOT NULL,
-  `producto` varchar(200) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `fecha` date NOT NULL DEFAULT current_timestamp(),
   `id_venta` int(11) NOT NULL,
+  `producto` varchar(200) NOT NULL,
   `id_producto` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `cantidad` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `fecha` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `presentacion`
+-- Estructura de tabla para la tabla `familia`
 --
 
-CREATE TABLE `presentacion` (
-  `id` int(11) NOT NULL,
-  `descripcion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `familia` (
+  `id_familia` int(11) NOT NULL,
+  `nombre` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -149,13 +149,14 @@ CREATE TABLE `presentacion` (
 
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
-  `codigo` text NOT NULL,
-  `nombre` text NOT NULL,
+  `codigo` varchar(20) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
   `cantidad` int(11) NOT NULL,
+  `medida` varchar(255) NOT NULL,
   `vencimiento` date NOT NULL,
-  `id_presentacion` int(11) NOT NULL,
+  `id_familia` int(11) NOT NULL,
   `id_contenedor` int(11) NOT NULL,
-  `estado` tinyint(4) NOT NULL
+  `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -171,7 +172,7 @@ CREATE TABLE `usuarios` (
   `correo` varchar(100) NOT NULL,
   `clave` varchar(150) NOT NULL,
   `rol` varchar(20) NOT NULL,
-  `estado` tinyint(1) NOT NULL
+  `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -182,10 +183,10 @@ CREATE TABLE `usuarios` (
 
 CREATE TABLE `ventas` (
   `id` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
   `total` int(11) NOT NULL,
-  `fecha` date NOT NULL DEFAULT current_timestamp(),
-  `estado` tinyint(1) NOT NULL,
-  `id_cliente` int(11) NOT NULL
+  `estado` tinyint(4) NOT NULL DEFAULT 1,
+  `fecha` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -209,7 +210,7 @@ ALTER TABLE `compras`
 --
 ALTER TABLE `contenedor`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `contenedor_ibfk_1` (`id_presentacion`);
+  ADD KEY `id_familia` (`id_familia`);
 
 --
 -- Indices de la tabla `detalle_compra`
@@ -224,9 +225,9 @@ ALTER TABLE `detalle_compra`
 -- Indices de la tabla `detalle_temp`
 --
 ALTER TABLE `detalle_temp`
-  ADD KEY `detalle_temp_ibfk_1` (`id_presentacion`),
   ADD KEY `id_producto` (`id_producto`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_familia` (`id_familia`);
 
 --
 -- Indices de la tabla `detalle_venta`
@@ -238,10 +239,10 @@ ALTER TABLE `detalle_venta`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indices de la tabla `presentacion`
+-- Indices de la tabla `familia`
 --
-ALTER TABLE `presentacion`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `familia`
+  ADD PRIMARY KEY (`id_familia`);
 
 --
 -- Indices de la tabla `productos`
@@ -249,7 +250,7 @@ ALTER TABLE `presentacion`
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_contenedor` (`id_contenedor`),
-  ADD KEY `id_presentacion` (`id_presentacion`);
+  ADD KEY `productos_ibfk_2` (`id_familia`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -299,10 +300,10 @@ ALTER TABLE `detalle_venta`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `presentacion`
+-- AUTO_INCREMENT de la tabla `familia`
 --
-ALTER TABLE `presentacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `familia`
+  MODIFY `id_familia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -330,7 +331,7 @@ ALTER TABLE `ventas`
 -- Filtros para la tabla `contenedor`
 --
 ALTER TABLE `contenedor`
-  ADD CONSTRAINT `contenedor_ibfk_1` FOREIGN KEY (`id_presentacion`) REFERENCES `presentacion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `contenedor_ibfk_1` FOREIGN KEY (`id_familia`) REFERENCES `familia` (`id_familia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalle_compra`
@@ -344,9 +345,9 @@ ALTER TABLE `detalle_compra`
 -- Filtros para la tabla `detalle_temp`
 --
 ALTER TABLE `detalle_temp`
-  ADD CONSTRAINT `detalle_temp_ibfk_1` FOREIGN KEY (`id_presentacion`) REFERENCES `presentacion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `detalle_temp_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detalle_temp_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `detalle_temp_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalle_temp_ibfk_4` FOREIGN KEY (`id_familia`) REFERENCES `familia` (`id_familia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalle_venta`
@@ -361,7 +362,7 @@ ALTER TABLE `detalle_venta`
 --
 ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_contenedor`) REFERENCES `contenedor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`id_presentacion`) REFERENCES `presentacion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`id_familia`) REFERENCES `familia` (`id_familia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ventas`
