@@ -36,8 +36,8 @@ class Contenedor extends Controllers
     }
     public function editar()
     {
-        $id_contenedor = $_GET['id_contenedor'];
-        $data = $this->model->editarContenedor($id_contenedor);
+        $id = $_GET['id'];
+        $data = $this->model->editarContenedor($id);
         if ($data == 0) {
             $this->Listar();
         } else {
@@ -46,10 +46,10 @@ class Contenedor extends Controllers
     }
     public function actualizar()
     {
-        $id_contenedor = $_POST['id_contenedor'];
+        $id = $_POST['id'];
         $nombre = $_POST['nombre'];
         $id_familia = $_POST['id_familia'];
-        $actualizar = $this->model->actualizarContenedor($nombre, $id_contenedor);
+        $actualizar = $this->model->actualizarContenedor($nombre, $id);
         if ($actualizar == 1) {
             $alert =  'modificado';
         } else {
@@ -60,8 +60,8 @@ class Contenedor extends Controllers
     }
     public function eliminar()
     {
-        $id_contenedor = $_GET['id_contenedor'];
-        $eliminar = $this->model->eliminarContenedor($id_contenedor);
+        $id = $_GET['id'];
+        $eliminar = $this->model->eliminarContenedor($id);
         $data = $this->model->selectContenedor();
         header('location: ' . base_url() . 'Contenedor/Listar');
         //$this->views->getView($this, "Listar", $data, $eliminar);
@@ -69,8 +69,8 @@ class Contenedor extends Controllers
     }
     public function reingresar()
     {
-        $id_contenedor = $_GET['id_contenedor'];
-        $this->model->reingresarContenedor($id_contenedor);
+        $id = $_GET['id'];
+        $this->model->reingresarContenedor($id);
         $data = $this->model->selectContenedor();
         header('location: ' . base_url() . 'Contenedor/Listar');
         //$this->views->getView($this, "Listar", $data);

@@ -193,7 +193,7 @@ function BuscarCodigo(e) {
                     document.getElementById("id").value = info.id;
                     document.getElementById("nombre").value = info.nombre;
                     $("#stockD").val(info.cantidad);
-                    document.getElementById("cantidad").value = 0;
+                    document.getElementById("cantidad").value = 1;
                     document.getElementById("nombreP").innerHTML = info.nombre;
                     document.getElementById("cantidad").focus();
                 } else {

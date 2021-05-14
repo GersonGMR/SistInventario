@@ -1,7 +1,7 @@
 <?php
 class ContenedorModel extends Mysql
 {
-    public $id_contenedor;
+    public $id;
     public $nombre;
     public function __construct()
     {
@@ -35,44 +35,44 @@ class ContenedorModel extends Mysql
         }
         return $return;
     }
-    public function editarContenedor(int $id_contenedor)
+    public function editarContenedor(int $id)
     {
-        $this->id_contenedor = $id_contenedor;
-        $sql = "SELECT * FROM contenedor WHERE id_contenedor = '{$this->id_contenedor}'";
+        $this->id = $id;
+        $sql = "SELECT * FROM contenedor WHERE id = '{$this->id}'";
         $res = $this->select($sql);
         if (empty($res)) {
             $res = 0;
         }
         return $res;
     }
-    public function actualizarContenedor(string $nombre, int $id_contenedor)
+    public function actualizarContenedor(string $nombre, int $id)
     {
         $return = "";
         $this->nombre = $nombre;
         $this->id_familia = $id_familia;
-        $this->id_contenedor = $id_contenedor;
-        $query = "UPDATE contenedor SET nombre=? WHERE id_contenedor=?";
-        $data = array($this->nombre, $this->id_contenedor);
+        $this->id = $id;
+        $query = "UPDATE contenedor SET nombre=? WHERE id=?";
+        $data = array($this->nombre, $this->id);
         $resul = $this->update($query, $data);
         $return = $resul;
         return $return;
     }
-    public function eliminarContenedor(int $id_contenedor)
+    public function eliminarContenedor(int $id)
     {
         $return = "";
-        $this->id_contenedor = $id_contenedor;
-        $query = "UPDATE contenedor SET estado = 0 WHERE id_contenedor=?";
-        $data = array($this->id_contenedor);
+        $this->id = $id;
+        $query = "UPDATE contenedor SET estado = 0 WHERE id=?";
+        $data = array($this->id);
         $resul = $this->update($query, $data);
         $return = $resul;
         return $return;
     }
-    public function reingresarContenedor(int $id_contenedor)
+    public function reingresarContenedor(int $id)
     {
         $return = "";
-        $this->id_contenedor = $id_contenedor;
-        $query = "UPDATE contenedor SET estado = 1 WHERE id_contenedor=?";
-        $data = array($this->id_contenedor);
+        $this->id = $id;
+        $query = "UPDATE contenedor SET estado = 1 WHERE id=?";
+        $data = array($this->id);
         $resul = $this->update($query, $data);
         $return = $resul;
         return $return;

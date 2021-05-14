@@ -23,7 +23,7 @@
                                     <tr>
                                         <td><?php echo $pro['nombre']; ?></td>
                                         <td>
-                                            <form action="<?php echo base_url() ?>Contenedor/reingresar?id_contenedor=<?php echo $pro['id_contenedor']; ?>" method="post" class="d-inline confirmar">
+                                            <form action="<?php echo base_url() ?>Contenedor/reingresar?id=<?php echo $pro['id']; ?>" method="post" class="d-inline confirmar">
                                                 <button type="submit" class="btn btn-success"><i class="fas fa-ad"></i></button>
                                             </form>
                                         </td>

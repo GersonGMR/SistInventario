@@ -13,7 +13,7 @@
                           <div class="form-group">
                               <label for="id_familia">id</label>
                               <input type="hidden" name="id" value="<?php echo $data['id_familia']; ?>">
-                              <input readonly id="id_contenedor" class="form-control" type="text" name="id_contenedor" value="<?php echo $data['id_contenedor']; ?>">
+                              <input readonly id="id" class="form-control" type="text" name="id" value="<?php echo $data['id']; ?>">
                           </div>
                             <div class="form-group">
                                 <label for="nombre">Codigo Contenedor</label>

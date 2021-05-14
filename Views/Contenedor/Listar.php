@@ -46,8 +46,8 @@
                                     <tr>
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td>
-                                            <a href="<?php echo base_url() ?>Contenedor/editar?id_contenedor=<?php echo $cl['id_contenedor']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <form action="<?php echo base_url() ?>Contenedor/eliminar?id_contenedor=<?php echo $cl['id_contenedor']; ?>" method="post" class="d-inline elim">
+                                            <a href="<?php echo base_url() ?>Contenedor/editar?id=<?php echo $cl['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <form action="<?php echo base_url() ?>Contenedor/eliminar?id=<?php echo $cl['id']; ?>" method="post" class="d-inline elim">
                                                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                             </form>
                                         </td>
