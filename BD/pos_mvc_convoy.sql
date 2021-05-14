@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2021 a las 21:35:30
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.6
+-- Tiempo de generación: 14-05-2021 a las 02:07:08
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,6 +36,14 @@ CREATE TABLE `clientes` (
   `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `ruc`, `nombre`, `direccion`, `telefono`, `estado`) VALUES
+(1, '202020', 'Vanessa Bohorquez', 'Urbanización Nuevo Lourdes Senda 20, Casa 2, Block 45 Lourdes La Libertad', '898939', 1),
+(2, '111111', 'Escuela La Plegaria Ahuachapan', 'Avenida 5 Colonia Ejemplo Ahuachapan Ahuachapan', '32431233', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +56,14 @@ CREATE TABLE `compras` (
   `estado` tinyint(4) NOT NULL DEFAULT 1,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `compras`
+--
+
+INSERT INTO `compras` (`id`, `total`, `estado`, `fecha`) VALUES
+(1, 220, 1, '2021-05-13 23:22:12'),
+(2, 250, 1, '2021-05-13 23:48:40');
 
 -- --------------------------------------------------------
 
@@ -64,6 +80,13 @@ CREATE TABLE `configuracion` (
   `razon` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `configuracion`
+--
+
+INSERT INTO `configuracion` (`id`, `ruc`, `nombre`, `telefono`, `direccion`, `razon`) VALUES
+(1, '12023987', 'Convoy of Hope', '2345 6789', 'San Salvador', '');
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +98,17 @@ CREATE TABLE `contenedor` (
   `nombre` varchar(255) NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `contenedor`
+--
+
+INSERT INTO `contenedor` (`id`, `nombre`, `estado`) VALUES
+(1, '01010', 1),
+(2, '02020', 1),
+(3, '03030', 1),
+(4, '04040', 1),
+(5, '01111', 1);
 
 -- --------------------------------------------------------
 
@@ -93,6 +127,16 @@ CREATE TABLE `detalle_compra` (
   `fecha` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `detalle_compra`
+--
+
+INSERT INTO `detalle_compra` (`id`, `id_compra`, `producto`, `id_producto`, `cantidad`, `precio`, `id_usuario`, `fecha`) VALUES
+(1, 1, 'Arroz San Francisco', 3, 20, '0.00', 1, '2021-05-13'),
+(2, 1, 'Cereal Kellogs Frotes Mini Wheats Caja', 1, 200, '0.00', 1, '2021-05-13'),
+(3, 2, 'Cereal Kellogs Frotes Mini Wheats Caja', 1, 200, '0.00', 1, '2021-05-13'),
+(4, 2, 'Arroz San Francisco', 3, 50, '0.00', 1, '2021-05-13');
+
 -- --------------------------------------------------------
 
 --
@@ -106,7 +150,6 @@ CREATE TABLE `detalle_temp` (
   `precio` decimal(10,2) NOT NULL,
   `medida` varchar(250) NOT NULL,
   `total` decimal(10,2) NOT NULL,
-  `id_familia` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT 1
@@ -125,8 +168,17 @@ CREATE TABLE `detalle_venta` (
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `fecha` date NOT NULL DEFAULT current_timestamp()
+  `fecha` date NOT NULL DEFAULT current_timestamp(),
+  `precio` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `detalle_venta`
+--
+
+INSERT INTO `detalle_venta` (`id`, `id_venta`, `producto`, `id_producto`, `cantidad`, `id_usuario`, `fecha`, `precio`) VALUES
+(1, 2, 'Cereal Kellogs Frotes Mini Wheats Caja', 1, 50, 1, '2021-05-13', '0'),
+(2, 3, 'Arroz San Francisco', 3, 20, 1, '2021-05-13', '0');
 
 -- --------------------------------------------------------
 
@@ -139,6 +191,16 @@ CREATE TABLE `familia` (
   `nombre` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `estado` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `familia`
+--
+
+INSERT INTO `familia` (`id_familia`, `nombre`, `estado`) VALUES
+(1, 'Granos', 1),
+(2, 'Lacteos', 1),
+(3, 'Cereales', 1),
+(4, 'Embutidos', 1);
 
 -- --------------------------------------------------------
 
@@ -158,6 +220,16 @@ CREATE TABLE `productos` (
   `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `codigo`, `nombre`, `cantidad`, `medida`, `vencimiento`, `id_familia`, `id_contenedor`, `estado`) VALUES
+(1, '202020', 'Cereal Kellogs Frotes Mini Wheats Caja', 350, 'Caja de 15 unidades', '2021-09-16', 3, 4, 1),
+(2, '303030', 'Leche en botella marca X', 0, 'Caja de 20 botellas', '2021-07-08', 2, 2, 1),
+(3, '111111', 'Arroz San Francisco', 50, 'Caja de 20 bolsas', '2021-09-24', 1, 2, 1),
+(4, '121212', 'Producto prueba', 0, 'Prueba de medidas', '2021-05-21', 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -174,6 +246,14 @@ CREATE TABLE `usuarios` (
   `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `correo`, `clave`, `rol`, `estado`) VALUES
+(1, 'admin', 'admin', 'ggerson777@gmail.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Administrador', 1),
+(2, 'Gerson Salazar', 'gersongm', 'ggerson@live.com.ar', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Vendedor', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -189,6 +269,15 @@ CREATE TABLE `ventas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `ventas`
+--
+
+INSERT INTO `ventas` (`id`, `id_cliente`, `total`, `estado`, `fecha`) VALUES
+(1, 1, 50, 1, '2021-05-13'),
+(2, 1, 50, 1, '2021-05-13'),
+(3, 2, 20, 1, '2021-05-13');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -202,6 +291,12 @@ ALTER TABLE `clientes`
 -- Indices de la tabla `compras`
 --
 ALTER TABLE `compras`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `configuracion`
+--
+ALTER TABLE `configuracion`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -223,9 +318,9 @@ ALTER TABLE `detalle_compra`
 -- Indices de la tabla `detalle_temp`
 --
 ALTER TABLE `detalle_temp`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_producto` (`id_producto`),
-  ADD KEY `id_usuario` (`id_usuario`),
-  ADD KEY `id_familia` (`id_familia`);
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `detalle_venta`
@@ -271,55 +366,67 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `configuracion`
+--
+ALTER TABLE `configuracion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `contenedor`
 --
 ALTER TABLE `contenedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `detalle_temp`
+--
+ALTER TABLE `detalle_temp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `familia`
 --
 ALTER TABLE `familia`
-  MODIFY `id_familia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_familia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -338,8 +445,7 @@ ALTER TABLE `detalle_compra`
 --
 ALTER TABLE `detalle_temp`
   ADD CONSTRAINT `detalle_temp_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detalle_temp_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detalle_temp_ibfk_4` FOREIGN KEY (`id_familia`) REFERENCES `familia` (`id_familia`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `detalle_temp_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalle_venta`
