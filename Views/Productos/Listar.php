@@ -1,4 +1,4 @@
-<?php encabezado() ?>
+<?php include "./conexion.php"; encabezado() ?>
 <!-- Begin Page Content -->
 <div class="page-content bg-light">
     <section>
@@ -54,8 +54,8 @@
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td><?php echo $cl['cantidad']; ?></td>
                                         <td><?php echo $cl['medida']; ?></td>
-                                        <td><?php echo $cl['id_familia']; ?></td>
-                                        <td><?php echo $cl['id_contenedor']; ?></td>
+                                        <td><?php echo $cl['familia']; ?></td>
+                                        <td><?php echo $cl['contenedor']; ?></td>
                                         <td><?php echo $cl['vencimiento']; ?></td>
                                         <td>
                                             <a href="<?php echo base_url() ?>Productos/editar?id=<?php echo $cl['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
@@ -64,7 +64,8 @@
                                             </form>
                                         </td>
                                     </tr>
-                                <?php } ?>
+                                <?php
+                                    } ?>
                             </tbody>
                         </table>
                     </div>
