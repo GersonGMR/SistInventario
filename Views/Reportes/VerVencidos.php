@@ -8,7 +8,7 @@ $total = 0.00;
 $pdf = new FPDF('P', 'mm', array(105, 148));
 $pdf->AddPage();
 $pdf->setFont('Arial', 'B', 14);
-$pdf->setTitle("Reporte de productos");
+$pdf->setTitle("Reporte de productos vencidos");
 $pdf->image(base_url().'Assets/img/logo.jpg', 65, 5, 35, 20, 'JPG');
 $pdf->setFont('Arial', 'B', 8);
 $pdf->Cell(50, 5, utf8_decode($alert['nombre']), 0, 1, 'L');
