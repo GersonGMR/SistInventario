@@ -1,6 +1,6 @@
 <?php
 include "./conexion.php";
-        $entradas = mysqli_query($conexion, "SELECT p.codigo,p.nombre,p.cantidad,p.vencimiento FROM productos as p WHERE p.vencimiento < CURRENT_DATE");
+        $entradas = mysqli_query($conexion, "SELECT p.codigo,p.nombre,p.cantidad,p.vencimiento FROM productos as p WHERE p.vencimiento < CURRENT_DATE AND p.cantidad > 0");
         date_default_timezone_set('America/El_Salvador');
         $date = date('m/d/Y');
 require_once "Assets/pdf/fpdf.php";
