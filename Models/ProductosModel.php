@@ -61,7 +61,7 @@ WHERE p.estado = 1";
         }
         return $res;
     }
-    public function actualizarProductos(String $codigo, string $nombre, string $cantidad, string $medida, string $vencimiento, int $id_familia, int $id_contenedor, int $id)
+    public function actualizarProductos(String $codigo, string $nombre, int $cantidad, string $medida, string $vencimiento, int $id_familia, int $id_contenedor, int $id)
     {
         $return = "";
         $this->codigo = $codigo;
@@ -72,8 +72,8 @@ WHERE p.estado = 1";
         $this->id_contenedor = $id_contenedor;
         $this->vencimiento = $vencimiento;
         $this->id = $id;
-        $query = "UPDATE productos SET codigo=?, nombre=?, cantidad=?, medida=?,id_familia=?,id_contenedor=?, vencimiento=? WHERE id=?";
-        $data = array($this->codigo, $this->nombre, $this->cantidad, $this->medida,$this->id_familia,$this->id_contenedor, $this->vencimiento, $this->id);
+        $query = "UPDATE productos SET codigo=?, nombre=?, cantidad=?, medida=?, vencimiento=?, id_familia=?, id_contenedor=? WHERE id=?";
+        $data = array($this->codigo, $this->nombre, $this->cantidad, $this->medida, $this->vencimiento, $this->id_familia, $this->id_contenedor, $this->id);
         $resul = $this->update($query, $data);
         $return = $resul;
         return $return;

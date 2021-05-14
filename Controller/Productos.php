@@ -24,10 +24,10 @@ class Productos extends Controllers
         $codigo = $_POST['codigo'];
         $nombre = $_POST['nombre'];
         $medida = $_POST['medida'];
+        $vencimiento = $_POST['vencimiento'];
         $id_familia = $_POST['id_familia'];
         $id_contenedor = $_POST['id_contenedor'];
-        $vencimiento = $_POST['vencimiento'];
-        $insert = $this->model->insertarProductos($codigo, $nombre, $medida, $id_familia, $id_contenedor, $vencimiento);
+        $insert = $this->model->insertarProductos($codigo, $nombre, $medida, $vencimiento, $id_familia, $id_contenedor);
         if ($insert > 0) {
             $alert = 'registrado';
         } elseif ($insert == 'existe') {
@@ -56,10 +56,10 @@ class Productos extends Controllers
         $nombre = $_POST['nombre'];
         $cantidad = $_POST['cantidad'];
         $medida = $_POST['medida'];
+        $vencimiento = $_POST['vencimiento'];
         $id_familia = $_POST['id_familia'];
         $id_contenedor = $_POST['id_contenedor'];
-        $vencimiento = $_POST['vencimiento'];
-        $actualizar = $this->model->actualizarProductos($codigo, $nombre, $cantidad, $medida, $id_familia, $id_contenedor, $vencimiento, $id);
+        $actualizar = $this->model->actualizarProductos($codigo, $nombre, $cantidad, $medida, $vencimiento, $id_familia, $id_contenedor, $id);
         if ($actualizar == 1) {
             $alert =  'modificado';
         } else {
