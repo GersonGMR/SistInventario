@@ -1,5 +1,6 @@
 <?php
-class AdminModel extends Mysql{
+class AdminModel extends Mysql
+{
     public function __construct()
     {
         parent::__construct();
@@ -36,9 +37,8 @@ class AdminModel extends Mysql{
     }
     public function ventas()
     {
-        $sql = "SELECT COUNT(*) FROM ventas WHERE fecha > CURDATE();";
+        $sql = "SELECT COUNT(*) FROM ventas where id > 0";
         $res = $this->selecT($sql);
         return $res;
     }
-   
 }
