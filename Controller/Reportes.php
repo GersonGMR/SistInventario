@@ -26,4 +26,16 @@
             $data = $this->model->ListaSalidas();
             $this->views->getView($this, "VerSalida", $data, $alert);
         }
+        public function verProductos()
+        {
+            $alert = $this->model->selectConfiguracion();
+            $data = $this->model->ListaProductos();
+            $this->views->getView($this, "VerProductos", $data, $alert);
+        }
+        public function verVencidos()
+        {
+            $alert = $this->model->selectConfiguracion();
+            $data = $this->model->ListaProductos();
+            $this->views->getView($this, "VerVencidos", $data, $alert);
+        }
     }

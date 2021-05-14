@@ -1,13 +1,23 @@
 <?php
-class VentasModel extends Mysql{
-    public $id, $id_venta, $id_cliente,$codigo, $nombre, $cantidad, $precio, $id_producto ,$id_usuario, $total;
+class VentasModel extends Mysql
+{
+    public $id;
+    public $id_venta;
+    public $id_cliente;
+    public $codigo;
+    public $nombre;
+    public $cantidad;
+    public $precio;
+    public $id_producto ;
+    public $id_usuario;
+    public $total;
     public function __construct()
     {
         parent::__construct();
     }
     public function selectVentas()
     {
-        $sql = "SELECT * FROM ventas WHERE estado = 1";
+        $sql = "SELECT v.id,v.total,v.fecha,c.nombre FROM ventas as v INNER JOIN clientes as c ON v.id_cliente = c.id WHERE c.estado = 1";
         $res = $this->select_all($sql);
         return $res;
     }
@@ -17,7 +27,7 @@ class VentasModel extends Mysql{
         $res = $this->select_all($sql);
         return $res;
     }
-    public function insertarDetalle(String $nombre, string $cantidad ,string $precio, string $total, string $id_producto ,string $id_usuario)
+    public function insertarDetalle(String $nombre, string $cantidad, string $precio, string $total, string $id_producto, string $id_usuario)
     {
         $return = "";
         $this->nombre = $nombre;
@@ -27,10 +37,10 @@ class VentasModel extends Mysql{
         $this->id_producto = $id_producto;
         $this->id_usuario = $id_usuario;
 
-            $query = "INSERT INTO detalle_temp(nombre, cantidad, precio, total, id_producto ,id_usuario) VALUES (?,?,?,?,?,?)";
-            $data = array($this->nombre,$this->cantidad, $this->precio, $this->total,$this->id_producto,$this->id_usuario);
-            $resul = $this->insert($query, $data);
-            $return = $resul;
+        $query = "INSERT INTO detalle_temp(nombre, cantidad, precio, total, id_producto ,id_usuario) VALUES (?,?,?,?,?,?)";
+        $data = array($this->nombre,$this->cantidad, $this->precio, $this->total,$this->id_producto,$this->id_usuario);
+        $resul = $this->insert($query, $data);
+        $return = $resul;
         return $return;
     }
     public function buscarProducto(int $codigo)
@@ -69,7 +79,7 @@ class VentasModel extends Mysql{
         $resul = $this->select($query);
         return $resul;
     }
-    public function actualizarCantidad(int $cantidad,String $total, int $id)
+    public function actualizarCantidad(int $cantidad, String $total, int $id)
     {
         $this->cantidad = $cantidad;
         $this->total = $total;
@@ -110,7 +120,7 @@ class VentasModel extends Mysql{
     }
 
 
-    public function registrarDetalle(String $id_venta, string $nombre ,string $id_producto, string $cantidad, string $precio, $id_usuario)
+    public function registrarDetalle(String $id_venta, string $nombre, string $id_producto, string $cantidad, string $precio, $id_usuario)
     {
         $return = "";
         $this->id_venta = $id_venta;

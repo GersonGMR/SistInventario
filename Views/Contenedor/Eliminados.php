@@ -14,6 +14,7 @@
                         <table class="table table-hover table-bordered" id="Table">
                             <thead class="thead-dark">
                                 <tr>
+                                  <th>Id</th>
                                     <th>Codigo contenedor</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -21,6 +22,7 @@
                             <tbody>
                                 <?php foreach ($data as $pro) { ?>
                                     <tr>
+                                      <td><?php echo $pro['id']; ?></td>
                                         <td><?php echo $pro['nombre']; ?></td>
                                         <td>
                                             <form action="<?php echo base_url() ?>Contenedor/reingresar?id=<?php echo $pro['id']; ?>" method="post" class="d-inline confirmar">

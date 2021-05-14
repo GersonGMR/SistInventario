@@ -13,7 +13,7 @@ encabezado();
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive">
-                      <div class="h5 no-margin-bottom"><label>Reportes de entradas</label></div>
+                      <h2 class="h5 no-margin-bottom"><label>Reportes de entradas</label></h2>
                       <form class="form-inline" action="verReporte" method="post" target="_blank">
                         <label >Desde &nbsp;</label>
                         <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" name="desde" placeholder="Desde">
@@ -38,6 +38,25 @@ encabezado();
                <div class="form-check mb-2 mr-sm-2 mb-sm-0"></div>
                <button type="submit" class="btn btn-primary">Generar reporte</button>
               </form>
+              <br><br><br><br>
+              <div class="h5 no-margin-bottom"><label>Reportes de productos existentes</label></div>
+              <div class="no-margin-bottom"><label>Ingrese un rango de fechas de vencimiento de los productos: </label></div>
+              <form class="form-inline" action="verProductos" method="post" target="_blank">
+                <label >Desde &nbsp;</label>
+                <input type="date" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" name="desde" placeholder="Desde">
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <div class="input-group-addon"></div>
+                  <label >Hasta &nbsp;</label>
+                  <input type="date" class="form-control" id="inlineFormInputGroup" name="hasta" placeholder="Hasta">
+                </div>
+           <div class="form-check mb-2 mr-sm-2 mb-sm-0"></div>
+           <button type="submit" class="btn btn-primary">Generar reporte</button>
+          </form>
+          <br><br><br><br>
+          <div class="h5 no-margin-bottom"><label>Verificar si existen productos vencidos: </label></div>
+          <form class="form-inline" action="verVencidos" method="post" target="_blank">
+       <button type="submit" class="btn btn-primary">Generar reporte de productos vencidos</button>
+      </form>
                     </div>
                 </div>
             </div>

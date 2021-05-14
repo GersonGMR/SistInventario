@@ -44,4 +44,10 @@ class ReportesModel extends Mysql
         $res = $this->select_all($sql);
         return $res;
     }
+    public function ListaProductos()
+    {
+        $sql = "SELECT * FROM productos";
+        $res = $this->select_all($sql);
+        return $res;
+    }
 }

@@ -37,6 +37,7 @@
                         <table class="table table-hover table-bordered" id="Table">
                             <thead class="thead-dark">
                                 <tr>
+                                   <th>Id</th>
                                     <th>Codigo contenedor</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -44,6 +45,7 @@
                             <tbody>
                                 <?php foreach ($data as $cl) { ?>
                                     <tr>
+                                      <td><?php echo $cl['id']; ?></td>
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td>
                                             <a href="<?php echo base_url() ?>Contenedor/editar?id=<?php echo $cl['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
