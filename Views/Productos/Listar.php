@@ -98,8 +98,12 @@
                                 <input id="medida" class="form-control" type="text" name="medida" placeholder="Medida">
                             </div>
                             <div class="form-group">
-                                <label for="medida">Contenedor</label>
-                                <input id="medida" class="form-control" type="text" name="contenedor" placeholder="Contenedor">
+                                <label for="id_familia">Familia</label>
+                                <input id="id_familia" class="form-control" type="text" name="id_familia" placeholder="Familia">
+                            </div>
+                            <div class="form-group">
+                                <label for="id_contenedor">Contenedor</label>
+                                <input id="id_contenedor" class="form-control" type="text" name="id_contenedor" placeholder="Contenedor">
                             </div>
 
                     <div class="row">

@@ -11,7 +11,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="ruc">Ruc/Dni</label>
+                                <label for="ruc">Codigo</label>
                                 <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
                                 <input id="ruc" class="form-control" type="text" name="ruc" value="<?php echo $data['ruc']; ?>">
                             </div>

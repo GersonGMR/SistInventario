@@ -14,8 +14,7 @@
                         <table class="table table-hover table-bordered" id="Table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Ruc/Dni</th>
+                                    <th>Codigo</th>
                                     <th>Nombre</th>
                                     <th>Dirección</th>
                                     <th>Teléfono</th>
@@ -25,7 +24,6 @@
                             <tbody>
                                 <?php foreach ($data as $cl) { ?>
                                     <tr>
-                                        <td><?php echo $cl['id']; ?></td>
                                         <td><?php echo $cl['ruc']; ?></td>
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td><?php echo $cl['direccion']; ?></td>

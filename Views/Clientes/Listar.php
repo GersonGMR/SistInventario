@@ -12,32 +12,31 @@
                         </div>
                         <div class="col-lg-6">
                             <?php if (isset($_GET['msg'])) {
-                                $alert = $_GET['msg'];
-                                if ($alert == "existe") { ?>
+    $alert = $_GET['msg'];
+    if ($alert == "existe") { ?>
                                     <div class="alert alert-warning" role="alert">
                                         <strong>El cliente ya existe</strong>
                                     </div>
-                                <?php } else if ($alert == "error") { ?>
+                                <?php } elseif ($alert == "error") { ?>
                                     <div class="alert alert-danger" role="alert">
                                         <strong>Error al registrar</strong>
                                     </div>
-                                <?php } else if ($alert == "registrado") { ?>
+                                <?php } elseif ($alert == "registrado") { ?>
                                     <div class="alert alert-success" role="alert">
                                         <strong>Cliente registrado</strong>
                                     </div>
-                                <?php } else if ($alert == "modificado") { ?>
+                                <?php } elseif ($alert == "modificado") { ?>
                                     <div class="alert alert-success" role="alert">
                                         <strong>Cliente Modificado</strong>
                                     </div>
                             <?php }
-                            } ?>
+} ?>
                         </div>
                     </div>
                     <div class="table-responsive mt-4">
                         <table class="table table-hover table-bordered" id="Table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Id</th>
                                     <th>Codigo</th>
                                     <th>Nombre</th>
                                     <th>Dirección</th>
@@ -48,7 +47,6 @@
                             <tbody>
                                 <?php foreach ($data as $cl) { ?>
                                     <tr>
-                                        <td><?php echo $cl['id']; ?></td>
                                         <td><?php echo $cl['ruc']; ?></td>
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td><?php echo $cl['direccion']; ?></td>
@@ -81,8 +79,8 @@
             <form method="post" action="<?php echo base_url(); ?>Clientes/insertar" autocomplete="off">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="ruc">Ruc/Dni</label>
-                        <input id="ruc" class="form-control" type="text" name="ruc" placeholder="Ruc/Dni">
+                        <label for="ruc">Codigo</label>
+                        <input id="ruc" class="form-control" type="text" name="ruc" placeholder="Codigo">
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>

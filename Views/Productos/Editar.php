@@ -34,14 +34,14 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="medida">Familia</label>
-                                        <input id="medida" class="form-control" type="text" name="familia" value="<?php echo $data['id_familia']; ?>">
+                                        <label for="id_familia">Familia</label>
+                                        <input id="id_familia" class="form-control" type="text" name="id_familia" value="<?php echo $data['id_familia']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="medida">Contenedor</label>
-                                        <input id="medida" class="form-control" type="text" name="contenedor" value="<?php echo $data['id_contenedor']; ?>">
+                                        <label for="id_contenedor">Contenedor</label>
+                                        <input id="id_contenedor" class="form-control" type="text" name="id_contenedor" value="<?php echo $data['id_contenedor']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">

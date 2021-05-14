@@ -19,10 +19,6 @@
                                 <label for="nombre">Codigo Contenedor</label>
                                 <input id="nombre" class="form-control" type="text" name="nombre" value="<?php echo $data['nombre']; ?>">
                             </div>
-                            <div class="form-group">
-                                <label for="nombre">Familia</label>
-                                <input id="id_familia" class="form-control" type="text" name="id_familia" value="<?php echo $data['id_familia']; ?>">
-                            </div>
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-dark" type="submit">Modificar</button>

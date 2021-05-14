@@ -22,8 +22,7 @@ class Contenedor extends Controllers
     public function insertar()
     {
         $nombre = $_POST['nombre'];
-        $id_familia = $_POST['id_familia'];
-        $insert = $this->model->insertarContenedor($nombre, $id_familia);
+        $insert = $this->model->insertarContenedor($nombre);
         if ($insert > 0) {
             $alert = 'registrado';
         } elseif ($insert == 'existe') {
@@ -50,7 +49,7 @@ class Contenedor extends Controllers
         $id_contenedor = $_POST['id_contenedor'];
         $nombre = $_POST['nombre'];
         $id_familia = $_POST['id_familia'];
-        $actualizar = $this->model->actualizarContenedor($nombre, $id_familia, $id_contenedor);
+        $actualizar = $this->model->actualizarContenedor($nombre, $id_contenedor);
         if ($actualizar == 1) {
             $alert =  'modificado';
         } else {
