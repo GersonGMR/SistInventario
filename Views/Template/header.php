@@ -70,14 +70,13 @@
                                 <li><a href="<?php echo base_url(); ?>Compras/lista"><i class="fas fa-list-ol"></i> Entradas</a></li>
                             </ul>
                         </li>
-                        <li><a href="<?php echo base_url(); ?>Familias/Listar"> <i class="fas fa-box-open"></i> <strong class="text-white"> Familias </strong></a></li>
-                        <li><a href="<?php echo base_url(); ?>Contenedor/Listar"> <i class="fas fa-truck-loading"></i> <strong class="text-white"> Contenedores </strong></a></li>
-                <li><a href="<?php echo base_url(); ?>Productos/Listar"> <i class="fab fa-product-hunt"></i> <strong class="text-white"> Productos </strong></a></li>
-                <li><a href="<?php echo base_url(); ?>Clientes/Listar"> <i class="fas fa-users"></i> <strong class="text-white"> Beneficiados </strong></a></li>
                 <?php if ($_SESSION['rol'] == "Administrador") { ?>
-				<li><a href="<?php echo base_url(); ?>Usuarios/Listar"> <i class="fas fa-user"></i> <strong class="text-white"> Usuarios </strong></a></li>
-
-				<li><a href="<?php echo base_url(); ?>Reportes/Listar"> <i class="fas fa-file-alt"></i></i> <strong class="text-white"> Reportes </strong></a></li>
+        <li><a href="<?php echo base_url(); ?>Productos/Listar"> <i class="fab fa-product-hunt"></i> <strong class="text-white"> Productos </strong></a></li>
+        <li><a href="<?php echo base_url(); ?>Familias/Listar"> <i class="fas fa-box-open"></i> <strong class="text-white"> Familias </strong></a></li>
+        <li><a href="<?php echo base_url(); ?>Contenedor/Listar"> <i class="fas fa-truck-loading"></i> <strong class="text-white"> Contenedores </strong></a></li>
+        <li><a href="<?php echo base_url(); ?>Usuarios/Listar"> <i class="fas fa-user"></i> <strong class="text-white"> Usuarios </strong></a></li>
+        <li><a href="<?php echo base_url(); ?>Clientes/Listar"> <i class="fas fa-users"></i> <strong class="text-white"> Beneficiados </strong></a></li>
         <li><a href="<?php echo base_url(); ?>Configuracion1/Listar"> <i class="fas fa-cog"></i></i> <strong class="text-white"> Configuracion </strong></a></li>
                 <?php } ?>
+                <li><a href="<?php echo base_url(); ?>Reportes/Listar"> <i class="fas fa-file-alt"></i></i> <strong class="text-white"> Reportes </strong></a></li>
         </nav>

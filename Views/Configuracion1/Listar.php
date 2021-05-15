@@ -57,8 +57,8 @@
                                     </div>
                                     <div class="col-lg-8">
                                         <div class="form-group">
-                                            <label for="razon">Razon Social</label>
-                                            <input id="razon" class="form-control" type="text" name="razon" value="<?php echo $data['razon']; ?>">
+                                            <label for="razon" hidden>Razon Social</label>
+                                            <input id="razon" class="form-control" type="text" name="razon" value="<?php echo $data['razon']; ?>" hidden>
                                         </div>
                                     </div>
                                 </div>
