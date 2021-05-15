@@ -3,7 +3,7 @@
     include "./conexion.php";
 
     //Aqui ira la consulta para traer cantidad de los productos.
-    
+
 ?>
 <!-- Begin Page Content -->
 <div class="page-content bg-light">
@@ -52,8 +52,7 @@
                     <div class="table-responsive">
                         <table class="table table-light mt-4" id="tablaCompras">
                             <thead class="thead-dark">
-                                <tr>
-                                    <th>Id</th>
+                                <tr>  
                                     <th>Producto</th>
                                     <th>Cantidad</th>
                                     <th>Accion</th>

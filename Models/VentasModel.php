@@ -17,7 +17,7 @@ class VentasModel extends Mysql
     }
     public function selectVentas()
     {
-        $sql = "SELECT v.id,v.total,v.fecha,c.nombre FROM ventas as v INNER JOIN clientes as c ON v.id_cliente = c.id WHERE c.estado = 1";
+        $sql = "SELECT v.id,v.total,v.fecha,c.nombre,v.id_cliente FROM ventas as v INNER JOIN clientes as c ON v.id_cliente = c.id WHERE c.estado = 1";
         $res = $this->select_all($sql);
         return $res;
     }

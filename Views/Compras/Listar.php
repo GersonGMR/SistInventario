@@ -46,7 +46,6 @@
                         <table class="table table-light mt-4" id="tablaCompras">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Id</th>
                                     <th>Producto</th>
                                     <th>Cantidad</th>
                                     <th>Accion</th>
