@@ -37,8 +37,11 @@ $(document).ready(function () {
         }
     });
     $("#procesarVenta").click(function () {
+        
         var fila = $("#tablaCompras tr").length;
         var cliente = $("#nombre_cliente").val();
+        var id_cliente = document.getElementById("id_cliente").value;
+
         if (fila < 2) {
             Swal.fire({
                 icon: 'warning',
@@ -46,7 +49,16 @@ $(document).ready(function () {
                 showConfirmButton: false,
                 timer: 2500
             })
-        } else {
+        }
+        else if(id_cliente == null || id_cliente == "" || id_cliente == 0 ){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Por favor seleccionar un beneficiado.',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        } 
+        else {
             const total = {
                 cliente: $("#id_cliente").val(),
                 totalP: $("#total").val()
@@ -204,11 +216,12 @@ function BuscarCodigo(e) {
     }
 }
 
-function IngresarCantidad(e) {
-    const stockD = $("#stockD").val();
-    const cantidad = document.getElementById("cantidad").value;
+function ingresarCantidad(e) {
+    //const stockD = $("#stockD").val();
+    const stockD = parseInt(document.getElementById("stockD").value);
+    const cantidad = parseInt(document.getElementById("cantidad").value);
     if (e.which == 13) {
-        if (stockD == "") {
+        if (stockD == "" || stockD == 0 || stockD == null) {
             $('#frmCompras').trigger("reset");
             $("#buscar_codigo").focus();
             document.getElementById("nombreP").innerHTML = "";
@@ -218,7 +231,19 @@ function IngresarCantidad(e) {
                 showConfirmButton: false,
                 timer: 1500
             })
-        } else {
+        } 
+        else if(cantidad > stockD){
+            
+            //$("#buscar_codigo").focus();
+            document.getElementById("nombreP").innerHTML = "";
+            Swal.fire({
+                icon: 'warning',
+                title: 'Por favor ingresar una cantidad igual o menor al stock disponible.',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        else {
             $.ajax({
                 url: urls,
                 type: 'POST',
@@ -245,7 +270,7 @@ function IngresarCantidad(e) {
     }
 }
 
-function BuscarCliente(e) {
+function buscarCliente(e) {
     const ruc = $("#ruc_cliente").val();
     if (e.which == 13) {
         $.ajax({
