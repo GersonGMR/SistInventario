@@ -37,7 +37,7 @@ $(document).ready(function () {
         }
     });
     $("#procesarVenta").click(function () {
-        
+
         var fila = $("#tablaCompras tr").length;
         var cliente = $("#nombre_cliente").val();
         var id_cliente = document.getElementById("id_cliente").value;
@@ -53,11 +53,11 @@ $(document).ready(function () {
         else if(id_cliente == null || id_cliente == "" || id_cliente == 0 ){
             Swal.fire({
                 icon: 'warning',
-                title: 'Por favor seleccionar un beneficiado.',
+                title: 'Por favor ingresa un beneficiado.',
                 showConfirmButton: false,
                 timer: 2500
             })
-        } 
+        }
         else {
             const total = {
                 cliente: $("#id_cliente").val(),
@@ -227,20 +227,20 @@ function ingresarCantidad(e) {
             document.getElementById("nombreP").innerHTML = "";
             Swal.fire({
                 icon: 'warning',
-                title: 'Ingrese la cantidad',
+                title: 'No hay stock o la cantidad ingresa es igual a cero.',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000
             })
-        } 
+        }
         else if(cantidad > stockD){
-            
+
             //$("#buscar_codigo").focus();
             document.getElementById("nombreP").innerHTML = "";
             Swal.fire({
                 icon: 'warning',
-                title: 'Por favor ingresar una cantidad igual o menor al stock disponible.',
+                title: 'La cantidad ingresada excede el stock disponible.',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000
             })
         }
         else {
