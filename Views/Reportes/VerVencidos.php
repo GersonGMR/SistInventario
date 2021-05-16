@@ -27,7 +27,7 @@ $pdf->setFont('Arial', 'B', 8);
 $pdf->Cell(30, 5, utf8_decode("Fecha de reporte"), 0, 0, 'L');
 $pdf->Ln();
 $pdf->setFont('Arial', 'B', 8);
-$pdf->Cell(30, 5, utf8_decode("Fecha actual"), 0, 0, 'L');
+$pdf->Cell(30, 5, utf8_decode("Fecha impreso"), 0, 0, 'L');
 $pdf->setFont('Arial', '', 8);
 $pdf->Cell(50, 5, utf8_decode($date), 0, 1, 'L');
 /*$pdf->Cell(50, 5, utf8_decode($result_fecha['fecha']), 0, 1, 'L');

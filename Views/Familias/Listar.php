@@ -12,25 +12,25 @@
                         </div>
                         <div class="col-lg-6">
                             <?php if (isset($_GET['msg'])) {
-                                $alert = $_GET['msg'];
-                                if ($alert == "existe") { ?>
+    $alert = $_GET['msg'];
+    if ($alert == "existe") { ?>
                                     <div class="alert alert-warning" role="alert">
                                         <strong>Familia ya existe</strong>
                                     </div>
-                                <?php } else if ($alert == "error") { ?>
+                                <?php } elseif ($alert == "error") { ?>
                                     <div class="alert alert-danger" role="alert">
                                         <strong>Error al registrar</strong>
                                     </div>
-                                <?php } else if ($alert == "registrado") { ?>
+                                <?php } elseif ($alert == "registrado") { ?>
                                     <div class="alert alert-success" role="alert">
                                         <strong>Familia registrada</strong>
                                     </div>
-                                <?php } else if ($alert == "modificado") { ?>
+                                <?php } elseif ($alert == "modificado") { ?>
                                     <div class="alert alert-success" role="alert">
                                         <strong>Familia Modificada</strong>
                                     </div>
                             <?php }
-                            } ?>
+} ?>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -76,7 +76,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre familia">
+                        <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre familia" required>
                     </div>
                 </div>
                 <div class="card-footer">

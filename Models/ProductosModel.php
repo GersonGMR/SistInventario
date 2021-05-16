@@ -30,7 +30,14 @@ WHERE p.estado = 1";
         $res = $this->select_all($sql);
         return $res;
     }
-    public function insertarProductos(String $codigo, string $nombre, string $medida, int $id_familia, int $id_contenedor, string $vencimiento)
+    /*public function selectFamilias()
+    {
+        $sql = "SELECT * FROM familia where estado = 1";
+        $res = $this->select_all($sql);
+        return $res;
+    }
+   */
+    public function insertarProductos(String $codigo, string $nombre, string $medida, string $vencimiento, int $id_familia, int $id_contenedor)
     {
         $return = "";
         $this->codigo = $codigo;
@@ -42,8 +49,8 @@ WHERE p.estado = 1";
         $sql = "SELECT * FROM productos WHERE codigo = '{$this->codigo}'";
         $result = $this->select_all($sql);
         if (empty($result)) {
-            $query = "INSERT INTO productos(codigo, nombre, medida, id_familia,id_contenedor, vencimiento) VALUES (?,?,?,?,?,?)";
-            $data = array($this->codigo, $this->nombre, $this->medida,$this->id_familia,$this->id_contenedor, $this->vencimiento);
+            $query = "INSERT INTO productos(codigo, nombre, medida, vencimiento, id_familia,id_contenedor) VALUES (?,?,?,?,?,?)";
+            $data = array($this->codigo, $this->nombre, $this->medida, $this->vencimiento,$this->id_familia,$this->id_contenedor);
             $resul = $this->insert($query, $data);
             $return = $resul;
         } else {
@@ -54,7 +61,12 @@ WHERE p.estado = 1";
     public function editarProductos(int $id)
     {
         $this->id = $id;
-        $sql = "SELECT * FROM productos WHERE id = '{$this->id}'";
+        $sql = "SELECT p.id,p.vencimiento,p.codigo,p.nombre,p.id_familia,p.id_contenedor,p.cantidad,p.medida, f.nombre as fami,c.nombre as conte FROM productos as p
+        INNER JOIN familia as f
+        ON p.id_familia = f.id_familia
+        INNER JOIN contenedor as c
+        ON p.id_contenedor = c.id
+        WHERE p.id = '{$this->id}'";
         $res = $this->select($sql);
         if (empty($res)) {
             $res = 0;
@@ -68,9 +80,9 @@ WHERE p.estado = 1";
         $this->nombre = $nombre;
         $this->cantidad = $cantidad;
         $this->medida = $medida;
+        $this->vencimiento = $vencimiento;
         $this->id_familia = $id_familia;
         $this->id_contenedor = $id_contenedor;
-        $this->vencimiento = $vencimiento;
         $this->id = $id;
         $query = "UPDATE productos SET codigo=?, nombre=?, cantidad=?, medida=?, vencimiento=?, id_familia=?, id_contenedor=? WHERE id=?";
         $data = array($this->codigo, $this->nombre, $this->cantidad, $this->medida, $this->vencimiento, $this->id_familia, $this->id_contenedor, $this->id);

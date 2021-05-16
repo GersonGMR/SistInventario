@@ -1,11 +1,11 @@
 <?php
 include "./conexion.php";
-        $desde = $_REQUEST['desde'];
-        $hasta = $_REQUEST['hasta'];
         $entradas = mysqli_query($conexion, "SELECT p.codigo, p.nombre, p.cantidad, p.vencimiento
           FROM productos as p
-          WHERE p.vencimiento BETWEEN '$desde' and '$hasta'
+          WHERE p.vencimiento > CURRENT_DATE
           AND p.cantidad > 0");
+          date_default_timezone_set('America/El_Salvador');
+          $date = date('m/d/Y');
 require_once "Assets/pdf/fpdf.php";
 $total = 0.00;
 $pdf = new FPDF('P', 'mm', array(105, 148));
@@ -30,14 +30,10 @@ $pdf->setFont('Arial', 'B', 8);
 $pdf->Cell(30, 5, utf8_decode("Fecha de reporte"), 0, 0, 'L');
 $pdf->Ln();
 $pdf->setFont('Arial', 'B', 8);
-$pdf->Cell(30, 5, utf8_decode("Desde"), 0, 0, 'L');
+$pdf->Cell(30, 5, utf8_decode("Fecha impreso"), 0, 0, 'L');
 $pdf->setFont('Arial', '', 8);
-$pdf->Cell(50, 5, utf8_decode($desde), 0, 1, 'L');
-$pdf->setFont('Arial', 'B', 8);
-$pdf->Cell(30, 5, utf8_decode("Hasta"), 0, 0, 'L');
-$pdf->setFont('Arial', '', 8);
-$pdf->Cell(50, 5, utf8_decode($hasta), 0, 1, 'L');
-$pdf->setFont('Arial', 'B', 8);
+$pdf->Cell(50, 5, utf8_decode($date), 0, 1, 'L');
+
 /*$pdf->Cell(50, 5, utf8_decode($result_fecha['fecha']), 0, 1, 'L');
 $pdf->setFont('Arial', 'B', 8);
 $pdf->Cell(30, 5, utf8_decode("No. Entrada"), 0, 0, 'L');

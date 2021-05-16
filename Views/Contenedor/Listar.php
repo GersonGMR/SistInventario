@@ -76,7 +76,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nombre">Codigo contenedor</label>
-                        <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Codigo contenedor">
+                        <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Codigo contenedor" required>
                     </div>
                 </div>
                 <div class="card-footer">

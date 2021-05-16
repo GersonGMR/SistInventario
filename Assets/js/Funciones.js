@@ -1,8 +1,8 @@
 const base = document.getElementById("url").value;
 const urls = base + "Compras/ingresar";
 window.addEventListener("load", function () {
-    //reportes();
-    //reportesTorta();
+    reportes();
+    reportesTorta();
     ListarCompras();
 })
 $(document).ready(function () {
@@ -216,6 +216,17 @@ function BuscarCodigo(e) {
     }
 }
 
+// Inicializar select2
+//  $("#selUser").select2();
+
+  // Leer la opcion seleccionada
+//  $('#but_read').click(function(){
+//    var username = $('#selUser option:selected').text();
+//
+//    $('#result').html("id : " + userid + ", name : " + username);
+
+//  });
+
 function ingresarCantidad(e) {
     //const stockD = $("#stockD").val();
     const stockD = parseInt(document.getElementById("stockD").value);
@@ -345,14 +356,14 @@ function reportes() {
                                 display: false
                             },
                             ticks: {
-                                maxTicksLimit: 6
+                                maxTicksLimit: 7
                             }
                         }],
                         yAxes: [{
                             ticks: {
                                 min: 0,
                                 max: 20,
-                                maxTicksLimit: 5
+                                maxTicksLimit: 6
                             },
                             gridLines: {
                                 display: true
@@ -393,7 +404,7 @@ function reportesTorta() {
                     datasets: [{
                         data: total,
                         backgroundColor: [
-                            'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'crimson', 'teal', 'fuchsia', 'lime'
+                            'Red', 'Orange', 'Lime', 'Green', 'Purple', 'Crimson', 'Blue', 'teal', 'fuchsia', 'red'
                         ]
                     }],
                 },

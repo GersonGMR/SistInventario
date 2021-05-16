@@ -87,31 +87,47 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="codigo">Código</label>
-                        <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código">
+                        <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código" required>
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Descripción">
+                        <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Descripción" required>
                     </div>
 
                             <div class="form-group">
                                 <label for="medida">Medida</label>
-                                <input id="medida" class="form-control" type="text" name="medida" placeholder="Medida">
+                                <input id="medida" class="form-control" type="text" name="medida" placeholder="Medida" required>
                             </div>
                             <div class="form-group">
-                                <label for="id_familia">Familia</label>
-                                <input id="id_familia" class="form-control" type="text" name="id_familia" placeholder="Familia">
+                                <label for="id_familia">Familia</label><br>
+                                <select class="seleccionador" id="familias" required>
+                                  <option value="">Selecciona</option>
+                                  <?php $sql = mysqli_query($conexion, "SELECT * FROM familia WHERE estado = 1");
+                                   while ($fam = $sql->fetch_assoc()) {
+                                       echo '<option value=" '.$fam['id_familia'].' "> '.$fam['nombre'].' </option>';
+                                   }
+                                   ?>
+                                </select>
+                                <input id="id_familia" class="form-control" type="text" name="id_familia" hidden required>
                             </div>
                             <div class="form-group">
-                                <label for="id_contenedor">Contenedor</label>
-                                <input id="id_contenedor" class="form-control" type="text" name="id_contenedor" placeholder="Contenedor">
+                                <label for="id_contenedor">Contenedor</label><br>
+                                <select class="seleccionador1" id="contenedores" required>
+                                  <option value="">Selecciona</option>
+                                  <?php $sql = mysqli_query($conexion, "SELECT * FROM contenedor WHERE estado = 1");
+                                   while ($com = $sql->fetch_assoc()) {
+                                       echo '<option value=" '.$com['id'].' "> '.$com['nombre'].' </option>';
+                                   }
+                                   ?>
+                                </select>
+                                <input id="id_contenedor" class="form-control" type="text" name="id_contenedor" hidden required>
                             </div>
 
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="vencimiento">Fecha vencimiento</label>
-                                <input id="vencimiento" class="form-control" type="date" name="vencimiento" placeholder="Fecha vencimiento">
+                                <input id="vencimiento" class="form-control" type="date" name="vencimiento" placeholder="Fecha vencimiento" required>
                             </div>
                         </div>
                     </div>
@@ -124,4 +140,30 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function () {
+ // inizializando y obteniendo value del select2
+   $('.seleccionador').select2({
+     placeholder: "Select a state"
+   }).on('change', function(e) {
+     var userid = $('.seleccionador').val();
+     $("#id_familia").val(userid);
+   });
+   //solucionando problema con modales de bootstrap
+   $('#familias').select2({
+        dropdownParent: $('#nuevo_producto')
+    });
+    // inizializando y obteniendo value del select2
+      $('.seleccionador1').select2({
+        placeholder: "Select a state"
+      }).on('change', function(e) {
+        var contid = $('.seleccionador1').val();
+        $("#id_contenedor").val(contid);
+      });
+      //solucionando problema con modales de bootstrap
+      $('#contenedores').select2({
+           dropdownParent: $('#nuevo_producto')
+       });
+});
+   </script>
 <?php pie() ?>

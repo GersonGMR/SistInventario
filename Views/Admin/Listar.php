@@ -71,6 +71,27 @@
             </div>
 
             <!-- Content Row -->
+            <h4 class="mt-2">Reportes gráficos</h4>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar mr-1"></i>
+                            Productos a punto de agotarse
+                        </div>
+                        <div class="card-body bg-secondary"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-pie mr-1"></i>
+                            Productos más entregados
+                        </div>
+                        <div class="card-body bg-secondary"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </section>

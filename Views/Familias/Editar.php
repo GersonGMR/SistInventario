@@ -13,11 +13,11 @@
                           <div class="form-group">
                               <label for="id_familia">Codigo familia</label>
                               <input type="hidden" name="id" value="<?php echo $data['id_familia']; ?>">
-                              <input readonly id="id_familia" class="form-control" type="text" name="id_familia" value="<?php echo $data['id_familia']; ?>">
+                              <input readonly id="id_familia" class="form-control" type="text" name="id_familia" value="<?php echo $data['id_familia']; ?>" required>
                           </div>
                             <div class="form-group">
                                 <label for="nombre">Nombre familia</label>
-                                <input id="nombre" class="form-control" type="text" name="nombre" value="<?php echo $data['nombre']; ?>">
+                                <input id="nombre" class="form-control" type="text" name="nombre" value="<?php echo $data['nombre']; ?>" required>
                             </div>
                         </div>
                         <div class="card-footer">

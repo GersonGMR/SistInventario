@@ -80,23 +80,23 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="ruc">Codigo</label>
-                        <input id="ruc" class="form-control" type="text" name="ruc" placeholder="Codigo">
+                        <input id="ruc" class="form-control" type="text" name="ruc" placeholder="Codigo" required>
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre">
+                        <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre" required>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="direccion">Dirección</label>
-                                <input id="direccion" class="form-control" type="text" name="direccion" placeholder="Dirección">
+                                <input id="direccion" class="form-control" type="text" name="direccion" placeholder="Dirección" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="telefono">Teléfono</label>
-                                <input id="telefono" class="form-control" type="text" name="telefono" placeholder="Teléfono">
+                                <input id="telefono" class="form-control" type="text" name="telefono" placeholder="Teléfono" required>
                             </div>
                         </div>
                     </div>

@@ -12,20 +12,20 @@
                         </div>
                         <div class="col-lg-6">
                             <?php if (isset($_GET['msg'])) {
-                                $alert = $_GET['msg'];
-                                if ($alert == "existe") { ?>
+    $alert = $_GET['msg'];
+    if ($alert == "existe") { ?>
                                     <div class="alert alert-warning" role="alert">
                                         <strong>El usuario ya existe</strong>
                                     </div>
-                                <?php } else if ($alert == "error") { ?>
+                                <?php } elseif ($alert == "error") { ?>
                                     <div class="alert alert-danger" role="alert">
                                         <strong>Error al registrar</strong>
                                     </div>
-                                <?php } else if ($alert == "registrado") { ?>
+                                <?php } elseif ($alert == "registrado") { ?>
                                     <div class="alert alert-success" role="alert">
                                         <strong>Usuario Registrado</strong>
                                     </div>
-                                <?php } else if ($alert == "modificado") { ?>
+                                <?php } elseif ($alert == "modificado") { ?>
                                     <div class="alert alert-success" role="alert">
                                         <strong>Usuario Modificado</strong>
                                     </div>
@@ -34,7 +34,7 @@
                                         <strong>Las Contraseña no coinciden</strong>
                                     </div>
                             <?php }
-                            } ?>
+} ?>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -86,31 +86,31 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre">
+                        <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre" required>
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="usuario">Usuario</label>
-                                <input id="usuario" class="form-control" type="text" name="usuario" placeholder="Usuario">
+                                <input id="usuario" class="form-control" type="text" name="usuario" placeholder="Usuario" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="correo">Correo</label>
-                                <input id="correo" class="form-control" type="text" name="correo" placeholder="Correo">
+                                <input id="correo" class="form-control" type="email" name="correo" placeholder="Correo" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="clave">Contraseña</label>
-                                <input id="clave" class="form-control" type="password" name="clave" placeholder="Contraseña">
+                                <input id="clave" class="form-control" type="password" name="clave" placeholder="Contraseña" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="confirmar">Correo</label>
-                                <input id="confirmar" class="form-control" type="password" name="confirmar" placeholder="Confirmar Contraseña">
+                                <input id="confirmar" class="form-control" type="password" name="confirmar" placeholder="Confirmar Contraseña" required>
                             </div>
                         </div>
                         <div class="col-lg-12">
