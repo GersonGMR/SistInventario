@@ -15,7 +15,7 @@ class ProductosModel extends Mysql
     }
     public function selectProductos()
     {
-        $sql = "SELECT p.id,p.codigo,p.nombre,p.cantidad,p.medida,p.vencimiento,p.id_contenedor,p.estado, f.nombre as familia, c.nombre as contenedor FROM productos as p
+        $sql = "SELECT p.fecha_ingreso,p.id,p.codigo,p.nombre,p.cantidad,p.medida,p.vencimiento,p.id_contenedor,p.estado, f.nombre as familia, c.nombre as contenedor FROM productos as p
 INNER JOIN familia as f
 ON p.id_familia = f.id_familia
 INNER JOIN contenedor as c

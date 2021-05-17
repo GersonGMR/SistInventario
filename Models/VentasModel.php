@@ -175,4 +175,14 @@ class VentasModel extends Mysql
         $sql = "DELETE FROM detalle_temp WHERE id_usuario = $id_usuario";
         $resul = $this->delete($sql);
     }
+    public function entregadoS(int $id, int $estado)
+    {
+        $this->id = $id;
+        $this->estado = $estado;
+        $query = "UPDATE ventas SET estado = ? WHERE id=?";
+        $data = array($this->id,$this->estado);
+        $resul = $this->update($query, $data);
+        $return = $resul;
+        return $return;
+    }
 }

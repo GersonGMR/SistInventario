@@ -18,7 +18,8 @@
                                     <th>Beneficiado</th>
                                     <th>Total</th>
                                     <th>Fecha</th>
-                                    <th>Accion</th>
+                                    <th>Reporte</th>
+                                  <!--  <th>Estado</th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,8 +33,19 @@
                                         <td>
                                             <a href="<?php echo base_url(); ?>Ventas/ver?id=<?php echo $lista['id']; ?>&cliente=<?php echo $lista['id_cliente']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-file-pdf"></i></i> PDF</a>
                                         </td>
+                                        <!--<td>
+                                          <form action="<?php echo base_url(); ?>Ventas/entregado?id=<?php echo $lista['id']; ?>&estado=<?php echo 1; ?>" method="post" >
+                                            <select name="entrega" id="entrega" onchange="this.form.submit()">
+                                              <option value="0">Pendiente</option>
+                                              <option value="1">Entregado</option>
+                                            </select>
+                                          </form>
+                                        </td>-->
                                     </tr>
-                                <?php } ?>
+                                <?php } ?><?php
+                                if (isset($_POST['submit'])) {
+                                    $selected_val = $_POST['entrega'];  // Storing Selected Value In Variable
+                                } ?>
                             </tbody>
                         </table>
                     </div>

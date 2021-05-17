@@ -130,4 +130,12 @@
             }
             echo json_encode($return);
         }
+        public function entregado()
+        {
+            $id = $_GET['id'];
+            $estado = $_GET['estado'];
+            $this->model->entregadoS($id, $estado);
+            header('location: ' . base_url() . 'Ventas/lista');
+            die();
+        }
     }

@@ -28,7 +28,8 @@
                 <div class="col-lg-2">
                     <div class="form-group">
                         <label for="cantidad">Cantidad</label>
-                        <input id="cantidad" class="form-control" type="text" name="cantidad" onkeyup="IngresarCantidad(event);">
+                        <input id="stockD" type="hidden">
+                        <input id="cantidad" class="form-control" type="text" name="cantidad" onkeyup="ingresarCantidad(event);">
                     </div>
                 </div>
                 <div class="col-lg-3">

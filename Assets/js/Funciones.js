@@ -6,6 +6,29 @@ window.addEventListener("load", function () {
     ListarCompras();
 })
 $(document).ready(function () {
+  // inizializando y obteniendo value del select2
+    $('.seleccionador').select2({
+      placeholder: "Select a state"
+    }).on('change', function(e) {
+      var userid = $('.seleccionador').val();
+      $("#id_familia").val(userid);
+    });
+    //solucionando problema con modales de bootstrap
+    $('#familias').select2({
+         dropdownParent: $('#nuevo_producto')
+     });
+     // inizializando y obteniendo value del select2
+       $('.seleccionador1').select2({
+         placeholder: "Select a state"
+       }).on('change', function(e) {
+         var contid = $('.seleccionador1').val();
+         $("#id_contenedor").val(contid);
+       });
+       //solucionando problema con modales de bootstrap
+       $('#contenedores').select2({
+            dropdownParent: $('#nuevo_producto')
+        });
+
     $("#procesarCompra").click(function () {
         var fila = $("#tablaCompras tr").length;
         if (fila < 2) {
@@ -215,17 +238,6 @@ function BuscarCodigo(e) {
         });
     }
 }
-
-// Inicializar select2
-//  $("#selUser").select2();
-
-  // Leer la opcion seleccionada
-//  $('#but_read').click(function(){
-//    var username = $('#selUser option:selected').text();
-//
-//    $('#result').html("id : " + userid + ", name : " + username);
-
-//  });
 
 function ingresarCantidad(e) {
     //const stockD = $("#stockD").val();

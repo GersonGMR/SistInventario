@@ -56,9 +56,9 @@
         <nav id="sidebar">
             <!-- Sidebar Header-->
             <div class="sidebar-header d-flex align-items-center p-1">
-                <div class="avatar" data-toggle="modal" data-target="#cambiarPass"><img src="<?php echo base_url(); ?>/Assets/img/logo.png" alt="..." class="img-fluid rounded-circle"></div>
+                <div class="avatar" ><img src="<?php echo base_url(); ?>/Assets/img/logo.png" alt="..." class="img-fluid rounded-circle"></div>
                 <div class="title">
-                    <h5 class="h5"><?php echo $_SESSION['rol']; ?></h5>
+                    <h5 class="h5"><?php echo $_SESSION['usuario']; ?></h5>
                 </div>
             </div>
             <ul class="list-unstyled">
@@ -83,4 +83,5 @@
         <li><a href="<?php echo base_url(); ?>Configuracion1/Listar"> <i class="fas fa-cog"></i></i> <strong class="text-white"> Configuracion </strong></a></li>
                 <?php } ?>
                 <li><a href="<?php echo base_url(); ?>Reportes/Listar"> <i class="fas fa-file-alt"></i></i> <strong class="text-white"> Reportes </strong></a></li>
+                <li><a data-toggle="modal" data-target="#cambiarPass"> <i class="fas fa-key"></i></i></i> <strong class="text-white"> Cambiar contraseña </strong></a></li>
         </nav>

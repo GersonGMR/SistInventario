@@ -43,7 +43,7 @@
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-primary" type="submit">Modificar</button>
-                            <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
+                            <a href="<?php echo base_url(); ?>Usuarios/Listar" class="btn btn-danger">Cancelar</a>
                         </div>
                     </form>
                 </div>

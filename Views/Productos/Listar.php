@@ -43,6 +43,7 @@
                                     <th>Medida</th>
                                     <th>Familia</th>
                                     <th>Contenedor</th>
+                                    <th>Fecha ingreso</th>
                                     <th>Fecha vencimiento</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -56,6 +57,7 @@
                                         <td><?php echo $cl['medida']; ?></td>
                                         <td><?php echo $cl['familia']; ?></td>
                                         <td><?php echo $cl['contenedor']; ?></td>
+                                        <td><?php echo $cl['fecha_ingreso']; ?></td>
                                         <td><?php echo $cl['vencimiento']; ?></td>
                                         <td>
                                             <a href="<?php echo base_url() ?>Productos/editar?id=<?php echo $cl['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
@@ -141,29 +143,7 @@
     </div>
 </div>
 <script>
-$(document).ready(function () {
- // inizializando y obteniendo value del select2
-   $('.seleccionador').select2({
-     placeholder: "Select a state"
-   }).on('change', function(e) {
-     var userid = $('.seleccionador').val();
-     $("#id_familia").val(userid);
-   });
-   //solucionando problema con modales de bootstrap
-   $('#familias').select2({
-        dropdownParent: $('#nuevo_producto')
-    });
-    // inizializando y obteniendo value del select2
-      $('.seleccionador1').select2({
-        placeholder: "Select a state"
-      }).on('change', function(e) {
-        var contid = $('.seleccionador1').val();
-        $("#id_contenedor").val(contid);
-      });
-      //solucionando problema con modales de bootstrap
-      $('#contenedores').select2({
-           dropdownParent: $('#nuevo_producto')
-       });
-});
+
+
    </script>
 <?php pie() ?>
