@@ -1,18 +1,18 @@
 <?php encabezado() ;
 
-    
+
 
     //Aqui ira la consulta para traer cantidad de los productos.
-    
+
     //$cantidad = mysqli_query($conexion, "SELECT cantidad, codigo FROM productos");
 
-    
+
     /*while($row = mysqli_fetch_assoc($cantidad)) {
         echo var_dump($row);
     }*/
 
     //echo var_dump($cantidad);
-    
+
 ?>
 
 <!-- Begin Page Content -->
@@ -62,14 +62,13 @@
                     <!--<button class="btn btn-success" name="frmCompras" type="submit">Procesar</button>-->
                 </div>
             </form>
-            
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive">
                         <table class="table table-light mt-4" id="tablaCompras">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Id</th>
                                     <th>Producto</th>
                                     <th>Cantidad</th>
                                     <th>Accion</th>
@@ -81,7 +80,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-lg-4 mt-1">
                     <div class="form-group" >
@@ -100,7 +99,7 @@
                         <strong id="tVenta" class="form-control border-0 text-success"></strong>
                         <button class="btn btn-danger" type="button" id="AnularCompra">Anular salida</button>
 
-                        <button class="btn btn-success" type="button" id="procesarVenta" 
+                        <button class="btn btn-success" type="button" id="procesarVenta"
                             <i class="fas fa-money-check-alt"></i>
                          Procesar salida</button>
 
@@ -119,7 +118,7 @@
         const stockD = $("#stockD").val();
         const cantidad = document.getElementById("cantidad").value;
         alert("2");
-        
+
         if (e.which == 13) {
             alert("3");
             if (stockD == "") {
@@ -133,7 +132,7 @@
                     showConfirmButton: false,
                     timer: 1500
                 })
-            } 
+            }
             else if(stockD < cantidad){
                 alert("4.2");
                 //$('#frmCompras').trigger("reset");
@@ -176,8 +175,7 @@
                 alert("7");
             }
         }
-    } */                              
+    } */
 </script>
 
 <?php pie() ?>
-
