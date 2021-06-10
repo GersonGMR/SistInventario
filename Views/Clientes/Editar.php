@@ -59,6 +59,7 @@
                             <option value="1">MENSUAL</option>
                             <option value="2">BIMENSUAL</option>
                             <option value="3">TRIMESTRAL</option>
+                            
                         </select>
                         <!--input id="id_frecuencia" class="form-control" type="text" name="id_frecuencia" value="<//?php echo $data['id_frecuencia']; ?>" required-->
                     </div>
