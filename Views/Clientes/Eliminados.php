@@ -18,6 +18,10 @@
                                     <th>Nombre</th>
                                     <th>Dirección</th>
                                     <th>Teléfono</th>
+                                    <th>Representante</th>
+                                    <th>Cantidad niños</th>
+                                    <th>ingreso del beneficiario</th>
+                                    <th>frecuencia</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -28,6 +32,10 @@
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td><?php echo $cl['direccion']; ?></td>
                                         <td><?php echo $cl['telefono']; ?></td>
+                                        <td><?php echo $cl['representante']; ?></td>
+                                        <td><?php echo $cl['cant_ninios']; ?></td>
+                                        <td><?php echo $cl['ingreso_beneficiario']; ?></td>
+                                        <td><?php echo $cl['id_frecuencia']; ?></td>
                                         <td>
                                             <form action="<?php echo base_url() ?>Clientes/reingresar?id=<?php echo $cl['id']; ?>" method="post" class="d-inline confirmar">
                                                 <button type="submit" class="btn btn-success"><i class="fas fa-ad"></i></button>

@@ -1,13 +1,18 @@
 <?php
 class ClientesModel extends Mysql{
-    public $id, $ruc, $nombre, $telefono, $direccion;
+    public $id, $ruc, $nombre, $telefono, $direccion, $representante, $cant_ninios, $id_frecuencia, $ingreso_beneficiario ;
     public function __construct()
     {
         parent::__construct();
     }
     public function selectClientes()
     {
-        $sql = "SELECT * FROM clientes WHERE estado = 1";
+        $sql = "SELECT clientes.id, clientes.ruc, clientes.nombre, clientes.direccion, clientes.telefono, clientes.representante, clientes.cant_ninios, clientes.id_frecuencia, 
+        clientes.ingreso_beneficiario, clientes.estado, frecuencia.descripcion 
+        FROM clientes 
+        INNER JOIN frecuencia  
+        ON  clientes.id_frecuencia =  frecuencia.id
+        WHERE clientes.estado = 1";
         $res = $this->select_all($sql);
         return $res;
     }
@@ -24,18 +29,22 @@ class ClientesModel extends Mysql{
         $res = $this->select($sql);
         return $res;
     }
-    public function insertarClientes(String $ruc, string $nombre, string $telefono, string $direccion)
+    public function insertarClientes(String $ruc, string $nombre, string $telefono, string $direccion, string $representante, string $cant_ninios, string $id_frecuencia, string $ingreso_beneficiario )
     {
         $return = "";
         $this->ruc = $ruc;
         $this->nombre = $nombre;
         $this->telefono = $telefono;
         $this->direccion = $direccion;
+        $this->representante = $representante;
+        $this->cant_ninios = $cant_ninios;
+        $this->id_frecuencia = $id_frecuencia;
+        $this->ingreso_beneficiario = $ingreso_beneficiario;
         $sql = "SELECT * FROM clientes WHERE ruc = '{$this->ruc}'";
         $result = $this->select_all($sql);
         if (empty($result)) {
-            $query = "INSERT INTO clientes(ruc, nombre, telefono, direccion) VALUES (?,?,?,?)";
-            $data = array($this->ruc, $this->nombre, $this->telefono, $this->direccion);
+            $query = "INSERT INTO clientes(ruc, nombre, telefono, direccion, representante, cant_ninios, id_frecuencia, ingreso_beneficiario) VALUES (?,?,?,?,?,?,?,?)";
+            $data = array($this->ruc, $this->nombre, $this->telefono, $this->direccion, $this->representante, $this->cant_ninios, $this->id_frecuencia, $this->ingreso_beneficiario);
             $resul = $this->insert($query, $data);
             $return = $resul;
         }else {
@@ -46,23 +55,31 @@ class ClientesModel extends Mysql{
     public function editarClientes(int $id)
     {
         $this->id = $id;
-        $sql = "SELECT * FROM clientes WHERE id = '{$this->id}'";
+        $sql = "SELECT c.id, c.ruc, c.nombre, c.direccion, c.telefono, c.representante, c.cant_ninios, c.id_frecuencia, c.ingreso_beneficiario, f.descripcion  
+        FROM clientes as c
+        INNER JOIN frecuencia as f
+        ON c.id_frecuencia = f.id
+        WHERE c.id = '{$this->id}'";
         $res = $this->select($sql);
         if (empty($res)) {
             $res = 0;
         }
         return $res;
     }
-    public function actualizarClientes(String $ruc, string $nombre, string $telefono, string $direccion, int $id)
+    public function actualizarClientes(String $ruc, string $nombre, string $telefono, string $direccion, string $representante, string $cant_ninios, string $id_frecuencia, string $ingreso_beneficiario, int $id)
     {
         $return = "";
         $this->ruc = $ruc;
         $this->nombre = $nombre;
         $this->telefono = $telefono;
         $this->direccion = $direccion;
+        $this->representante = $representante;
+        $this->cant_ninios = $cant_ninios;
+        $this->id_frecuencia = $id_frecuencia;
+        $this->ingreso_beneficiario = $ingreso_beneficiario;
         $this->id = $id;
-        $query = "UPDATE clientes SET ruc=?, nombre=?, telefono=?, direccion=? WHERE id=?";
-        $data = array($this->ruc, $this->nombre, $this->telefono, $this->direccion, $this->id);
+        $query = "UPDATE clientes SET ruc=?, nombre=?, telefono=?, direccion=?, representante=?, cant_ninios=?, id_frecuencia=?, ingreso_beneficiario=? WHERE id=?";
+        $data = array($this->ruc, $this->nombre, $this->telefono, $this->direccion, $this->representante, $this->cant_ninios, $this->id_frecuencia, $this->ingreso_beneficiario, $this->id);
         $resul = $this->update($query, $data);
         $return = $resul;
         return $return;

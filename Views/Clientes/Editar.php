@@ -33,6 +33,35 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                        <label for="representante">Representante</label>
+                        <input id="representante" class="form-control" type="text" name="representante" value="<?php echo $data['representante']; ?>"required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="cant_ninios">Cantidad niños</label>
+                                <input id="cant_ninios" class="form-control" type="number" name="cant_ninios" value="<?php echo $data['cant_ninios']; ?>" required min="1" step="1">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ingreso_beneficiario">Fecha ingreso</label>
+                                <input id="ingreso_beneficiario" class="form-control" type="date" name="ingreso_beneficiario" value="<?php echo $data['ingreso_beneficiario']; ?>" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <!--Select-->
+                        <label for="id_frecuencia">Frecuencia</label>
+                        <select class="form-select" id="id_frecuencia" name="id_frecuencia"aria-label="multiple select example">
+                        <option selected ><?php echo $data['descripcion']; ?></option>
+                            <option value="1">MENSUAL</option>
+                            <option value="2">BIMENSUAL</option>
+                            <option value="3">TRIMESTRAL</option>
+                        </select>
+                        <!--input id="id_frecuencia" class="form-control" type="text" name="id_frecuencia" value="<//?php echo $data['id_frecuencia']; ?>" required-->
+                    </div>
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-dark" type="submit"><i class="fas fa-save"></i> Modificar</button>

@@ -1,4 +1,4 @@
-<?php encabezado() ?>
+<?php include "./conexion.php"; encabezado() ?>
 <!-- Begin Page Content -->
 <div class="page-content bg-light">
     <section>
@@ -41,7 +41,11 @@
                                     <th>Nombre</th>
                                     <th>Dirección</th>
                                     <th>Teléfono</th>
-                                    <th>Acciones</th>
+                                    <th>Representante</th>
+                                    <th>Cantidad niños</th>
+                                    <th>ingreso beneficiario</th>
+                                    <th>frecuencia</th>
+                                    <th>Acciones</t>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,6 +55,11 @@
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td><?php echo $cl['direccion']; ?></td>
                                         <td><?php echo $cl['telefono']; ?></td>
+                                        <td><?php echo $cl['representante']; ?></td>
+                                        <td><?php echo $cl['cant_ninios']; ?></td>
+                                        <td><?php echo $cl['ingreso_beneficiario']; ?></td>
+                                        <td><?php echo $cl['descripcion']; ?></td>
+                                        <!--Aqui va la frecuencia-->
                                         <td>
                                             <a href="<?php echo base_url() ?>Clientes/editar?id=<?php echo $cl['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <form action="<?php echo base_url() ?>Clientes/eliminar?id=<?php echo $cl['id']; ?>" method="post" class="d-inline elim">
@@ -100,7 +109,36 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="representante">Representante</label>
+                        <input id="representante" class="form-control" type="text" name="representante" placeholder="Representante" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="cant_ninios">Cantidad niños</label>
+                                <input id="cant_ninios" class="form-control" type="number" name="cant_ninios" placeholder="Cantidad niños" required min="1" step="1">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ingreso_beneficiario">Fecha ingreso</label>
+                                <input id="ingreso_beneficiario" class="form-control" type="date" name="ingreso_beneficiario" placeholder="Fecha ingreso" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <!--Select-->
+                        <label for="id_frecuencia">Frecuencia</label>
+                        <select class="form-select" id="id_frecuencia" name="id_frecuencia"aria-label="multiple select example">
+                        <option selected>Selecciona</option>
+                            <option value="1">MENSUAL</option>
+                            <option value="2">BIMENSUAL</option>
+                            <option value="3">TRIMESTRAL</option>
+                        </select>
+                        <!--input id="id_frecuencia" class="form-control" type="text" name="id_frecuencia" placeholder="Frecuencia"  hidden required-->
+                    </div>
+                </div>       
                 <div class="card-footer">
                     <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i>Registrar</button>
                     <button class="btn btn-danger" type="button" data-dismiss="modal"><i class="fas fa-window-close"></i> Cancelar</button>

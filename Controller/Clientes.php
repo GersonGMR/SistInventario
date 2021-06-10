@@ -25,7 +25,11 @@
             $nombre = $_POST['nombre'];
             $telefono = $_POST['telefono'];
             $direccion = $_POST['direccion'];
-            $insert = $this->model->insertarClientes($ruc, $nombre, $telefono, $direccion);
+            $representante = $_POST['representante'];
+            $cant_ninios = $_POST['cant_ninios'];
+            $id_frecuencia = $_POST['id_frecuencia'];
+            $ingreso_beneficiario = $_POST['ingreso_beneficiario'];
+            $insert = $this->model->insertarClientes($ruc, $nombre, $telefono, $direccion, $representante, $cant_ninios, $id_frecuencia, $ingreso_beneficiario);
             if ($insert > 0) {
             $alert = 'registrado';
             }else if ($insert == 'existe') {
@@ -54,7 +58,11 @@
         $nombre = $_POST['nombre'];
         $telefono = $_POST['telefono'];
         $direccion = $_POST['direccion'];
-        $actualizar = $this->model->actualizarClientes($ruc, $nombre, $telefono, $direccion, $id);
+        $representante = $_POST['representante'];
+        $cant_ninios = $_POST['cant_ninios'];
+        $id_frecuencia = $_POST['id_frecuencia'];
+        $ingreso_beneficiario = $_POST['ingreso_beneficiario'];
+        $actualizar = $this->model->actualizarClientes($ruc, $nombre, $telefono, $direccion, $representante, $cant_ninios, $id_frecuencia, $ingreso_beneficiario, $id);
         if ($actualizar == 1) {
             $alert = 'modificado';
         }else {
