@@ -68,13 +68,13 @@
                         <li><a href="<?php echo base_url(); ?>Ventas/lista"><i class="fas fa-list-ul"></i> Salidas</a></li>
                     </ul>
                 </li>
-                <li><a href="#dropdownCompras" aria-expanded="false" data-toggle="collapse"> <i class="fas fa-truck"></i> <strong class="text-white"> Entradas</strong></a>
-                            <ul id="dropdownCompras" class="collapse list-unstyled ">
-                                <li><a href="<?php echo base_url(); ?>Compras/Listar"><i class="fas fa-cart-plus"></i> Nueva entrada</a></li>
-                                <li><a href="<?php echo base_url(); ?>Compras/lista"><i class="fas fa-list-ol"></i> Entradas</a></li>
-                            </ul>
-                        </li>
                 <?php if ($_SESSION['rol'] == "Administrador") { ?>
+                  <li><a href="#dropdownCompras" aria-expanded="false" data-toggle="collapse"> <i class="fas fa-truck"></i> <strong class="text-white"> Entradas</strong></a>
+                              <ul id="dropdownCompras" class="collapse list-unstyled ">
+                                  <li><a href="<?php echo base_url(); ?>Compras/Listar"><i class="fas fa-cart-plus"></i> Nueva entrada</a></li>
+                                  <li><a href="<?php echo base_url(); ?>Compras/lista"><i class="fas fa-list-ol"></i> Entradas</a></li>
+                              </ul>
+                          </li>
         <li><a href="<?php echo base_url(); ?>Productos/Listar"> <i class="fab fa-product-hunt"></i> <strong class="text-white"> Productos </strong></a></li>
         <li><a href="<?php echo base_url(); ?>Familias/Listar"> <i class="fas fa-box-open"></i> <strong class="text-white"> Familias </strong></a></li>
         <li><a href="<?php echo base_url(); ?>Contenedor/Listar"> <i class="fas fa-truck-loading"></i> <strong class="text-white"> Contenedores </strong></a></li>

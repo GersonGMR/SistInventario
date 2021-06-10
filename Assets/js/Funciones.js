@@ -293,6 +293,36 @@ function ingresarCantidad(e) {
     }
 }
 
+function ingresarCantidadCompra(e) {
+    //const stockD = $("#stockD").val();
+    const stockD = parseInt(document.getElementById("stockD").value);
+    const cantidad = parseInt(document.getElementById("cantidad").value);
+    if (e.which == 13) {
+      $.ajax({
+          url: urls,
+          type: 'POST',
+          async: true,
+          data: $("#frmCompras").serialize(),
+          success: function (response) {
+              $('#frmCompras').trigger("reset");
+              $("#buscar_codigo").focus();
+              $("#nombreP").html("");
+              if (response == 1) {
+                  Swal.fire({
+                      icon: 'success',
+                      title: 'Se actualizo la cantidad del producto',
+                      showConfirmButton: false,
+                      timer: 1500
+                  })
+                  ListarCompras();
+        } else {
+            ListarCompras();
+        }
+                }
+            });
+        }
+    }
+
 function buscarCliente(e) {
     const ruc = $("#ruc_cliente").val();
     if (e.which == 13) {

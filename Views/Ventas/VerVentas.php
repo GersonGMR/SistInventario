@@ -6,9 +6,11 @@ include "./conexion.php";
         $resultado = mysqli_fetch_assoc($consulta);
         $ventas = mysqli_query($conexion, "SELECT * FROM ventas WHERE id = $noFactura");
         $result_venta = mysqli_fetch_assoc($ventas);
-        $clientes = mysqli_query($conexion, "SELECT * FROM clientes WHERE id = $codCliente");
+        $clientes = mysqli_query($conexion, "SELECT c.id,c.ruc,c.nombre,c.direccion,c.telefono,c.representante,c.cant_ninios,f.descripcion FROM clientes c
+          INNER JOIN frecuencia f ON c.id_frecuencia = f.id
+          WHERE c.id = $codCliente");
         $result_cliente = mysqli_fetch_assoc($clientes);
-        $productos = mysqli_query($conexion, "SELECT c.nombre as solicitante,d.id_venta, d.id_producto, d.cantidad, p.id, p.nombre, p.medida FROM detalle_venta d
+        $productos = mysqli_query($conexion, "SELECT c.representante,c.cant_ninios,d.id_venta, d.id_producto, d.cantidad, p.id, p.nombre, p.medida FROM detalle_venta d
           INNER JOIN productos p ON d.id_venta = $noFactura
           INNER JOIN ventas v ON d.id_venta = v.id
           INNER JOIN clientes c ON v.id_cliente = c.id
@@ -29,23 +31,20 @@ $pdf->setFont('Arial', '', 7);
 $pdf->Cell(40, 12, utf8_decode($result_venta['id']), 0, 1, 'L');
 $pdf->setFont('Arial', '', 7);
 $pdf->Ln(-16.5);
-$pdf->Cell(85, 12, utf8_decode($result_venta['fecha']), 0, 1, 'R');
 $pdf->setFont('Arial', 'B', 7);
-$pdf->Ln(-8);
-$pdf->setFont('Arial', 'B', 7);
-$pdf->Cell(70, 12, utf8_decode("Fecha entrega: "), 0, 0, 'R');
+$pdf->Cell(70, 12, utf8_decode("Codigo: "), 0, 0, 'R');
 $pdf->setFont('Arial', '', 7);
-$pdf->Cell(15, 12, utf8_decode($result_venta['fecha']), 0, 1, 'R');
+$pdf->Cell(15, 12, utf8_decode($result_cliente['ruc']), 0, 1, 'R');
 $pdf->Ln(-8);
 $pdf->setFont('Arial', 'B', 7);
-$pdf->Cell(70, 12, utf8_decode("Hora: "), 0, 0, 'R');
+$pdf->Cell(70, 12, utf8_decode("Fecha: "), 0, 0, 'R');
 $pdf->setFont('Arial', '', 7);
 $pdf->Cell(15, 12, utf8_decode($result_venta['fecha']), 0, 1, 'R');
 $pdf->Ln(-8);
 $pdf->setFont('Arial', 'B', 7);
 $pdf->Cell(70, 12, utf8_decode("Frecuencia ent: "), 0, 0, 'R');
 $pdf->setFont('Arial', '', 7);
-$pdf->Cell(15, 12, utf8_decode($result_venta['fecha']), 0, 1, 'R');
+$pdf->Cell(15, 12, utf8_decode($result_cliente['descripcion']), 0, 1, 'R');
 $pdf->Ln(-5);
 $pdf->setFont('Arial', 'B', 7);
 $pdf->Cell(20, 5, utf8_decode("Justificante de entrega: "), 0, 0, 'L');
@@ -54,7 +53,7 @@ $pdf->Ln();
 $pdf->setFont('Arial', 'B', 7);
 $pdf->Cell(20, 5, utf8_decode("Solicitante: "), 0, 0, 'L');
 $pdf->setFont('Arial', '', 7);
-$pdf->multiCell(65, 5, utf8_decode($result_cliente['nombre']), 0);
+$pdf->multiCell(65, 5, utf8_decode($result_cliente['representante']), 0);
 $pdf->Ln(1);
 $pdf->setFont('Arial', 'B', 7);
 $pdf->Cell(20, 5, utf8_decode("Organizacion: "), 0, 0, 'L');
@@ -69,7 +68,7 @@ $pdf->Ln(3);
 $pdf->setFont('Arial', 'B', 7);
 $pdf->Cell(40, 5, utf8_decode("Numero de niños beneficiados: "), 0, 0, 'L');
 $pdf->setFont('Arial', '', 7);
-$pdf->multiCell(65, 5, utf8_decode($result_cliente['id']), 0);
+$pdf->multiCell(65, 5, utf8_decode($result_cliente['cant_ninios']), 0);
 $pdf->Ln(2);
 $pdf->setFont('Arial', '', 9);
 $pdf->SetTextColor(255, 255, 255);
@@ -119,7 +118,7 @@ $pdf->Ln(5);
 $pdf->setFont('Arial', 'B', 6);
 $pdf->Cell(25, 5, utf8_decode("Recibe la ayuda: "), 0, 0, 'L');
 $pdf->setFont('Arial', '', 6);
-$pdf->Cell(30, 5, utf8_decode($result_cliente['nombre']), 0, 0, 'L');
+$pdf->Cell(30, 5, utf8_decode($result_cliente['representante']), 0, 0, 'L');
 $pdf->setFont('Arial', 'B', 6);
 $pdf->Cell(30, 5, utf8_decode("Firma: "), 0, 0, 'L');
 $pdf->Ln(5);
