@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i> Registrar</button>
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i>Registrar</button>
                     <button class="btn btn-danger" type="button" data-dismiss="modal"><i class="fas fa-window-close"></i> Cancelar</button>
                 </div>
             </form>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2021 a las 21:22:21
+-- Tiempo de generación: 10-06-2021 a las 17:17:45
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.6
 
@@ -33,6 +33,10 @@ CREATE TABLE `clientes` (
   `nombre` varchar(100) NOT NULL,
   `direccion` text NOT NULL,
   `telefono` varchar(15) NOT NULL,
+  `id_frecuencia` int(11) NOT NULL,
+  `ingreso_beneficiario` date NOT NULL,
+  `representante` text NOT NULL,
+  `cant_ninios` int(11) NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -143,6 +147,26 @@ CREATE TABLE `familia` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `frecuencia`
+--
+
+CREATE TABLE `frecuencia` (
+  `id` int(11) NOT NULL,
+  `descripcion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `frecuencia`
+--
+
+INSERT INTO `frecuencia` (`id`, `descripcion`) VALUES
+(1, 'mensual'),
+(2, 'bimensual'),
+(3, 'trimestral');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `productos`
 --
 
@@ -196,7 +220,8 @@ CREATE TABLE `ventas` (
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_frecuencia` (`id_frecuencia`);
 
 --
 -- Indices de la tabla `compras`
@@ -241,6 +266,12 @@ ALTER TABLE `detalle_venta`
 --
 ALTER TABLE `familia`
   ADD PRIMARY KEY (`id_familia`);
+
+--
+-- Indices de la tabla `frecuencia`
+--
+ALTER TABLE `frecuencia`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `productos`
@@ -304,6 +335,12 @@ ALTER TABLE `familia`
   MODIFY `id_familia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `frecuencia`
+--
+ALTER TABLE `frecuencia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
@@ -324,6 +361,12 @@ ALTER TABLE `ventas`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD CONSTRAINT `clientes_ibfk_1` FOREIGN KEY (`id_frecuencia`) REFERENCES `frecuencia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalle_compra`
