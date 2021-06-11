@@ -34,6 +34,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="dui">DUI</label>
+                                <input id="dui" class="form-control" type="number" name="dui" value="<?php echo $data['dui']; ?>" required>
+                            </div>
+                            <div class="form-group">
                         <label for="representante">Representante</label>
                         <input id="representante" class="form-control" type="text" name="representante" value="<?php echo $data['representante']; ?>"required>
                     </div>
@@ -55,11 +59,11 @@
                     <!--Select-->
                         <label for="id_frecuencia">Frecuencia</label>
                         <select class="form-select" id="id_frecuencia" name="id_frecuencia"aria-label="multiple select example">
-                        <option selected ><?php echo $data['descripcion']; ?></option>
+                        <option value="<?php echo $data['id_frecuencia']; ?>" ><?php echo $data['descripcion']; ?></option>
                             <option value="1">MENSUAL</option>
                             <option value="2">BIMENSUAL</option>
                             <option value="3">TRIMESTRAL</option>
-                            
+
                         </select>
                         <!--input id="id_frecuencia" class="form-control" type="text" name="id_frecuencia" value="<//?php echo $data['id_frecuencia']; ?>" required-->
                     </div>

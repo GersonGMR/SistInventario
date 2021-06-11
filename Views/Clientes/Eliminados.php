@@ -18,6 +18,7 @@
                                     <th>Nombre</th>
                                     <th>Dirección</th>
                                     <th>Teléfono</th>
+                                    <th>DUI</th>
                                     <th>Representante</th>
                                     <th>Cantidad niños</th>
                                     <th>ingreso del beneficiario</th>
@@ -32,6 +33,7 @@
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td><?php echo $cl['direccion']; ?></td>
                                         <td><?php echo $cl['telefono']; ?></td>
+                                        <td><?php echo $cl['DUI']; ?></td>
                                         <td><?php echo $cl['representante']; ?></td>
                                         <td><?php echo $cl['cant_ninios']; ?></td>
                                         <td><?php echo $cl['ingreso_beneficiario']; ?></td>

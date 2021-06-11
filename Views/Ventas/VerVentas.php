@@ -6,7 +6,7 @@ include "./conexion.php";
         $resultado = mysqli_fetch_assoc($consulta);
         $ventas = mysqli_query($conexion, "SELECT * FROM ventas WHERE id = $noFactura");
         $result_venta = mysqli_fetch_assoc($ventas);
-        $clientes = mysqli_query($conexion, "SELECT c.id,c.ruc,c.nombre,c.direccion,c.telefono,c.representante,c.cant_ninios,f.descripcion FROM clientes c
+        $clientes = mysqli_query($conexion, "SELECT c.id,c.ruc,c.DUI,c.nombre,c.direccion,c.telefono,c.representante,c.cant_ninios,f.descripcion FROM clientes c
           INNER JOIN frecuencia f ON c.id_frecuencia = f.id
           WHERE c.id = $codCliente");
         $result_cliente = mysqli_fetch_assoc($clientes);
@@ -125,5 +125,5 @@ $pdf->Ln(5);
 $pdf->setFont('Arial', 'B', 6);
 $pdf->Cell(25, 5, utf8_decode("DUI: "), 0, 0, 'L');
 $pdf->setFont('Arial', '', 6);
-$pdf->Cell(30, 5, utf8_decode($result_cliente['ruc']), 0, 0, 'L');
+$pdf->Cell(30, 5, utf8_decode($result_cliente['DUI']), 0, 0, 'L');
 $pdf->Output();

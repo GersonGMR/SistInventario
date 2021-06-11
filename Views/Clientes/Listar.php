@@ -41,6 +41,7 @@
                                     <th>Nombre</th>
                                     <th>Dirección</th>
                                     <th>Teléfono</th>
+                                    <th>DUI</th>
                                     <th>Representante</th>
                                     <th>Cantidad niños</th>
                                     <th>ingreso beneficiario</th>
@@ -55,6 +56,7 @@
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td><?php echo $cl['direccion']; ?></td>
                                         <td><?php echo $cl['telefono']; ?></td>
+                                        <td><?php echo $cl['dui']; ?></td>
                                         <td><?php echo $cl['representante']; ?></td>
                                         <td><?php echo $cl['cant_ninios']; ?></td>
                                         <td><?php echo $cl['ingreso_beneficiario']; ?></td>
@@ -98,8 +100,8 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="direccion">Dirección</label>
-                                <input id="direccion" class="form-control" type="text" name="direccion" placeholder="Dirección" required>
+                                <label for="dui">DUI</label>
+                                <input id="dui" class="form-control" type="number" name="dui" placeholder="DUI" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -109,6 +111,10 @@
                             </div>
                         </div>
                     </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <input id="direccion" class="form-control" type="text" name="direccion" placeholder="Dirección" required>
+                        </div>
                     <div class="form-group">
                         <label for="representante">Representante</label>
                         <input id="representante" class="form-control" type="text" name="representante" placeholder="Representante" required>
@@ -138,7 +144,7 @@
                         </select>
                         <!--input id="id_frecuencia" class="form-control" type="text" name="id_frecuencia" placeholder="Frecuencia"  hidden required-->
                     </div>
-                </div>       
+                </div>
                 <div class="card-footer">
                     <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i>Registrar</button>
                     <button class="btn btn-danger" type="button" data-dismiss="modal"><i class="fas fa-window-close"></i> Cancelar</button>
