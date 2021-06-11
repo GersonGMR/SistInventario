@@ -22,7 +22,9 @@
             $telefono = $_POST['telefono'];
             $direccion = $_POST['direccion'];
             $razon = $_POST['razon'];
-            $actualizar = $this->model->actualizarConfiguracion($ruc, $nombre, $telefono, $direccion, $razon, $id);
+            $autoriza = $_POST['autoriza'];
+            $entrega = $_POST['entrega'];
+            $actualizar = $this->model->actualizarConfiguracion($ruc, $nombre, $telefono, $direccion, $razon, $autoriza, $entrega, $id);
             if ($actualizar == 1) {
                 $alert = array('mensaje' => 'modificado');
             } else {
