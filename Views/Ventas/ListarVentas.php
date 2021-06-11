@@ -16,8 +16,8 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Beneficiado</th>
-                                    <th>Total</th>
-                                    <th>Fecha</th>
+                                    <th>Cant. productos</th>
+                                    <th>Fecha de salida</th>
                                     <th>Reporte</th>
                                   <!--  <th>Estado</th>-->
                                 </tr>

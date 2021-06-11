@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label for="buscar_codigo"><i class="fas fa-barcode"></i> Código de barras</label>
                         <input type="hidden" id="id" name="id">
-                        <input id="buscar_codigo" onkeyup="BuscarCodigo(event);" class="form-control" type="text" name="codigo" placeholder="Código del producto">
+                        <input id="buscar_codigo" onkeyup="BuscarCodigoEntrada(event);" class="form-control" type="text" name="codigo" placeholder="Código del producto">
                         <span class="text-danger d-none" id="error"><i class="fas fa-ad"></i> No hay producto</span>
                     </div>
                 </div>

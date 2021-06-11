@@ -222,6 +222,57 @@ function BuscarCodigo(e) {
                 codigo
             },
             success: function (response) {
+                var info = JSON.parse(response);
+                var now = new Date();
+                var day = ("0" + now.getDate()).slice(-2);
+                var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                var vencido = document.getElementById("vencimiento").value = info.vencimiento;
+                if (response != 0 && today < vencido) {
+                    $("#error").addClass('d-none');
+                    document.getElementById("id").value = info.id;
+                    document.getElementById("nombre").value = info.nombre;
+                    document.getElementById("vencimiento").value = info.vencimiento;
+                    $("#stockD").val(info.cantidad);
+                    document.getElementById("cantidad").value = 1;
+                    document.getElementById("nombreP").innerHTML = info.nombre;
+                    document.getElementById("venceP").innerHTML = info.vencimiento;
+                    document.getElementById("cantidad").focus();
+                } else if (response != 0 && today > vencido){
+                  $('#frmCompras').trigger("reset");
+                  $("#buscar_codigo").focus();
+                  Swal.fire({
+                      icon: 'warning',
+                      title: 'El producto está vencido',
+                      showConfirmButton: false,
+                      timer: 3000
+                  })
+                } else {
+                  $('#frmCompras').trigger("reset");
+                  $("#buscar_codigo").focus();
+                  document.getElementById("nombreP").innerHTML = "";
+                  document.getElementById("venceP").innerHTML = "";
+                  document.getElementById("cantidad").innerHTML = "";
+                  document.getElementById("vencimiento").innerHTML = "";
+                  $("#error").removeClass('d-none');
+                }
+            }
+        });
+    }
+}
+
+function BuscarCodigoEntrada(e) {
+    if (e.which == 13) {
+        const codigo = document.getElementById("buscar_codigo").value;
+        const url = document.getElementById("url").value;
+        const urls = url + "Compras/buscar";
+        $.ajax({
+            url: urls,
+            type: 'POST',
+            data: {
+                codigo
+            },
+            success: function (response) {
                 if (response != 0) {
                     $("#error").addClass('d-none');
                     var info = JSON.parse(response);

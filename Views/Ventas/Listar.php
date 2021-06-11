@@ -1,18 +1,4 @@
 <?php encabezado() ;
-
-
-
-    //Aqui ira la consulta para traer cantidad de los productos.
-
-    //$cantidad = mysqli_query($conexion, "SELECT cantidad, codigo FROM productos");
-
-
-    /*while($row = mysqli_fetch_assoc($cantidad)) {
-        echo var_dump($row);
-    }*/
-
-    //echo var_dump($cantidad);
-
 ?>
 
 <!-- Begin Page Content -->
@@ -30,7 +16,7 @@
                         <label for="buscar_codigo">Cógigo producto</label>
                         <input type="hidden" id="id" name="id">
                         <input id="buscar_codigo" onkeyup="BuscarCodigo(event);" class="form-control" type="text" name="codigo" placeholder="Código producto">
-                        <span class="text-danger d-none" id="error">No hay producto</span>
+                        <span class="text-danger d-none" id="error">El producto no existe.</span>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -39,6 +25,14 @@
                         <input id="nombre" class="form-control" type="hidden" name="nombre">
                         <br />
                         <strong id="nombreP"></strong>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label for="vencimiento">Fecha de vencimiento</label>
+                        <input id="vencimiento" class="form-control" type="hidden" name="vencimiento">
+                        <br />
+                        <strong id="venceP"></strong>
                     </div>
                 </div>
                 <div class="col-lg-2">
@@ -110,72 +104,5 @@
         </div>
     </section>
 </div>
-<script>
-    //Aqui ira el codigo para hacer la validacion
-
-    /*function ingresarCantidad(e){
-        alert("1");
-        const stockD = $("#stockD").val();
-        const cantidad = document.getElementById("cantidad").value;
-        alert("2");
-
-        if (e.which == 13) {
-            alert("3");
-            if (stockD == "") {
-                alert("4.1");
-                $('#frmCompras').trigger("reset");
-                $("#buscar_codigo").focus();
-                document.getElementById("nombreP").innerHTML = "";
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Ingrese la cantidad',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            }
-            else if(stockD < cantidad){
-                alert("4.2");
-                //$('#frmCompras').trigger("reset");
-                $("#buscar_codigo").focus();
-                //document.getElementById("nombreP").innerHTML = "";
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Ingrese la cantidad igual o manor al stock.',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            }
-            else {
-                alert("4.3");
-                $.ajax({
-                    url: urls,
-                    type: 'POST',
-                    async: true,
-                    data: $("#frmCompras").serialize(),
-                    success: function (response) {
-                        alert("5");
-                        $('#frmCompras').trigger("reset");
-                        $("#buscar_codigo").focus();
-                        $("#nombreP").html("");
-                        if (response == 1) {
-                            alert("6.1");
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Se actualizo la cantidad del producto',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            ListarCompras();
-                        } else {
-                            alert("6.2");
-                            ListarCompras();
-                        }
-                    }
-                });
-                alert("7");
-            }
-        }
-    } */
-</script>
 
 <?php pie() ?>
