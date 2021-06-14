@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-06-2021 a las 01:14:06
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.6
+-- Tiempo de generación: 14-06-2021 a las 17:10:14
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,7 +38,7 @@ CREATE TABLE `clientes` (
   `estado` tinyint(4) NOT NULL DEFAULT 1,
   `id_frecuencia` int(11) NOT NULL,
   `ingreso_beneficiario` date NOT NULL DEFAULT current_timestamp(),
-  `DUI` int(11) NOT NULL
+  `DUI` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -46,11 +46,12 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `ruc`, `nombre`, `direccion`, `telefono`, `representante`, `cant_ninios`, `estado`, `id_frecuencia`, `ingreso_beneficiario`, `DUI`) VALUES
-(1, '202020', 'Rocio Elias Beth-el', 'Urbanización Nuevo Lourdes Senda 20, Casa 2, Block 45 Lourdes La Libertad', '898939', 'Gerson Salazar', 200, 1, 2, '2021-06-10', 20202020),
-(2, '111111', 'Escuela La Plegaria Ahuachapan', 'Avenida 5 Colonia Ejemplo Ahuachapan Ahuachapan', '32431233', 'Rocio Elias', 400, 1, 1, '2021-06-10', 898989898),
-(3, '303030', 'German Caceres comunity', 'San Salvador', '22577777', 'Caceres German ', 22, 1, 3, '2021-06-10', 0),
-(4, '404040', 'Leon Trujillo comunity', 'San Salvador', '123', 'Leon Trujillo', 15, 1, 2, '2021-06-10', 0),
-(5, '505050', 'Milton Mejia comunity', 'San Salvador', '75364380', 'Milton Mejia', 1, 1, 1, '2021-06-10', 0);
+(1, '202020', 'Iglesia Evangélica Emanuel', 'Urbanización Nuevo Lourdes Senda 20, Casa 2, Block 45 Lourdes La Libertad', '898939', 'Gerson Salazar', 200, 1, 2, '2021-06-10', '202020200'),
+(2, '111111', 'Escuela La Plegaria Ahuachapan', 'Avenida 5 Colonia Ejemplo Ahuachapan Ahuachapan', '32431233', 'Rocio Elias', 400, 1, 3, '2021-06-10', '7777770000'),
+(3, '303030', 'German Caceres comunity', 'San Salvador', '22577777', 'Caceres German ', 22, 1, 3, '2021-06-10', '055898985'),
+(4, '404040', 'Leon Trujillo comunity', 'San Salvador', '123', 'Leon Trujillo', 15, 1, 2, '2021-06-10', '095958955'),
+(5, '505050', 'Milton Mejia comunity', 'San Salvador', '75364380', 'Milton Mejia', 1, 1, 1, '2021-06-10', '088985985'),
+(6, '222222', 'DATTI Escuela bilingue san salvador', 'San Salvador 5 de noviembre avenida tal, col tal', '79203456', 'Stephany Vargas', 600, 0, 1, '2021-06-10', '789030900');
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,9 @@ INSERT INTO `compras` (`id`, `total`, `estado`, `fecha`) VALUES
 (3, 50, 1, '2021-05-14 23:46:35'),
 (4, 40, 1, '2021-05-15 00:02:07'),
 (5, 2, 1, '2021-05-16 23:28:15'),
-(6, 250, 1, '2021-06-10 17:37:11');
+(6, 250, 1, '2021-06-10 17:37:11'),
+(7, 130, 1, '2021-06-11 02:29:27'),
+(8, 280, 1, '2021-06-11 17:52:21');
 
 -- --------------------------------------------------------
 
@@ -85,19 +88,21 @@ INSERT INTO `compras` (`id`, `total`, `estado`, `fecha`) VALUES
 
 CREATE TABLE `configuracion` (
   `id` int(11) NOT NULL,
-  `ruc` varchar(20) NOT NULL,
-  `nombre` varchar(200) NOT NULL,
-  `telefono` varchar(20) NOT NULL,
-  `direccion` text NOT NULL,
-  `razon` varchar(200) NOT NULL
+  `ruc` varchar(20) DEFAULT NULL,
+  `nombre` varchar(200) DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `direccion` text DEFAULT NULL,
+  `razon` varchar(200) DEFAULT NULL,
+  `autoriza` varchar(100) DEFAULT NULL,
+  `entrega` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `configuracion`
 --
 
-INSERT INTO `configuracion` (`id`, `ruc`, `nombre`, `telefono`, `direccion`, `razon`) VALUES
-(1, '12023987', 'Convoy of Hope', '2345 6789', 'San Salvador', '');
+INSERT INTO `configuracion` (`id`, `ruc`, `nombre`, `telefono`, `direccion`, `razon`, `autoriza`, `entrega`) VALUES
+(2, '22222', 'Convoy of Hope de El Salvador', '2345 9845', 'San Salvador', '', 'Aida Guardado', 'Julio Arias');
 
 -- --------------------------------------------------------
 
@@ -154,7 +159,12 @@ INSERT INTO `detalle_compra` (`id`, `id_compra`, `producto`, `id_producto`, `can
 (7, 5, 'Producto prueba', 4, 1, '0.00', 1, '2021-05-16'),
 (8, 5, 'Leche en botella marca X', 2, 1, '0.00', 1, '2021-05-16'),
 (9, 6, 'Cereal Kellogs Frotes Mini Wheats Caja', 1, 50, '0.00', 2, '2021-06-10'),
-(10, 6, 'Leche en botella marca X', 2, 200, '0.00', 2, '2021-06-10');
+(10, 6, 'Leche en botella marca X', 2, 200, '0.00', 2, '2021-06-10'),
+(11, 7, 'Cereal Kellogs Frotes Mini Wheats Caja', 1, 60, '0.00', 1, '2021-06-10'),
+(12, 7, 'Leche en botella marca X', 2, 70, '0.00', 1, '2021-06-10'),
+(13, 8, 'Arroz San Francisco', 3, 50, '0.00', 1, '2021-06-11'),
+(14, 8, 'Cereal Kellogs Frotes Mini Wheats Caja', 1, 200, '0.00', 1, '2021-06-11'),
+(15, 8, 'Producto prueba', 4, 30, '0.00', 1, '2021-06-11');
 
 -- --------------------------------------------------------
 
@@ -208,7 +218,21 @@ INSERT INTO `detalle_venta` (`id`, `id_venta`, `producto`, `id_producto`, `canti
 (10, 8, 'Leche en botella marca X', 2, 10, 1, '2021-05-16', '0'),
 (11, 8, 'Arroz San Francisco', 3, 5, 1, '2021-05-16', '0'),
 (12, 9, 'Arroz San Francisco', 3, 5, 1, '2021-05-17', '0'),
-(13, 9, 'Cereal Kellogs Frotes Mini Wheats Caja', 1, 3, 1, '2021-05-17', '0');
+(13, 9, 'Cereal Kellogs Frotes Mini Wheats Caja', 1, 3, 1, '2021-05-17', '0'),
+(14, 11, 'Cereal Kellogs Frotes Mini Wheats Caja', 1, 15, 1, '2021-06-10', '0'),
+(15, 11, 'Leche en botella marca X', 2, 20, 1, '2021-06-10', '0'),
+(16, 12, 'Maiz en granos', 6, 102, 1, '2021-06-11', '0'),
+(17, 12, 'Leche en botella marca X', 2, 50, 1, '2021-06-11', '0'),
+(18, 13, 'Prueba 1', 11, 20, 1, '2021-06-11', '0'),
+(19, 13, 'Prueba 2', 12, 40, 1, '2021-06-11', '0'),
+(20, 13, 'Prueba 3', 13, 30, 1, '2021-06-11', '0'),
+(21, 13, 'Prueba 4', 14, 20, 1, '2021-06-11', '0'),
+(22, 13, 'Prueba 5', 15, 30, 1, '2021-06-11', '0'),
+(23, 13, 'Prueba 6', 16, 20, 1, '2021-06-11', '0'),
+(24, 13, 'Prueba 7', 17, 30, 1, '2021-06-11', '0'),
+(25, 13, 'Cereal Kellogs Frotes Mini Wheats Caja', 1, 30, 1, '2021-06-11', '0'),
+(26, 13, 'Maiz en granos', 6, 30, 1, '2021-06-11', '0'),
+(27, 13, 'Prueba 8', 18, 30, 1, '2021-06-11', '0');
 
 -- --------------------------------------------------------
 
@@ -276,12 +300,20 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `codigo`, `nombre`, `cantidad`, `medida`, `vencimiento`, `id_familia`, `id_contenedor`, `estado`, `fecha_ingreso`) VALUES
-(1, '202020', 'Cereal Kellogs Frotes Mini Wheats Caja', 57, 'Caja de 15 unidades', '2021-09-16', 3, 4, 1, '2021-05-16'),
+(1, '202020', 'Cereal Kellogs Frotes Mini Wheats Caja', 272, 'Caja de 15 unidades', '2021-09-16', 3, 4, 1, '2021-05-16'),
 (2, '303030', 'Leche en botella marca X', 211, 'Caja de 20 botellas', '2021-07-08', 2, 2, 1, '2021-05-16'),
-(3, '111111', 'Arroz San Francisco', 5, 'Caja de 20 bolsas', '2021-09-24', 1, 2, 1, '2021-05-16'),
-(4, '121212', 'Producto prueba', 6, 'Prueba de medidas', '2021-01-07', 4, 1, 1, '2021-05-16'),
-(6, '404040', 'Maiz en granos', 190, '1 Saco', '2022-03-26', 1, 3, 1, '2021-05-16'),
-(10, 'FADAFA', 'Prueba piloto', 20, 'Prueba piloto', '2021-05-29', 3, 3, 1, '2021-05-16');
+(3, '111111', 'Arroz San Francisco', 55, 'Caja de 20 bolsas', '2021-05-01', 1, 2, 1, '2021-05-16'),
+(4, '121212', 'Producto prueba', 36, 'Prueba de medidas', '2021-01-07', 4, 1, 1, '2021-05-16'),
+(6, '404040', 'Maiz en granos', 58, '1 Saco', '2022-03-26', 1, 3, 1, '2021-05-16'),
+(10, 'FADAFA', 'Prueba piloto', 20, 'Prueba piloto', '2021-05-29', 3, 3, 0, '2021-05-16'),
+(11, '20001', 'Prueba 1', 80, 'Prueba 1', '2021-10-14', 1, 1, 1, '2021-06-11'),
+(12, '20002', 'Prueba 2', 60, 'Prueba 2', '2021-09-17', 2, 3, 1, '2021-06-11'),
+(13, '20003', 'Prueba 3', 70, 'Prueba 3', '2021-08-13', 4, 1, 1, '2021-06-11'),
+(14, '20004', 'Prueba 4', 80, 'Prueba 4', '2021-07-02', 3, 3, 1, '2021-06-11'),
+(15, '20005', 'Prueba 5', 70, 'Prueba 5', '2021-06-25', 3, 3, 1, '2021-06-11'),
+(16, '20006', 'Prueba 6', 80, 'Prueba 6', '2021-06-30', 1, 3, 1, '2021-06-11'),
+(17, '20007', 'Prueba 7', 70, 'Prueba 7', '2021-07-09', 4, 3, 1, '2021-06-11'),
+(18, '20008', 'Prueba 8', 70, 'Prueba 8', '2021-07-02', 1, 1, 1, '2021-06-11');
 
 -- --------------------------------------------------------
 
@@ -305,7 +337,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `correo`, `clave`, `rol`, `estado`) VALUES
 (1, 'Gerson Salazar', 'gersongm', 'ggerson777@gmail.com', '1604212c8eef59782e1c3956a0e0e965c93406a1bb5963b2604d5f42186478b1', 'Administrador', 1),
-(2, 'Gerson Salazar', 'supergerson', 'ggerson@live.com.ar', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Vendedor', 1);
+(2, 'Gerson Salazar', 'supergerson', 'ggerson@live.com.ar', '1604212c8eef59782e1c3956a0e0e965c93406a1bb5963b2604d5f42186478b1', 'Vendedor', 1);
 
 -- --------------------------------------------------------
 
@@ -334,7 +366,10 @@ INSERT INTO `ventas` (`id`, `id_cliente`, `total`, `estado`, `fecha`) VALUES
 (6, 2, 40, 0, '2021-05-15'),
 (7, 1, 5, 0, '2021-05-16'),
 (8, 2, 25, 0, '2021-05-16'),
-(9, 1, 8, 0, '2021-05-17');
+(9, 1, 8, 0, '2021-05-17'),
+(11, 1, 35, 0, '2021-06-10'),
+(12, 1, 152, 0, '2021-06-11'),
+(13, 1, 280, 0, '2021-06-11');
 
 --
 -- Índices para tablas volcadas
@@ -432,19 +467,19 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracion`
 --
 ALTER TABLE `configuracion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `contenedor`
@@ -456,19 +491,19 @@ ALTER TABLE `contenedor`
 -- AUTO_INCREMENT de la tabla `detalle_compra`
 --
 ALTER TABLE `detalle_compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_temp`
 --
 ALTER TABLE `detalle_temp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `familia`
@@ -486,7 +521,7 @@ ALTER TABLE `frecuencia`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -498,7 +533,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
