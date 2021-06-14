@@ -73,7 +73,7 @@ $pdf->setFont('Arial', '', 7);
 $pdf->SetTextColor(255, 255, 255);
 $pdf->Cell(45, 3, utf8_decode('Descripción'), 1, 0, 'L', 1);
 $pdf->Cell(15, 3, 'Cant.', 1, 0, 'C', 1);
-$pdf->Cell(25, 3, 'Medida', 1, 1, 'L', 1);
+$pdf->Cell(25, 3, 'Presentacion', 1, 1, 'L', 1);
 
 //loop de datos
 while ($row = mysqli_fetch_assoc($productos)) {
