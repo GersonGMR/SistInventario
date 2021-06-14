@@ -17,7 +17,7 @@
         }
     </style>
         -->
-        
+
 </head>
 
 <body class="bg-secondary">
@@ -35,10 +35,10 @@
                                 <strong>Usuario o contraseña Incorrecta</strong>
                             </div>
                         <?php } ?>
-                        
+
                         <div id ='error' class="text-danger"></div>
                         <form action="<?php echo base_url(); ?>Usuarios/login" method="post" autocomplete="off" onsubmit="return validar()">
-                     
+
                             <div class="form-group">
                                 <strong class="text-primary">Usuario</strong>
                                 <input id="usuario" class="form-control" type="text" name="usuario" placeholder="Usuario">
@@ -52,7 +52,7 @@
                             <button class="btn btn-primary btn-block" type="submit">Iniciar</button>
                             -->
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                                 var error = document.getElementById('error');
                                 error.innerHTML = "";
                             }
-                            
+
                             function validar(){
                                 //limpiarFormulario();
                                 var usuario = document.getElementById('usuario');
@@ -87,10 +87,10 @@
 
                                 error.innerHTML = mensajesError.join(', ');
 
-                                
+
                                 return return_value;
                             }
-                            
+
                         </script>
 </body>
 
