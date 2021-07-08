@@ -1,6 +1,15 @@
 <?php
-class ComprasModel extends Mysql{
-    public $id, $id_compra ,$codigo, $nombre, $cantidad, $precio, $id_producto ,$id_usuario, $total;
+class ComprasModel extends Mysql
+{
+    public $id;
+    public $id_compra ;
+    public $codigo;
+    public $nombre;
+    public $cantidad;
+    public $precio;
+    public $id_producto ;
+    public $id_usuario;
+    public $total;
     public function __construct()
     {
         parent::__construct();
@@ -17,7 +26,7 @@ class ComprasModel extends Mysql{
         $res = $this->select_all($sql);
         return $res;
     }
-    public function insertarDetalle(String $nombre, string $cantidad ,string $precio, string $total, string $id_producto ,string $id_usuario)
+    public function insertarDetalle(String $nombre, string $cantidad, string $precio, string $total, string $id_producto, string $id_usuario)
     {
         $return = "";
         $this->nombre = $nombre;
@@ -27,13 +36,13 @@ class ComprasModel extends Mysql{
         $this->id_producto = $id_producto;
         $this->id_usuario = $id_usuario;
 
-            $query = "INSERT INTO detalle_temp(nombre, cantidad, precio, total, id_producto ,id_usuario) VALUES (?,?,?,?,?,?)";
-            $data = array($this->nombre,$this->cantidad, $this->precio, $this->total,$this->id_producto,$this->id_usuario);
-            $resul = $this->insert($query, $data);
-            $return = $resul;
+        $query = "INSERT INTO detalle_temp(nombre, cantidad, precio, total, id_producto ,id_usuario) VALUES (?,?,?,?,?,?)";
+        $data = array($this->nombre,$this->cantidad, $this->precio, $this->total,$this->id_producto,$this->id_usuario);
+        $resul = $this->insert($query, $data);
+        $return = $resul;
         return $return;
     }
-    public function buscarProducto(int $codigo)
+    public function buscarProducto(string $codigo)
     {
         $this->codigo = $codigo;
         $sql = "SELECT * FROM productos WHERE codigo = '{$this->codigo}' AND estado = 1";
@@ -63,7 +72,7 @@ class ComprasModel extends Mysql{
         $resul = $this->select($query);
         return $resul;
     }
-    public function actualizarCantidad(int $cantidad,String $total, int $id)
+    public function actualizarCantidad(int $cantidad, String $total, int $id)
     {
         $this->cantidad = $cantidad;
         $this->total = $total;
@@ -103,7 +112,7 @@ class ComprasModel extends Mysql{
     }
 
 
-    public function registrarDetalle(String $id_compra, string $nombre ,string $id_producto, string $cantidad, string $precio, $id_usuario)
+    public function registrarDetalle(String $id_compra, string $nombre, string $id_producto, string $cantidad, string $precio, $id_usuario)
     {
         $return = "";
         $this->id_compra = $id_compra;

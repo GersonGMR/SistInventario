@@ -17,7 +17,7 @@ class VentasModel extends Mysql
     }
     public function selectVentas()
     {
-        $sql = "SELECT v.id,v.total,v.fecha,c.nombre,v.id_cliente FROM ventas as v INNER JOIN clientes as c ON v.id_cliente = c.id WHERE c.estado = 1";
+        $sql = "SELECT v.id,v.numentrega,v.total,v.fecha,c.nombre,v.id_cliente FROM ventas as v INNER JOIN clientes as c ON v.id_cliente = c.id WHERE c.estado = 1";
         $res = $this->select_all($sql);
         return $res;
     }
@@ -107,18 +107,18 @@ class VentasModel extends Mysql
         $res = $this->select($sql);
         return $res;
     }
-    public function registrarCompra(int $cliente, String $total)
+    public function registrarCompra(int $cliente, String $total, int $numentrega)
     {
         $return = "";
         $this->id_cliente = $cliente;
         $this->total = $total;
-        $query = "INSERT INTO ventas(id_cliente, total) VALUES (?,?)";
-        $data = array($this->id_cliente, $this->total);
+        $this->numentrega = $numentrega;
+        $query = "INSERT INTO ventas(id_cliente, total, numentrega) VALUES (?,?,?)";
+        $data = array($this->id_cliente, $this->total, $this->numentrega);
         $resul = $this->insert($query, $data);
         $return = $resul;
         return $return;
     }
-
 
     public function registrarDetalle(String $id_venta, string $nombre, string $id_producto, string $cantidad, string $precio, $id_usuario)
     {

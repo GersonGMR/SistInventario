@@ -15,6 +15,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Id</th>
+                                    <th>No. Entrega</th>
                                     <th>Beneficiado</th>
                                     <th>Cant. productos</th>
                                     <th>Fecha de salida</th>
@@ -26,6 +27,7 @@
                                 <?php foreach ($data as $lista) { ?>
                                     <tr>
                                         <td><?php echo $lista['id']; ?></td>
+                                        <td><?php echo $lista['numentrega']; ?></td>
                                         <td style="display:none;"><?php echo $lista['id_cliente']; ?></td>
                                         <td><?php echo $lista['nombre']; ?></td>
                                         <td><?php echo $lista['total']; ?></td>

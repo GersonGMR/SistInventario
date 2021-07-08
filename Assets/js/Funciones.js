@@ -64,6 +64,7 @@ $(document).ready(function () {
         var fila = $("#tablaCompras tr").length;
         var cliente = $("#nombre_cliente").val();
         var id_cliente = document.getElementById("id_cliente").value;
+        var numentrega = document.getElementById("numentrega").value;
 
         if (fila < 2) {
             Swal.fire({
@@ -81,10 +82,19 @@ $(document).ready(function () {
                 timer: 2500
             })
         }
+        else if(numentrega == null || numentrega == "" || numentrega == 0 ){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Por favor ingresa un numero de entrega.',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
         else {
             const total = {
                 cliente: $("#id_cliente").val(),
-                totalP: $("#total").val()
+                totalP: $("#total").val(),
+                numentrega: $("#numentrega").val()
             }
             $.ajax({
                 url: base + "Ventas/registrar",

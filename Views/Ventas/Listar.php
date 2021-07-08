@@ -87,6 +87,12 @@
                     </div>
                 </div>
                 <div class="col-lg-4 mt-1">
+                    <div class="form-group" >
+                        <strong class="text-primary">No. Entrega</strong>
+                        <input type="text" id="numentrega" name="numentrega" class="form-control" placeholder="No. Entrega" required>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-1">
                     <div class="form-group">
                         <strong class="text-primary">Total unidades: </strong>
                         <input type="hidden" id="total" name="total" class="form-control  mb-2">

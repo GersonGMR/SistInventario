@@ -90,11 +90,12 @@
         {
             $cliente = $_POST['cliente'];
             $totalP = $_POST['totalP'];
+            $numentrega = $_POST['numentrega'];
             if ($cliente == 0 || $cliente == "") {
                 # code...
                 $this->model->registrarCompra(1, $totalP);
             } else {
-                $this->model->registrarCompra($cliente, $totalP);
+                $this->model->registrarCompra($cliente, $totalP, $numentrega);
             }
             $data = $this->model->buscaridC();
             $result = $data['MAX(id)'];

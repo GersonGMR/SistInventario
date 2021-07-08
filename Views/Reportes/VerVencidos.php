@@ -39,10 +39,10 @@ $pdf->setFont('Arial', 'B', 10);
 $pdf->Cell(80, 8, utf8_decode("Detalle de productos vencidos"), 0, 1, 'C');
 $pdf->setFont('Arial', 'B', 10);
 $pdf->SetTextColor(255, 255, 255);
-$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
-$pdf->Cell(45, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(12, 5, 'Cod', 1, 0, 'L', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
 $pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
-$pdf->Cell(30, 5, 'Vencimiento', 1, 1, 'C', 1);
+$pdf->Cell(20, 5, 'Vence', 1, 1, 'C', 1);
 /*
 foreach ($data as $compras) {
     $subtotal = $compras['cantidad'];
@@ -55,12 +55,12 @@ foreach ($data as $compras) {
 while ($row = mysqli_fetch_assoc($entradas)) {
     $subtotal = $row['cantidad'];
     $total = $total + $subtotal;
-    $pdf->setFont('Arial', '', 6);
+    $pdf->setFont('Arial', '', 5.5);
     $pdf->SetTextColor(0, 0, 0);
-    $pdf->Cell(9, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->Cell(12, 5, $row['codigo'], 0, 0, 'L');
     $pdf->Cell(50, 5, utf8_decode($row['nombre']), 0, 0, 'L');
     $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
-    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'C');
 }
 $pdf->Ln(1);
 $pdf->setFont('Arial', 'B', 6);
