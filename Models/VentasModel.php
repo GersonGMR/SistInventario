@@ -107,7 +107,7 @@ class VentasModel extends Mysql
         $res = $this->select($sql);
         return $res;
     }
-    public function registrarCompra(int $cliente, String $total, int $numentrega)
+    public function registrarCompra(int $cliente, String $total, String $numentrega)
     {
         $return = "";
         $this->id_cliente = $cliente;

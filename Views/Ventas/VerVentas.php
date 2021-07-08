@@ -32,7 +32,7 @@ $pdf->setFont('Arial', '', 6.5);
 $pdf->Cell(15, 12, utf8_decode($result_venta['numentrega']), 0, 1, 'L');
 $pdf->Ln(-12);
 $pdf->setFont('Arial', 'B', 6.5);
-$pdf->Cell(70, 12, utf8_decode("Codigo: "), 0, 0, 'R');
+$pdf->Cell(70, 12, utf8_decode("Código: "), 0, 0, 'R');
 $pdf->setFont('Arial', '', 6.5);
 $pdf->Cell(15, 12, utf8_decode($result_cliente['ruc']), 0, 1, 'R');
 $pdf->Ln(-9);
@@ -55,7 +55,7 @@ $pdf->setFont('Arial', '', 7);
 $pdf->multiCell(65, 5, utf8_decode($result_cliente['representante']), 0);
 $pdf->Ln(-1);
 $pdf->setFont('Arial', 'B', 7);
-$pdf->Cell(20, 5, utf8_decode("Organizacion: "), 0, 0, 'L');
+$pdf->Cell(20, 5, utf8_decode("Organización: "), 0, 0, 'L');
 $pdf->setFont('Arial', '', 7);
 $pdf->multiCell(65, 5, utf8_decode($result_cliente['nombre']), 0);
 $pdf->Ln(-1);
@@ -65,7 +65,7 @@ $pdf->setFont('Arial', '', 7);
 $pdf->multiCell(65, 5, utf8_decode($result_cliente['direccion']), 0);
 $pdf->Ln(2);
 $pdf->setFont('Arial', 'B', 7);
-$pdf->Cell(40, 5, utf8_decode("Numero de niños beneficiados: "), 0, 0, 'L');
+$pdf->Cell(40, 5, utf8_decode("Número de niños beneficiados: "), 0, 0, 'L');
 $pdf->setFont('Arial', '', 7);
 $pdf->multiCell(65, 5, utf8_decode($result_cliente['cant_ninios']), 0);
 $pdf->Ln(-1);
@@ -73,7 +73,7 @@ $pdf->setFont('Arial', '', 7);
 $pdf->SetTextColor(255, 255, 255);
 $pdf->Cell(45, 3, utf8_decode('Descripción'), 1, 0, 'L', 1);
 $pdf->Cell(15, 3, 'Cant.', 1, 0, 'C', 1);
-$pdf->Cell(25, 3, 'Presentacion', 1, 1, 'L', 1);
+$pdf->Cell(25, 3, utf8_decode('Presentación'), 1, 1, 'L', 1);
 
 //loop de datos
 while ($row = mysqli_fetch_assoc($productos)) {
