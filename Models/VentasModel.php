@@ -47,11 +47,13 @@ class VentasModel extends Mysql
     public function editarEntrega(int $id)
     {
         $this->id = $id;
-        $sql = "SELECT v.id,v.numentrega,v.total,c.nombre FROM ventas as v
+        $sql = "SELECT v.id,v.numentrega,v.total,c.nombre,dv.producto, dv.cantidad FROM ventas as v
         INNER JOIN clientes as c
         ON v.id_cliente = c.id
+        INNER JOIN detalle_venta as dv
+        ON v.id = dv.id_venta
         WHERE v.id = '{$this->id}'";
-        $res = $this->select($sql);
+        $res = $this->select_all($sql);
         if (empty($res)) {
             $res = 0;
         }

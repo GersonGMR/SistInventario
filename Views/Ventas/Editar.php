@@ -1,43 +1,51 @@
-
 <?php encabezado() ?>
 <!-- Begin Page Content -->
 <div class="page-content bg-light">
-  <section>
-      <div class="container-fluid">
-          <div class="row mt-3">
-              <div class="col-lg-6 m-auto">
-                  <form method="post" action="<?php echo base_url(); ?>Ventas/actualizarEntrega" autocomplete="off">
-                      <div class="card-header bg-dark">
-                          <h6 class="title text-white text-center">Modificar entrega</46>
-                      </div>
-                      <div class="modal-body">
-                          <div class="form-group">
-                              <label for="numentrega">No. Entrega</label>
-                              <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-                              <input id="numentrega" class="form-control" type="text" name="numentrega" value="<?php echo $data['numentrega']; ?>" required>
-                          </div>
-                          <div class="form-group">
-                              <label for="nombre">Nombre</label>
-                              <input id="nombre" class="form-control" type="text" name="nombre" value="<?php echo $data['nombre']; ?>" required>
-                          </div>
-                          <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="total">Cantidad productos</label>
-                                        <input id="total" class="form-control" type="text" name="total" value="<?php echo $data['total']; ?>" required>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                      <div class="card-footer">
-                          <button class="btn btn-dark" type="submit">Modificar</button>
-                          <a href="<?php echo base_url(); ?>Ventas/Lista" class="btn btn-danger">Regresar</a>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </section>
+    <div class="page-header bg-light">
+        <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">Editar entregas</h2>
+        </div>
+    </div>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" id="Table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Id venta</th>
+                                    <th>No. Entrega</th>
+                                    <th>Beneficiado</th>
+                                    <th>Nombre producto</th>
+                                    <th>Cantidad producto</th>
+                                    <th>Acciones</th>
+                                  <!--  <th>Estado</th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($data as $lista) { ?>
+                                    <tr>
+                                        <td><?php echo $lista['id']; ?></td>
+                                        <td><?php echo $lista['numentrega']; ?></td>
+                                        <td style="display:none;"><?php echo $lista['id_cliente']; ?></td>
+                                        <td><?php echo $lista['nombre']; ?></td>
+                                        <td><?php echo $lista['producto']; ?></td>
+                                        <td><?php echo $lista['cantidad']; ?></td>
+                                        <td>
+                                            <a href="<?php echo base_url() ?>Ventas/editarEntrega?id=<?php echo $lista['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <form action="<?php echo base_url() ?>Ventas/eliminarEntrega?id=<?php echo $lista['id']; ?>" method="post" class="d-inline elim">
+                                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 <?php pie() ?>
