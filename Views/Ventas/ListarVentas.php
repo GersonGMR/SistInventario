@@ -20,6 +20,7 @@
                                     <th>Cant. productos</th>
                                     <th>Fecha de salida</th>
                                     <th>Reporte</th>
+                                    <th>Acciones</th>
                                   <!--  <th>Estado</th>-->
                                 </tr>
                             </thead>
@@ -33,21 +34,16 @@
                                         <td><?php echo $lista['total']; ?></td>
                                         <td><?php echo $lista['fecha']; ?></td>
                                         <td>
-                                            <a href="<?php echo base_url(); ?>Ventas/ver?id=<?php echo $lista['id']; ?>&cliente=<?php echo $lista['id_cliente']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-file-pdf"></i></i> PDF</a>
+                                            <a href="<?php echo base_url(); ?>Ventas/ver?id=<?php echo $lista['id']; ?>&cliente=<?php echo $lista['id_cliente']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-success"><i class="fas fa-file-pdf"></i></i> PDF</a>
                                         </td>
-                                        <!--<td>
-                                          <form action="<?php echo base_url(); ?>Ventas/entregado?id=<?php echo $lista['id']; ?>&estado=<?php echo 1; ?>" method="post" >
-                                            <select name="entrega" id="entrega" onchange="this.form.submit()">
-                                              <option value="0">Pendiente</option>
-                                              <option value="1">Entregado</option>
-                                            </select>
-                                          </form>
-                                        </td>-->
+                                        <td>
+                                            <a href="<?php echo base_url() ?>Ventas/editarEntrega?id=<?php echo $lista['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <form action="<?php echo base_url() ?>Ventas/eliminarEntrega?id=<?php echo $lista['id']; ?>" method="post" class="d-inline elim">
+                                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                            </form>
+                                        </td>
                                     </tr>
-                                <?php } ?><?php
-                                if (isset($_POST['submit'])) {
-                                    $selected_val = $_POST['entrega'];  // Storing Selected Value In Variable
-                                } ?>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>

@@ -17,7 +17,7 @@ class VentasModel extends Mysql
     }
     public function selectVentas()
     {
-        $sql = "SELECT v.id,v.numentrega,v.total,v.fecha,c.nombre,v.id_cliente FROM ventas as v INNER JOIN clientes as c ON v.id_cliente = c.id WHERE c.estado = 1";
+        $sql = "SELECT v.id,v.numentrega,v.total,v.fecha,c.nombre,v.id_cliente FROM ventas as v INNER JOIN clientes as c ON v.id_cliente = c.id WHERE v.estado = 1";
         $res = $this->select_all($sql);
         return $res;
     }
@@ -27,6 +27,7 @@ class VentasModel extends Mysql
         $res = $this->select_all($sql);
         return $res;
     }
+
     public function insertarDetalle(String $nombre, string $cantidad, string $precio, string $total, string $id_producto, string $id_usuario)
     {
         $return = "";
@@ -40,6 +41,42 @@ class VentasModel extends Mysql
         $query = "INSERT INTO detalle_temp(nombre, cantidad, precio, total, id_producto ,id_usuario) VALUES (?,?,?,?,?,?)";
         $data = array($this->nombre,$this->cantidad, $this->precio, $this->total,$this->id_producto,$this->id_usuario);
         $resul = $this->insert($query, $data);
+        $return = $resul;
+        return $return;
+    }
+    public function editarEntrega(int $id)
+    {
+        $this->id = $id;
+        $sql = "SELECT v.id,v.numentrega,v.total,c.nombre FROM ventas as v
+        INNER JOIN clientes as c
+        ON v.id_cliente = c.id
+        WHERE v.id = '{$this->id}'";
+        $res = $this->select($sql);
+        if (empty($res)) {
+            $res = 0;
+        }
+        return $res;
+    }
+    public function actualizarEntrega(String $numentrega, string $nombre, int $total, int $id)
+    {
+        $return = "";
+        $this->numentrega = $numentrega;
+        $this->nombre = $nombre;
+        $this->total = $total;
+        $this->id = $id;
+        $query = "UPDATE ventas SET numentrega=?, nombre=?, total=? WHERE id=?";
+        $data = array($this->numentrega, $this->nombre, $this->total, $this->id);
+        $resul = $this->update($query, $data);
+        $return = $resul;
+        return $return;
+    }
+    public function eliminarEntrega(int $id)
+    {
+        $return = "";
+        $this->id = $id;
+        $query = "UPDATE ventas SET estado = 0 WHERE id=?";
+        $data = array($this->id);
+        $resul = $this->update($query, $data);
         $return = $resul;
         return $return;
     }

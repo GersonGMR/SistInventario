@@ -70,6 +70,40 @@
             $id = $_POST['id'];
             $this->model->eliminarVentas($id);
         }
+        public function editarEntrega()
+        {
+            $id = $_GET['id'];
+            $data = $this->model->editarEntrega($id);
+            if ($data == 0) {
+                $this->Lista();
+            } else {
+                $this->views->getView($this, "Editar", $data);
+            }
+        }
+        public function actualizarEntrega()
+        {
+            $id = $_POST['id'];
+            $numentrega = $_POST['numentrega'];
+            $nombre = $_POST['nombre'];
+            $total = $_POST['total'];
+            $actualizar = $this->model->actualizarEntrega($numentrega, $nombre, $total, $id);
+            if ($actualizar == 1) {
+                $alert =  'modificado';
+            } else {
+                $alert = 'error';
+            }
+            header("location: " . base_url() . "Ventas/Lista?msg=$alert");
+            die();
+        }
+        public function eliminarEntrega()
+        {
+            $id = $_GET['id'];
+            $eliminar = $this->model->eliminarEntrega($id);
+            $data = $this->model->selectVentas();
+            header('location: ' . base_url() . 'Ventas/Lista');
+            //$this->views->getView($this, "Listar", $data, $eliminar);
+            die();
+        }
         public function buscar()
         {
             $codigo = $_POST['codigo'];

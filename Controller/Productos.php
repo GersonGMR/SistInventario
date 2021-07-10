@@ -14,12 +14,6 @@ class Productos extends Controllers
         $data = $this->model->selectProductos();
         $this->views->getView($this, "Listar", $data, "");
     }
-    /*public function Listar1()
-    {
-        $data1 = $this->model->selectFamilias();
-        $this->views->getView($this, "Listar", $data1, "");
-    }
-    */
     public function eliminados()
     {
         $data = $this->model->selectProductosInactivos();
