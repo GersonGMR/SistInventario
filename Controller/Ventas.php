@@ -104,6 +104,21 @@
             //$this->views->getView($this, "Listar", $data, $eliminar);
             die();
         }
+        public function eliminarTest()
+        {
+            $idVenta = $_GET['id'];
+            $data = $this->model->buscaridC();
+            $result = $data['MAX(id)'];
+            $productos = $this->model->verificarTest($idVenta);
+            foreach ($productos as $data) {
+                $stock = $this->model->stockActual($data['id_producto']);
+                $stockActual = $stock['cantidad'];
+                $this->model->registrarStock($stockActual + $data['cantidad'], $data['id_producto']);
+            }
+            $this->model->eliminarEntrega($idVenta);
+            header('location: ' . base_url() . 'Ventas/Lista');
+            die();
+        }
         public function buscar()
         {
             $codigo = $_POST['codigo'];

@@ -128,6 +128,12 @@ class VentasModel extends Mysql
         $resul = $this->update($query, $data);
         return $resul;
     }
+    public function verificarTest($idVenta)
+    {
+        $query = "SELECT * FROM detalle_venta WHERE id_venta = '{$idVenta}'";
+        $resul = $this->select_all($query);
+        return $resul;
+    }
     public function verificarProductos($id_usuario)
     {
         $query = "SELECT * FROM detalle_temp WHERE id_usuario = '{$id_usuario}'";
