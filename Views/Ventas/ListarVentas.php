@@ -14,8 +14,9 @@
                         <table class="table table-hover table-bordered" id="Table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Id</th>
+                                    <th style="display:none;">Id</th>
                                     <th>No. Entrega</th>
+                                    <th style="display:none;">Id cliente</th>
                                     <th>Beneficiado</th>
                                     <th>Cant. productos</th>
                                     <th>Fecha de salida</th>
@@ -27,7 +28,7 @@
                             <tbody>
                                 <?php foreach ($data as $lista) { ?>
                                     <tr>
-                                        <td><?php echo $lista['id']; ?></td>
+                                        <td style="display:none;"><?php echo $lista['id']; ?></td>
                                         <td><?php echo $lista['numentrega']; ?></td>
                                         <td style="display:none;"><?php echo $lista['id_cliente']; ?></td>
                                         <td><?php echo $lista['nombre']; ?></td>
@@ -37,7 +38,6 @@
                                             <a href="<?php echo base_url(); ?>Ventas/ver?id=<?php echo $lista['id']; ?>&cliente=<?php echo $lista['id_cliente']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-success"><i class="fas fa-file-pdf"></i></i> PDF</a>
                                         </td>
                                         <td>
-                                            <!--<a href="<?php echo base_url() ?>Ventas/editarEntrega?id=<?php echo $lista['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>-->
                                             <form action="<?php echo base_url() ?>Ventas/eliminarTest?id=<?php echo $lista['id']; ?>" method="post" class="d-inline elim">
                                                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                             </form>

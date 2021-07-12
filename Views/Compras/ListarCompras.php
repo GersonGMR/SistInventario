@@ -27,7 +27,7 @@
                                         <td><?php echo $lista['total']; ?></td> <!-- cambiar a total de cantidad de productos y no precio. -->
                                         <td><?php echo $lista['fecha']; ?></td>
                                         <td>
-                                            <a href="<?php echo base_url(); ?>Compras/ver?id=<?php echo $lista['id']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fas fa-file-pdf"></i> PDF</a>
+                                            <a href="<?php echo base_url(); ?>Compras/ver?id=<?php echo $lista['id']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-success"><i class="fas fa-file-pdf"></i> PDF</a>
                                         </td>
                                     </tr>
                                 <?php } ?>

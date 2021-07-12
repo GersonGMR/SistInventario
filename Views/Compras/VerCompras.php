@@ -10,7 +10,7 @@ $pdf = new FPDF('P', 'mm', array(105, 148));
 $pdf->AddPage();
 $pdf->setFont('Arial', 'B', 14);
 $pdf->setTitle("Reporte de entrada");
-$pdf->image(base_url().'Assets/img/logo.jpg', 65, 5, 35, 20, 'JPG');
+$pdf->image(base_url().'Assets/img/logo.jpg', 73, 11, 22, 6.5, 'JPG');
 $pdf->setFont('Arial', 'B', 8);
 $pdf->Cell(50, 5, utf8_decode($alert['nombre']), 0, 1, 'L');
 $pdf->Cell(30, 5, utf8_decode("Código"), 0, 0, 'L');
@@ -53,7 +53,7 @@ foreach ($data as $compras) {
 while ($row = mysqli_fetch_assoc($productos)) {
     $subtotal = $row['cantidad'];
     $total = $total + $subtotal;
-    $pdf->setFont('Arial', 'B', 6);
+    $pdf->setFont('Arial', '', 6);
     $pdf->SetTextColor(0, 0, 0);
     $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
     $pdf->Cell(50, 5, utf8_decode($row['nombre']), 0, 0, 'L');

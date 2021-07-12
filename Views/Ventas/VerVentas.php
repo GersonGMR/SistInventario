@@ -24,7 +24,7 @@ $pdf->setFont('Arial', 'B', 14);
 $pdf->setTitle("Reporte de salida");
 $pdf->setFont('Arial', 'B', 10);
 $pdf->Cell(55, 0, utf8_decode($resultado['nombre']), 0, 0, 'C');
-$pdf->image(base_url().'Assets/img/logo.jpg', 73, 6, 22, 10, 'JPG');
+$pdf->image(base_url().'Assets/img/logo.jpg', 73, 8, 22, 6.5, 'JPG');
 $pdf->Ln(5);
 $pdf->setFont('Arial', 'B', 7);
 $pdf->Cell(20, 12, utf8_decode("No. de entrega: "), 0, 0, 'L');
