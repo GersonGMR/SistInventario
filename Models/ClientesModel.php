@@ -35,7 +35,7 @@ class ClientesModel extends Mysql
     public function BuscarCliente(string $ruc)
     {
         $this->ruc = $ruc;
-        $sql = "SELECT * FROM clientes WHERE ruc = $this->ruc AND estado = 1";
+        $sql = "SELECT * FROM clientes WHERE ruc = '{$this->ruc}' AND estado = 1";
         $res = $this->select($sql);
         return $res;
     }
