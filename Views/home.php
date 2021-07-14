@@ -27,7 +27,7 @@
                 <div class="card mt-5">
                     <div class="card-header bg-primary text-center">
                         <strong class="text-white">Iniciar Sesión</strong><br>
-                        <img class="img-thumbnail" src="<?php echo base_url(); ?>/Assets/img/logo.jpg" width="200">
+                        <img class="img-thumbnail" src="<?php echo base_url(); ?>/Assets/img/logo.jpg" width="300">
                     </div>
                     <div class="card-body">
                         <?php if (isset($_GET['msg'])) { ?>

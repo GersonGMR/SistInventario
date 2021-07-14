@@ -127,4 +127,8 @@ $pdf->setFont('Arial', 'B', 6);
 $pdf->Cell(25, 5, utf8_decode("DUI: "), 0, 0, 'L');
 $pdf->setFont('Arial', '', 6);
 $pdf->Cell(30, 5, utf8_decode($result_cliente['DUI']), 0, 0, 'L');
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(9, 5, utf8_decode("Sello: "), 0, 0, 'L');
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(30, 5, utf8_decode("________________"), 0, 0, 'L');
 $pdf->Output();

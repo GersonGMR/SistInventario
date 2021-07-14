@@ -311,7 +311,7 @@ function ingresarCantidad(e) {
             document.getElementById("nombreP").innerHTML = "";
             Swal.fire({
                 icon: 'warning',
-                title: 'No hay stock o la cantidad ingresa es igual a cero.',
+                title: 'No hay stock.',
                 showConfirmButton: false,
                 timer: 3000
             })
