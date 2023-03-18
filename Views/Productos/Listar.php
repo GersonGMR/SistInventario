@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered" id="Table">
+                        <table class="table table-hover table-bordered" id="tableproducts">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Código</th>
@@ -142,8 +142,4 @@
         </div>
     </div>
 </div>
-<script>
-
-
-   </script>
 <?php pie() ?>

@@ -2,7 +2,7 @@
             <div class="footer__block block no-margin-bottom">
                 <div class="container-fluid text-center">
                     <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-                    <p class="credit">Thanks to <a href="https://bootstrapious.com/e-commerce-templates" class="external">Bootstrapious</a></p>
+                    <p class="credit">Thanks to <a href="https://bootstrapious.com/e-commerce-templates" target="_blank" class="external">Bootstrapious</a></p>
                 </div>
             </div>
         </footer>
@@ -93,6 +93,35 @@
 						}
 					}
 				});
+                $(document).ready(function () {
+                    $('#tableproducts').DataTable({
+                        order: [[1, 'asc']],
+                        language: {
+						"decimal": "",
+						"emptyTable": "No hay datos",
+						"info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+						"infoEmpty": "Mostrando 0 a 0 de 0 registros",
+						"infoFiltered": "(Filtro de _MAX_ total registros)",
+						"infoPostFix": "",
+						"thousands": ",",
+						"lengthMenu": "Mostrar _MENU_ registros",
+						"loadingRecords": "Cargando...",
+						"processing": "Procesando...",
+						"search": "Buscar:",
+						"zeroRecords": "No se encontraron coincidencias",
+						"paginate": {
+							"first": "Primer",
+							"last": "Ultimo",
+							"next": "Próximo",
+							"previous": "Anterior"
+						},
+						"aria": {
+							"sortAscending": ": Activar orden de columna ascendente",
+							"sortDescending": ": Activar orden de columna desendente"
+						}
+					}
+                    });
+                });
             });
         </script>
         </body>

@@ -193,6 +193,22 @@ $(document).ready(function () {
             }
         });
     });
+    $(".confirmarPermanente").submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Esta seguro de eliminar este usuario para siempre?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si!',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        });
+    });
     $("#cambiar").click(function () {
         let claves = {
             actual: $("#actual").val(),

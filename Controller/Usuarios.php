@@ -75,6 +75,16 @@ class Usuarios extends Controllers
         header("location: " . base_url() . "Usuarios/Listar");
         die();
     }
+
+    public function eliminarUserPermanente()
+    {
+        $id = $_GET['id'];
+        $eliminarUserPermanente = $this->model->eliminarUsuarioPermanente($id);
+        $data = $this->model->selectUsuarios();
+        header("location: " . base_url() . "Usuarios/Listar");
+        die();
+    }
+
     public function eliminados()
     {
         $data = $this->model->selectInactivos();

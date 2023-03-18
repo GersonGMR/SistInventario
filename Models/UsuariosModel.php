@@ -71,6 +71,17 @@ class UsuariosModel extends Mysql{
         $return = $resul;
         return $return;
     }
+
+    public function eliminarUsuarioPermanente(int $id)
+    {
+        $return = "";
+        $this->id = $id;
+        $query = "DELETE FROM usuarios WHERE id=?";
+        $data = array($this->id);
+        $resul = $this->update($query, $data);
+        $return = $resul;
+        return $return;
+    }
     public function selectUsuario(string $usuario, string $clave)
     {
         $this->usuario = $usuario;

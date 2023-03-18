@@ -38,9 +38,13 @@
                                             <a href="<?php echo base_url(); ?>Ventas/ver?id=<?php echo $lista['id']; ?>&cliente=<?php echo $lista['id_cliente']; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-success"><i class="fas fa-file-pdf"></i></i> PDF</a>
                                         </td>
                                         <td>
+                                        <?php if ($_SESSION['rol'] == "Administrador") { ?>
                                             <form action="<?php echo base_url() ?>Ventas/eliminarTest?id=<?php echo $lista['id']; ?>" method="post" class="d-inline elim">
                                                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                             </form>
+                                            <?php } else {
+                                                echo "No eres administrador";
+                                            } ?>
                                         </td>
                                     </tr>
                                 <?php } ?>

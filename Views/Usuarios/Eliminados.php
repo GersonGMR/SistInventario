@@ -34,6 +34,9 @@
                                             <form action="<?php echo base_url() ?>Usuarios/reingresar?id=<?php echo $us['id']; ?>" method="post" class="d-inline confirmar">
                                                 <button type="submit" class="btn btn-primary">Reingresar</button>
                                             </form>
+                                            <form action="<?php echo base_url() ?>Usuarios/EliminarUserPermanente?id=<?php echo $us['id']; ?>" method="post" class="d-inline confirmarPermanente">
+                                                <button type="submit" class="btn btn-danger">Eliminar Permanentemente</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php } ?>
