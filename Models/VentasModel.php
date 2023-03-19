@@ -11,13 +11,14 @@ class VentasModel extends Mysql
     public $id_producto ;
     public $id_usuario;
     public $total;
+    public $vendedor;
     public function __construct()
     {
         parent::__construct();
     }
     public function selectVentas()
     {
-        $sql = "SELECT v.id,v.numentrega,v.total,v.fecha,c.nombre,v.id_cliente FROM ventas as v INNER JOIN clientes as c ON v.id_cliente = c.id WHERE v.estado = 1";
+        $sql = "SELECT v.id, v.usuario_vendedor,v.numentrega,v.total,v.fecha,c.nombre,v.id_cliente FROM ventas as v INNER JOIN clientes as c ON v.id_cliente = c.id WHERE v.estado = 1";
         $res = $this->select_all($sql);
         return $res;
     }
@@ -47,7 +48,7 @@ class VentasModel extends Mysql
     public function editarEntrega(int $id)
     {
         $this->id = $id;
-        $sql = "SELECT v.id,v.numentrega,v.total,c.nombre,dv.producto, dv.cantidad FROM ventas as v
+        $sql = "SELECT v.id,v.usuario_vendedor, v.numentrega,v.total,c.nombre,dv.producto, dv.cantidad FROM ventas as v
         INNER JOIN clientes as c
         ON v.id_cliente = c.id
         INNER JOIN detalle_venta as dv
@@ -152,14 +153,15 @@ class VentasModel extends Mysql
         $res = $this->select($sql);
         return $res;
     }
-    public function registrarCompra(int $cliente, String $total, String $numentrega)
+    public function registrarCompra(int $cliente, String $usuario_vendedor, String $total, String $numentrega)
     {
         $return = "";
         $this->id_cliente = $cliente;
+        $this->usuario_vendedor = $usuario_vendedor;
         $this->total = $total;
         $this->numentrega = $numentrega;
-        $query = "INSERT INTO ventas(id_cliente, total, numentrega) VALUES (?,?,?)";
-        $data = array($this->id_cliente, $this->total, $this->numentrega);
+        $query = "INSERT INTO ventas(id_cliente, usuario_vendedor, total, numentrega) VALUES (?,?,?,?)";
+        $data = array($this->id_cliente, $this->usuario_vendedor, $this->total, $this->numentrega);
         $resul = $this->insert($query, $data);
         $return = $resul;
         return $return;

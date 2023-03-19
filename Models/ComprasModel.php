@@ -100,12 +100,13 @@ class ComprasModel extends Mysql
         $res = $this->select($sql);
         return $res;
     }
-    public function registrarCompra(String $total)
+    public function registrarCompra(String $regitrador_entr, String $total)
     {
         $return = "";
+        $this->registrador_entr = $regitrador_entr;
         $this->total = $total;
-        $query = "INSERT INTO compras(total) VALUES (?)";
-        $data = array($this->total);
+        $query = "INSERT INTO compras(registrador_entr,total) VALUES (?,?)";
+        $data = array($this->registrador_entr, $this->total);
         $resul = $this->insert($query, $data);
         $return = $resul;
         return $return;

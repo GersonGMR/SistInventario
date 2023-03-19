@@ -38,6 +38,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Código</th>
+                                    <th>Registrado por</th>
                                     <th>Nombre</th>
                                     <th>Stock</th>
                                     <th>Medida</th>
@@ -52,6 +53,7 @@
                                 <?php foreach ($data as $cl) { ?>
                                     <tr>
                                         <td><?php echo $cl['codigo']; ?></td>
+                                        <td><?php echo $cl['registrador_prod']; ?></td>
                                         <td><?php echo $cl['nombre']; ?></td>
                                         <td><?php echo $cl['cantidad']; ?></td>
                                         <td><?php echo $cl['medida']; ?></td>

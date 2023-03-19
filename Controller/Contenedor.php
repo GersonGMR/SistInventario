@@ -22,7 +22,8 @@ class Contenedor extends Controllers
     public function insertar()
     {
         $nombre = $_POST['nombre'];
-        $insert = $this->model->insertarContenedor($nombre);
+        $registrador = $_SESSION['usuario'];
+        $insert = $this->model->insertarContenedor($nombre, $registrador);
         if ($insert > 0) {
             $alert = 'registrado';
         } elseif ($insert == 'existe') {

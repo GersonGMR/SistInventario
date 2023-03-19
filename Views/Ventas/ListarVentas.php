@@ -17,6 +17,7 @@
                                     <th style="display:none;">Id</th>
                                     <th>No. Entrega</th>
                                     <th style="display:none;">Id cliente</th>
+                                    <th>Hecha por</th>
                                     <th>Beneficiado</th>
                                     <th>Cant. productos</th>
                                     <th>Fecha de salida</th>
@@ -31,6 +32,7 @@
                                         <td style="display:none;"><?php echo $lista['id']; ?></td>
                                         <td><?php echo $lista['numentrega']; ?></td>
                                         <td style="display:none;"><?php echo $lista['id_cliente']; ?></td>
+                                        <td><?php echo $lista['usuario_vendedor']; ?></td>
                                         <td><?php echo $lista['nombre']; ?></td>
                                         <td><?php echo $lista['total']; ?></td>
                                         <td><?php echo $lista['fecha']; ?></td>

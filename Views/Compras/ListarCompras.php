@@ -15,6 +15,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Id</th>
+                                    <th>Registrador por</th>
                                     <th>Cantidad productos</th>
                                     <th>Fecha</th>
                                     <th>Accion</th>
@@ -24,6 +25,7 @@
                                 <?php foreach ($data as $lista) { ?>
                                     <tr>
                                         <td><?php echo $lista['id']; ?></td>
+                                        <td><?php echo $lista['registrador_entr']; ?></td>
                                         <td><?php echo $lista['total']; ?></td> <!-- cambiar a total de cantidad de productos y no precio. -->
                                         <td><?php echo $lista['fecha']; ?></td>
                                         <td>

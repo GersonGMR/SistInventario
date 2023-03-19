@@ -23,11 +23,12 @@ class Productos extends Controllers
     {
         $codigo = $_POST['codigo'];
         $nombre = $_POST['nombre'];
+        $registrador_prod = $_SESSION['usuario'];
         $medida = $_POST['medida'];
         $vencimiento = $_POST['vencimiento'];
         $id_familia = $_POST['id_familia'];
         $id_contenedor = $_POST['id_contenedor'];
-        $insert = $this->model->insertarProductos($codigo, $nombre, $medida, $vencimiento, $id_familia, $id_contenedor);
+        $insert = $this->model->insertarProductos($codigo, $registrador_prod, $nombre, $medida, $vencimiento, $id_familia, $id_contenedor);
         if ($insert > 0) {
             $alert = 'registrado';
         } elseif ($insert == 'existe') {

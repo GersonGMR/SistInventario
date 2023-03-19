@@ -15,7 +15,7 @@ class ProductosModel extends Mysql
     }
     public function selectProductos()
     {
-        $sql = "SELECT p.fecha_ingreso,p.id,p.codigo,p.nombre,p.cantidad,p.medida,p.vencimiento,p.id_contenedor,p.estado, f.nombre as familia, c.nombre as contenedor FROM productos as p
+        $sql = "SELECT p.fecha_ingreso,p.id,p.codigo,p.registrador_prod,p.nombre,p.cantidad,p.medida,p.vencimiento,p.id_contenedor,p.estado, f.nombre as familia, c.nombre as contenedor FROM productos as p
                 INNER JOIN familia as f
                 ON p.id_familia = f.id_familia
                 INNER JOIN contenedor as c
@@ -37,10 +37,11 @@ class ProductosModel extends Mysql
         return $res;
     }
    */
-    public function insertarProductos(String $codigo, string $nombre, string $medida, string $vencimiento, int $id_familia, int $id_contenedor)
+    public function insertarProductos(String $codigo, string $registrador_prod, string $nombre, string $medida, string $vencimiento, int $id_familia, int $id_contenedor)
     {
         $return = "";
         $this->codigo = $codigo;
+        $this->registrador_prod = $registrador_prod;
         $this->nombre = $nombre;
         $this->medida = $medida;
         $this->id_familia = $id_familia;
@@ -49,8 +50,8 @@ class ProductosModel extends Mysql
         $sql = "SELECT * FROM productos WHERE codigo = '{$this->codigo}'";
         $result = $this->select_all($sql);
         if (empty($result)) {
-            $query = "INSERT INTO productos(codigo, nombre, medida, vencimiento, id_familia,id_contenedor) VALUES (?,?,?,?,?,?)";
-            $data = array($this->codigo, $this->nombre, $this->medida, $this->vencimiento,$this->id_familia,$this->id_contenedor);
+            $query = "INSERT INTO productos(codigo, registrador_prod, nombre, medida, vencimiento, id_familia,id_contenedor) VALUES (?,?,?,?,?,?,?)";
+            $data = array($this->codigo, $this->registrador_prod, $this->nombre , $this->medida, $this->vencimiento,$this->id_familia,$this->id_contenedor);
             $resul = $this->insert($query, $data);
             $return = $resul;
         } else {

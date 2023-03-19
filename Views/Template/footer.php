@@ -95,7 +95,7 @@
 				});
                 $(document).ready(function () {
                     $('#tableproducts').DataTable({
-                        order: [[1, 'asc']],
+                        order: [[2, 'asc']],
                         language: {
 						"decimal": "",
 						"emptyTable": "No hay datos",

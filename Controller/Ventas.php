@@ -138,13 +138,14 @@
         public function registrar()
         {
             $cliente = $_POST['cliente'];
+            $usuario_vendedor = $_SESSION['usuario'];
             $totalP = $_POST['totalP'];
             $numentrega = $_POST['numentrega'];
             if ($cliente == 0 || $cliente == "") {
                 # code...
                 $this->model->registrarCompra(1, $totalP);
             } else {
-                $this->model->registrarCompra($cliente, $totalP, $numentrega);
+                $this->model->registrarCompra($cliente, $usuario_vendedor, $totalP, $numentrega);
             }
             $data = $this->model->buscaridC();
             $result = $data['MAX(id)'];

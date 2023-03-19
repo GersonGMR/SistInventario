@@ -39,6 +39,7 @@
                                 <tr>
                                    <th>Id</th>
                                     <th>Codigo contenedor</th>
+                                    <th>Registrado por</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -47,6 +48,7 @@
                                     <tr>
                                       <td><?php echo $cl['id']; ?></td>
                                         <td><?php echo $cl['nombre']; ?></td>
+                                        <td><?php echo $cl['registrador']; ?></td>
                                         <td>
                                             <a href="<?php echo base_url() ?>Contenedor/editar?id=<?php echo $cl['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <form action="<?php echo base_url() ?>Contenedor/eliminar?id=<?php echo $cl['id']; ?>" method="post" class="d-inline elim">

@@ -81,8 +81,9 @@
         }
         public function registrar()
         {
+            $registrador_entr = $_SESSION['usuario'];
             $totalP = $_POST['totalP'];
-            $this->model->registrarCompra($totalP);
+            $this->model->registrarCompra($registrador_entr,$totalP);
             $data = $this->model->buscaridC();
             $result = $data['MAX(id)'];
             $productos = $this->model->verificarProductos($_SESSION['id']);

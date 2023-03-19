@@ -19,15 +19,16 @@ class ContenedorModel extends Mysql
         $res = $this->select_all($sql);
         return $res;
     }
-    public function insertarContenedor(string $nombre)
+    public function insertarContenedor(string $nombre, string $registrador)
     {
         $return = "";
         $this->nombre = $nombre;
+        $this->registrador = $registrador;
         $sql = "SELECT * FROM contenedor WHERE nombre = '{$this->nombre}'";
         $result = $this->select_all($sql);
         if (empty($result)) {
-            $query = "INSERT INTO contenedor(nombre) VALUES (?)";
-            $data = array($this->nombre);
+            $query = "INSERT INTO contenedor(nombre, registrador) VALUES (?,?)";
+            $data = array($this->nombre, $this->registrador);
             $resul = $this->insert($query, $data);
             $return = $resul;
         } else {
