@@ -17,7 +17,7 @@
                                     <th style="display:none;">Id</th>
                                     <th>No. Entrega</th>
                                     <th style="display:none;">Id cliente</th>
-                                    <th>Hecha por</th>
+                                    <th>Registrado por</th>
                                     <th>Beneficiado</th>
                                     <th>Cant. productos</th>
                                     <th>Fecha de salida</th>
