@@ -99,8 +99,7 @@
                         <strong id="tVenta" class="form-control border-0 text-success"></strong>
                         <button class="btn btn-danger" type="button" id="AnularCompra">Anular salida</button>
 
-                        <button class="btn btn-success" type="button" id="procesarVenta"
-                            <i class="fas fa-money-check-alt"></i>
+                        <button class="btn btn-success" type="submit" id="procesarVenta">
                          Procesar salida</button>
 
                     </div>
