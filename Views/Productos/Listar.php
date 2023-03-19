@@ -48,7 +48,7 @@
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody>  
                                 <?php foreach ($data as $cl) { ?>
                                     <tr>
                                         <td><?php echo $cl['codigo']; ?></td>
@@ -58,7 +58,20 @@
                                         <td><?php echo $cl['familia']; ?></td>
                                         <td><?php echo $cl['contenedor']; ?></td>
                                         <td><?php echo $cl['fecha_ingreso']; ?></td>
-                                        <td><?php echo $cl['vencimiento']; ?></td>
+                                        
+                                        <?php 
+                                        //OBTIENE FECHA ACTUAL DEL SISTEMA Y LA COMPARA CON LA FECHA DE VENCIMIENTO PARA SABER CUANDO ESTÁ A 7 MESES DE VENCER.
+                                        date_default_timezone_set("America/El_Salvador"); 
+                                        $fechaActual = date("Ym", time());
+                                        
+                                        $fechaPreventiva = strtotime('-7 months', strtotime($cl['vencimiento']));
+                                        $fechaPreventiva = date('Ym', $fechaPreventiva);
+
+                                            if($fechaPreventiva<=$fechaActual) // red
+                                            echo "<td style='background-color: #FF6666;'>".$cl['vencimiento']."</td>";
+                                            else// white
+                                            echo "<td style='background-color: #75FA90;'>".$cl['vencimiento']."</td>"; 
+                                         ?> 
                                         <td>
                                             <a href="<?php echo base_url() ?>Productos/editar?id=<?php echo $cl['id']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <form action="<?php echo base_url() ?>Productos/eliminar?id=<?php echo $cl['id']; ?>" method="post" class="d-inline elim">
@@ -68,6 +81,7 @@
                                     </tr>
                                 <?php
                                     } ?>
+                                    
                             </tbody>
                         </table>
                     </div>
