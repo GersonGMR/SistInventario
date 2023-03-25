@@ -1,9 +1,11 @@
 <?php
 include "./conexion.php";
-        $entradas = mysqli_query($conexion, "SELECT p.codigo, p.nombre, p.cantidad, p.vencimiento
+        $alimentos = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
           FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
           WHERE p.vencimiento > CURRENT_DATE
-          AND p.cantidad > 0");
+          AND p.cantidad > 0
+          AND f.nombre='Alimentos'");
           date_default_timezone_set('America/El_Salvador');
           $date = date('m/d/Y');
 require_once "Assets/pdf/fpdf.php";
@@ -34,40 +36,604 @@ $pdf->Cell(30, 5, utf8_decode("Fecha impreso"), 0, 0, 'L');
 $pdf->setFont('Arial', '', 8);
 $pdf->Cell(50, 5, utf8_decode($date), 0, 1, 'L');
 
-/*$pdf->Cell(50, 5, utf8_decode($result_fecha['fecha']), 0, 1, 'L');
+//Despliega alimentos
+$rowAlimentos=mysqli_num_rows($alimentos);
+if ($rowAlimentos > 0) {
+
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Alimentos"), 0, 1, 'C');
 $pdf->setFont('Arial', 'B', 8);
-$pdf->Cell(30, 5, utf8_decode("No. Entrada"), 0, 0, 'L');
-$pdf->setFont('Arial', '', 8);
-$pdf->Cell(50, 5, utf8_decode($noFactura), 0, 1, 'L');*/
-$pdf->setFont('Arial', 'B', 10);
-$pdf->Cell(80, 8, utf8_decode("Detalle de productos existentes"), 0, 1, 'C');
-$pdf->setFont('Arial', 'B', 10);
 $pdf->SetTextColor(255, 255, 255);
 $pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
-$pdf->Cell(45, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
 $pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
-$pdf->Cell(30, 5, 'Vencimiento', 1, 1, 'C', 1);
-/*
-foreach ($data as $compras) {
-    $subtotal = $compras['cantidad'];
-    $total = $total + $subtotal;
-    $pdf->SetTextColor(0, 0, 0);
-    $pdf->Cell(35, 5, utf8_decode($compras['producto']), 1, 0, 'L');
-    $pdf->Cell(10, 5, $compras['cantidad'], 1, 0, 'L');
-    $pdf->Cell(40, 5, $compras['fecha'], 1, 1, 'L');
-}*/
-while ($row = mysqli_fetch_assoc($entradas)) {
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($alimentos)) {
     $subtotal = $row['cantidad'];
     $total = $total + $subtotal;
     $pdf->setFont('Arial', '', 6);
     $pdf->SetTextColor(0, 0, 0);
-    $pdf->Cell(9, 5, $row['codigo'], 0, 0, 'L');
-    $pdf->Cell(50, 5, utf8_decode($row['nombre']), 0, 0, 'L');
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
     $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
     $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
 }
 $pdf->Ln(1);
 $pdf->setFont('Arial', 'B', 6);
 $pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+} 
 
+//Despliega lacteos
+$lacteos = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Lacteos'");
+
+$rowLacteos=mysqli_num_rows($lacteos);
+if ($rowLacteos > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Lacteos"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($lacteos)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega cereales
+$cereales = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Cereales'");
+
+$rowCereales=mysqli_num_rows($cereales);
+if ($rowCereales > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Cereales"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($cereales)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega embutidos
+$embutidos = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Embutidos'");
+
+if (mysqli_num_rows($embutidos) > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Embutidos"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($embutidos)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega enlatados
+$enlatados = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Enlatados'");
+
+$rowEnlatados=mysqli_num_rows($enlatados);
+if ($rowEnlatados > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Enlatados"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($enlatados)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega vitaminas
+$vitaminas = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='vitaminas'");
+
+$rowVitaminas=mysqli_num_rows($vitaminas);
+if ($rowVitaminas > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Vitaminas"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($vitaminas)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega insumos médicos
+$insuMedicos = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Insumos médicos'");
+
+if (mysqli_num_rows($insuMedicos) > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Insumos médicos"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(47, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(11, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($insuMedicos)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(47, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(5, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(17, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega Prendas de vestir
+$prendVestir = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Prendas de vestir'");
+
+if (mysqli_num_rows($prendVestir) > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Prendas de vestir"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(47, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(11, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($prendVestir)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(47, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(5, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(17, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega Insumos de bodega
+$insuBodega = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Insumos de bodega'");
+
+if (mysqli_num_rows($insuBodega) > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Insumos de bodega"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(47, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(11, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($insuBodega)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(47, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(5, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(17, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega higiene
+$higiene = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Higiene'");
+
+if (mysqli_num_rows($higiene) > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Higiene"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($higiene)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega Calzado
+$calzado = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Calzado'");
+
+if (mysqli_num_rows($calzado) > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Calzado"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($calzado)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega Libros
+$libros = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Libros'");
+
+if (mysqli_num_rows($libros) > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Libros"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($libros)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega Herramientas
+$herramientas = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Herramientas'");
+
+if (mysqli_num_rows($herramientas) > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Herramientas"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($herramientas)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega Emergencia
+$emergencia = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento
+          FROM productos as p
+          INNER JOIN familia as f ON p.id_familia = f.id_familia
+          WHERE p.vencimiento > CURRENT_DATE
+          AND p.cantidad > 0
+          AND f.nombre='Emergencia'");
+
+if (mysqli_num_rows($emergencia) > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Emergencia"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($emergencia)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
+
+//Despliega otros
+$otros = mysqli_query($conexion, "SELECT p.codigo, p.nombre as nombre_producto,f.nombre as nombre_fam, p.cantidad, p.vencimiento 
+            FROM productos as p
+            INNER JOIN familia as f ON p.id_familia = f.id_familia
+            WHERE p.vencimiento > CURRENT_DATE
+            AND p.cantidad > 0
+            AND f.nombre!='Alimentos' AND f.nombre!='Lacteos' AND f.nombre!='Cereales' AND f.nombre!='Embutidos' AND f.nombre!='Enlatados' AND f.nombre!='vitaminas'
+            AND f.nombre!='Insumos médicos' AND f.nombre!='Prendas de vestir' AND f.nombre!='Insumos de bodega' AND f.nombre!='Higiene' AND f.nombre!='Calzado' AND f.nombre!='Libros'
+            AND f.nombre!='Herramientas' AND f.nombre!='Emergencia'");
+
+if (mysqli_num_rows($otros) > 0) {
+$pdf->setFont('Arial', 'B', 10);
+$pdf->Cell(80, 8, utf8_decode("Otros"), 0, 1, 'C');
+$pdf->setFont('Arial', 'B', 8);
+$pdf->SetTextColor(255, 255, 255);
+$pdf->Cell(9, 5, 'Cod', 1, 0, 'C', 1);
+$pdf->Cell(50, 5, utf8_decode('Descripción'), 1, 0, 'L', 1);
+$pdf->Cell(8, 5, 'Cant', 1, 0, 'C', 1);
+$pdf->Cell(9, 5, 'Fam', 1, 0, 'C', 1);
+$pdf->Cell(15, 5, 'Vence', 1, 1, 'R', 1);
+
+while ($row = mysqli_fetch_assoc($otros)) {
+    $subtotal = $row['cantidad'];
+    $total = $total + $subtotal;
+    $pdf->setFont('Arial', '', 6);
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->Cell(10, 5, $row['codigo'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(50, 5, utf8_decode($row['nombre_producto']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'L');
+    $pdf->setFont('Arial', '', 5);
+    $pdf->Cell(10, 5, utf8_decode($row['nombre_fam']), 0, 0, 'L');
+    $pdf->setFont('Arial', '', 6);
+    $pdf->Cell(20, 5, utf8_decode($row['vencimiento']), 0, 1, 'L');
+}
+$pdf->Ln(1);
+$pdf->setFont('Arial', 'B', 6);
+$pdf->Cell(90, 3.5, 'Total productos: '. number_format($total), 0, 1, 'R');
+$total = 0.00;
+}
 $pdf->Output();

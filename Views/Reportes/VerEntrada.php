@@ -2,9 +2,10 @@
 include "./conexion.php";
         $desde = $_REQUEST['desde'];
         $hasta = $_REQUEST['hasta'];
-        $entradas = mysqli_query($conexion, "SELECT p.nombre, d.cantidad,p.medida FROM detalle_compra d
+        $entradas = mysqli_query($conexion, "SELECT SUM(d.cantidad) as cantidad, p.nombre, p.medida FROM detalle_compra d
           INNER JOIN productos p ON d.id_producto = p.id
-          WHERE d.Fecha between '$desde' and '$hasta'");
+          WHERE d.Fecha between '$desde' and '$hasta'
+          GROUP BY p.id");
 require_once "Assets/pdf/fpdf.php";
 $total = 0.00;
 $pdf = new FPDF('P', 'mm', array(105, 148));
