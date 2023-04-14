@@ -6,58 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="<?php echo base_url(); ?>Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>Assets/css/login.css">
 
-    <!--
-        <style>
-        input:invalid {
-            box-shadow: 0 0 5px 1px red;;
-        }
-        input:valid {
-        border: 2px solid black;
-        }
-    </style>
-        -->
 
 </head>
+    <body class="main-bg">
+    <div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active">Iniciar sesión</h2>
 
-<body class="bg-secondary">
-    <div class="container">
-        <div class="row mt-3">
-            <div class="col-lg-4 m-auto">
-                <div class="card mt-5">
-                    <div class="card-header bg-primary text-center">
-                        <strong class="text-white">Iniciar Sesión</strong><br>
-                        <img class="img-thumbnail" src="<?php echo base_url(); ?>/Assets/img/logo.jpg" width="300">
-                    </div>
-                    <div class="card-body">
-                        <?php if (isset($_GET['msg'])) { ?>
-                            <div class="alert alert-danger" role="alert">
-                                <strong>Usuario o contraseña Incorrecta</strong>
-                            </div>
-                        <?php } ?>
-
-                        <div id ='error' class="text-danger"></div>
-                        <form action="<?php echo base_url(); ?>Usuarios/login" method="post" autocomplete="off" onsubmit="return validar()">
-
-                            <div class="form-group">
-                                <strong class="text-primary">Usuario</strong>
-                                <input id="usuario" class="form-control" type="text" name="usuario" placeholder="Usuario">
-                            </div>
-                            <div class="form-group">
-                                <strong class="text-primary">Contraseña</strong>
-                                <input id="clave" class="form-control" type="password" name="clave" placeholder="Contraseña">
-                            </div>
-                            <input class="btn btn-primary btn-block" type="submit" value="Iniciar" >
-                            <!--
-                            <button class="btn btn-primary btn-block" type="submit">Iniciar</button>
-                            -->
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="<?php echo base_url(); ?>/Assets/img/logo.jpg"  id="icon" alt="User Icon"/>
     </div>
+
+    <!-- Login Form -->
+    
+    <form action="<?php echo base_url(); ?>Usuarios/login" method="post" autocomplete="off" onsubmit="return validar()">
+      <input type="text" id="usuario" class="fadeIn second" name="usuario" placeholder="Usuario">
+      <input type="password" id="clave" class="fadeIn third" name="clave" placeholder="Contraseña">
+      <input type="submit" class="fadeIn fourth" value="Iniciar">
+    </form>
+
+    <?php if (isset($_GET['msg'])) { ?>
+        <div role="alert">
+            <strong>Usuario o contraseña incorrecta</strong>
+        </div>
+    <?php } ?>
+
+
+  </div>
+</div>
+</body>
                         <script>
                             function limpiarFormulario(){
                                 var error = document.getElementById('error');

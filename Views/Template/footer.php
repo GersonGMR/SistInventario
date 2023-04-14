@@ -45,7 +45,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p class="text-white">¿Esta seguro que desea salir</p>
+                        <p class="text-white">¿Esta seguro que desea salir?</p>
                     </div>
                     <div class="modal-footer ml-auto">
                         <a href="<?php echo base_url(); ?>Usuarios/salir" class="btn btn-danger">Si</a>

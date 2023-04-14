@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
 
     <!-- Favicon-->
-    <link rel="shorcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shorcut icon" href="<?php echo base_url(); ?>Assets/img/favicon.ico" type="image/x-icon">
     <!-- Tweaks for older IEs-->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>

@@ -86,7 +86,7 @@ class UsuariosModel extends Mysql{
     {
         $this->usuario = $usuario;
         $this->clave = $clave;
-        $sql = "SELECT * FROM usuarios WHERE usuario = '{$this->usuario}' AND clave = '{$this->clave}'";
+        $sql = "SELECT * FROM usuarios WHERE usuario = '{$this->usuario}' AND clave = '{$this->clave}' AND estado=1";
         $res = $this->select($sql);
         return $res;
     }
